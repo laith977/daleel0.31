@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect } from "react";
-
+import Feed from "@/components/Feed";
 const Home = () => {
   useEffect(() => {
     fetch(`/api/profile/car`, {
-      method: "SEARCH",
+      method: "GET",
     });
   }, []);
 
@@ -94,6 +94,7 @@ const Home = () => {
       <div className="flex flex-col mx-auto text-center">
         <p className="text-white text-6xl ">Latest Cars</p>
       </div>
+      <Feed />
     </div>
   );
 };
