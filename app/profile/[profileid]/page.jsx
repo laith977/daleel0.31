@@ -6,21 +6,22 @@ import React from "react";
 import { useRouter } from "next/navigation";
 const UserProfile = ({ params }) => {
   const router = useRouter();
-  const [userPosts, setUserPosts] = useState({});
+  const [user, setUser] = useState(undefined);
+  const [cars, setCars] = useState([]);
+
   const username = params.profileid;
-  const handleEdit = async (post) => {
-    router.push(`/profile/${params.profileid}/update-car/`);
-  };
-  const handleDelete = async (post) => {
+
+  const handleDelete = async (carid) => {
     const hasConfirmed = confirm(
       "Are you sure you want to delete this prompt?"
     );
 
     if (hasConfirmed) {
       try {
-        await fetch(`/api/profile/car/${params.carid}`, { method: "DELETE" });
-        const filteredPosts = posts.filter((p) => p._id !== post._id);
-        setPosts(filteredPosts);
+        await fetch(`/api/profile/car/${carid}`, { method: "DELETE" });
+        setCars((cars) => {
+          return cars.filter((c) => c._id !== carid);
+        });
       } catch (error) {
         console.log(error);
       }
@@ -28,23 +29,18 @@ const UserProfile = ({ params }) => {
   };
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchData = async () => {
       const response = await fetch(`/api/profile/${username}`);
       const data = await response.json();
-      console.log(data);
-      setUserPosts(data);
+      setUser(data.user);
+      setCars(data.cars);
     };
 
-    if (username) fetchPosts();
+    if (username) fetchData();
   }, [username]);
-
   return (
     <>
-      <Profile
-        data={userPosts}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
+      <Profile user={user} cars={cars} handleDelete={handleDelete} />
     </>
   );
 };

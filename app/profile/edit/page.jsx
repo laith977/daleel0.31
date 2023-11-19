@@ -3,20 +3,18 @@ import ProfileForm from "@/components/ProfileForm";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-const initialPost = {
-  email: "",
+const initialPostState = {
+  name: "",
   bio: "",
   subscription: "Free",
-  PhoneNumber: "",
+  phoneNumber: "",
   number_of_cars: 0,
-  name: "",
 };
-
-const UpdateProfile = ({ params }) => {
+const UpdateProfile = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
-  const [post, setPost] = useState(initialPost);
+  const [post, setPost] = useState(initialPostState);
 
   const userId = session?.user.id;
   useEffect(() => {
@@ -24,7 +22,9 @@ const UpdateProfile = ({ params }) => {
       try {
         const response = await fetch(`/api/profile/edit-profile`);
         const data = await response.json();
-        setPost(data);
+        if (data.name !== undefined) {
+          setPost((prevState) => ({ ...prevState, name: data.name }));
+        }
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
@@ -44,9 +44,7 @@ const UpdateProfile = ({ params }) => {
           bio: post.bio,
           subscription: post.subscription,
           phoneNumber: post.phoneNumber,
-          email: post.email,
           number_of_cars: post.number_of_cars,
-          image: post.image,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -75,4 +73,5 @@ const UpdateProfile = ({ params }) => {
     />
   );
 };
+
 export default UpdateProfile;

@@ -35,7 +35,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           Name:
         </label>
         <input
-          value={car["cars"]?.name || ""}
+          value={car?.name || ""}
           type="text"
           id="name"
           name="name"

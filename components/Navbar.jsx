@@ -50,7 +50,7 @@ const Nav = () => {
               <button className="bg-[#5c97ff] text-white px-4 py-2 rounded-full hover:bg-[#367fff]">
                 {" "}
                 {/* Adjusted padding */}
-                <Link href="/profile/create-car">Post Car</Link>
+                <Link href="/profile/car">Post Car</Link>
               </button>
             )}
             <button className="bg-[#5c97ff] text-white px-4 py-2 rounded-full hover:bg-[#1b6eff]">

@@ -1,8 +1,10 @@
 import Car from "@/models/car";
 import User from "@/models/user";
-
+import { getServerSession } from "next-auth";
 import { connectToDatabase } from "@/utils/database";
-//GET (read)
+import path from "path";
+import fs from "fs/promises";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route.js";
 
 export const GET = async (request, { params }) => {
   try {
@@ -28,80 +30,86 @@ export const GET = async (request, { params }) => {
 };
 //PATCH (update)
 export const PATCH = async (req, { params }) => {
-  const {
-    name,
-    description,
-    image, // Assuming pictures is an array of base64-encoded images
-    price,
-    phone_number,
-    year,
-    make,
-    model,
-    mileage,
-    transmission,
-    type,
-    doors,
-    color,
-    fuel,
-    region,
-  } = await req.json();
-
   try {
-    await connectToDatabase();
-    const car = await Car.findById(params.id);
+    const {
+      name,
+      description,
+      image, // Assuming pictures is an array of base64-encoded images
+      price,
+      phone_number,
+      year,
+      make,
+      model,
+      mileage,
+      transmission,
+      type,
+      doors,
+      color,
+      fuel,
+      region,
+    } = await req.json();
 
-    if (!car) {
+    await connectToDatabase();
+    const session = await getServerSession(authOptions);
+    const existingUser = await User.findById(session?.user.id);
+
+    if (!existingUser) {
+      return new Response("User not found", { status: 404 });
+    }
+
+    const existingCar = await Car.findById(params.carid);
+
+    if (!existingCar) {
       return new Response("Car not found", { status: 404 });
     }
 
-    // Update car properties
-    car.name = name || car.name;
-    car.description = description || car.description;
+    // Check if the user is the creator of the existing car
+    if (existingCar.creator.toString() !== session?.user.id) {
+      return new Response("Unauthorized", { status: 401 });
+    }
 
-    // Assuming 'image' is an array, update it accordingly
+    let carPictures = existingCar.pictures;
+
     if (image && image.length > 0) {
-      // Process each image in the array
-      const carImages = car.pictures || []; // Assuming 'pictures' is the field in the Car model
-
+      carPictures = [];
       for (const picture of image) {
-        const fileName = `${car.creator + Math.random()}_123456789.png`;
+        const fileName = `${existingUser._id + Math.random()}_123456789.png`;
         const filePath = path.join(process.cwd(), "public/uploads", fileName);
-        carImages.push(`/uploads/${fileName}`);
+        carPictures.push(`/uploads/${fileName}`);
 
         const imageData = Buffer.from(picture, "base64");
 
-        // Write the image to the server
+        // Write the new image to the server
         await fs.writeFile(filePath, imageData);
       }
-
-      car.pictures = carImages;
     }
 
-    car.price = price || car.price;
-    car.phone_number = phone_number || car.phone_number;
-    car.year = year || car.year;
-    car.make = make || car.make;
-    car.model = model || car.model;
-    car.mileage = mileage || car.mileage;
-    car.transmission = transmission || car.transmission;
-    car.type = type || car.type;
-    car.doors = doors || car.doors;
-    car.color = color || car.color;
-    car.fuel = fuel || car.fuel;
-    car.region = region || car.region;
+    // Update the car data
+    existingCar.name = name;
+    existingCar.description = description;
+    existingCar.price = price;
+    existingCar.phone_number = phone_number;
+    existingCar.year = year;
+    existingCar.make = make;
+    existingCar.model = model;
+    existingCar.mileage = mileage;
+    existingCar.transmission = transmission;
+    existingCar.type = type;
+    existingCar.doors = doors;
+    existingCar.color = color;
+    existingCar.fuel = fuel;
+    existingCar.region = region;
+    existingCar.pictures = carPictures;
 
-    // Save the updated car
-    await car.save();
+    await existingCar.save();
 
-    return new Response(JSON.stringify(car), {
+    return new Response(JSON.stringify(existingCar), {
       status: 200,
-      headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error("Error updating car:", error);
-    return new Response(`Failed to update car. Error: ${error.message}`, {
+    console.error("Error editing car:", error);
+    return new Response("Failed to edit car", {
       status: 500,
-      headers: { "Content-Type": "application/json" },
     });
   }
 };
@@ -110,7 +118,7 @@ export const PATCH = async (req, { params }) => {
 export const DELETE = async (request, { params }) => {
   try {
     await connectToDatabase();
-    const car = await Car.findByIdAndDelete(params.id);
+    const car = await Car.findByIdAndDelete(params.carid);
 
     if (!car) {
       return new Response("Car not found", { status: 404 });

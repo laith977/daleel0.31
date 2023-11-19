@@ -1,8 +1,14 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Home = () => {
+  useEffect(() => {
+    fetch(`/api/profile/car`, {
+      method: "SEARCH",
+    });
+  }, []);
+
   return (
     <div className="font-[Poppins]  bg-gray-900 h-screen">
       <div className="text-center mt-24 flex flex-col items-center">

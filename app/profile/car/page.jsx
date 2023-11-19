@@ -1,10 +1,12 @@
 "use client";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import CarForm from "@/components/CarForm";
-const UpdateCar = ({ params }) => {
+const CreateCar = () => {
   const router = useRouter();
+  const { data: session } = useSession();
   const [Submitting, setSubmitting] = useState(false);
   const [Car, setCar] = useState({
     name: "",
@@ -23,39 +25,14 @@ const UpdateCar = ({ params }) => {
     fuel: "",
     region: "",
   });
-  useEffect(() => {
-    const getCarDetails = async () => {
-      const response = await fetch(`/api/profile/car/${params.carid}`);
-      const data = await response.json();
-      console.log(data);
-      setCar({
-        name: data.name,
-        description: data.description,
-        image: data.image,
-        price: data.price,
-        phone_number: data.phone_number,
-        year: data.year,
-        make: data.make,
-        model: data.model,
-        mileage: data.mileage,
-        transmission: data.transmission,
-        type: data.type,
-        doors: data.doors,
-        color: data.color,
-        fuel: data.fuel,
-        region: data.region,
-      });
-    };
-
-    if (params.carid) getCarDetails();
-  }, [params.carid]);
-  const updateCar = async (e) => {
+  const createCar = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const response = await fetch(`/api/profile/edit-car`, {
-        method: "PATCH",
+      const response = await fetch(`/api/profile/car`, {
+        method: "POST",
         body: JSON.stringify({
+          creator: session?.user?.id,
           name: Car.name,
           description: Car.description,
           image: Car.image,
@@ -90,13 +67,13 @@ const UpdateCar = ({ params }) => {
   };
   return (
     <CarForm
-      type="Update"
+      type="Create"
       car={Car}
       setCar={setCar}
       submitting={Submitting}
-      handleSubmit={updateCar}
+      handleSubmit={createCar}
     ></CarForm>
   );
 };
 
-export default UpdateCar;
+export default CreateCar;
