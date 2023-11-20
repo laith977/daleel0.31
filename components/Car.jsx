@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
+import Link from "next/link";
 const Car = ({ data }) => {
   return (
     <>
@@ -74,13 +74,15 @@ const Car = ({ data }) => {
 
       <div className="mx-auto bg-gray-200 flex-col flex max-w-screen-md m-4 sm:m-8 lg:m-12 mt-8 border border-amber-700 p-4 sm:p-8 lg:p-12">
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
-          <Image
-            width={100}
-            height={100}
-            className="w-full md:w-48 h-full rounded-full cursor-pointer m-4"
-            src={data["user"]?.image || ""}
-            alt="Seller"
-          />
+          <Link href={`/profile/${data["car"]?.creator}`}>
+            <Image
+              width={100}
+              height={100}
+              className="w-full md:w-48 h-full rounded-full cursor-pointer m-4"
+              src={data["user"]?.image || ""}
+              alt="Seller"
+            />
+          </Link>
           <div className="flex flex-col my-auto text-center md:text-left">
             <p className="text-xl font-bold text-orange-400">
               {data["user"]?.name}

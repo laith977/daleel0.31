@@ -13,7 +13,7 @@ const Feed = () => {
 
   const handleSearchChange = (e) => {
     const inputValue = e.target.value;
-    clearTimeout(searchTimeout);
+    clearTimeout(searchTimeout);  
     setSearchText(inputValue);
 
     //debounce search
