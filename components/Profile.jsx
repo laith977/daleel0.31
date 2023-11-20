@@ -32,7 +32,7 @@ const Profile = ({ user, cars, handleDelete }) => {
               {"Subscription: " + user?.subscription}
             </p>
             <p className="font-mono text-orange-700 text-3xl p-5 text-center">
-              {"Number Of Cars: " + user?.number_of_cars}
+              {"Number Of Cars: " + cars?.length}
             </p>
             {/* <p className="font-mono text-orange-700 text-3xl p-5 text-center">
               Type Of Organization
