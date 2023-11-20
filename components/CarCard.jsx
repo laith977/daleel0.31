@@ -14,7 +14,10 @@ const CarCard = ({
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-12 justify-around mx-4 sm:mx-8 lg:mx-32">
       {(Array.isArray(data) ? data : []).map((car) => (
-        <div key={car?._id} className="bg-white p-4 rounded-lg text-center flex flex-col justify-around">
+        <div
+          key={car?._id}
+          className="bg-white p-4 rounded-lg text-center flex flex-col justify-around"
+        >
           <Link href={`/profile/${car.creator}/car/${car._id}`}>
             <Image
               src={car?.pictures[0] || ""}

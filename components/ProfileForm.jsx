@@ -19,7 +19,7 @@ const ProfileForm = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-md mx-auto mt-8 p-4 bg-white rounded-md shadow-md"
+      className="max-w-md mx-auto my-32 p-4 bg-white rounded-md shadow-md"
     >
       <div className="mb-4">
         <label
