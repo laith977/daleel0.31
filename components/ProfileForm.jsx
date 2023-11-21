@@ -2,6 +2,7 @@ import React from "react";
 import FileUpload from "./FileUpload";
 
 const ProfileForm = ({ type, post, setPost, submitting, handleSubmit }) => {
+  console.log(post);
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
 
@@ -57,7 +58,7 @@ const ProfileForm = ({ type, post, setPost, submitting, handleSubmit }) => {
         />
       </div>
 
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <label
           htmlFor="subscription"
           className="block text-sm font-medium text-gray-600"
@@ -75,7 +76,7 @@ const ProfileForm = ({ type, post, setPost, submitting, handleSubmit }) => {
           <option value="Premium">Premium</option>
           <option value="Basic">Basic</option>
         </select>
-      </div>
+      </div> */}
 
       <div className="mb-4">
         <label
@@ -94,7 +95,7 @@ const ProfileForm = ({ type, post, setPost, submitting, handleSubmit }) => {
         />
       </div>
 
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <label
           htmlFor="number_of_cars"
           className="block text-sm font-medium text-gray-600"
@@ -109,7 +110,7 @@ const ProfileForm = ({ type, post, setPost, submitting, handleSubmit }) => {
           onChange={(e) => setPost({ ...post, number_of_cars: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         />
-      </div>
+      </div> */}
 
       <div className="mb-4">
         <button

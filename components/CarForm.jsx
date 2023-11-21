@@ -174,21 +174,28 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         />
       </div>
+
       <div className="mb-4">
         <label
-          htmlFor="type"
+          htmlFor="subscription"
           className="block text-sm font-medium text-gray-600"
         >
           type:
         </label>
-        <input
+        <select
           value={car?.type || ""}
-          type="text"
           id="type"
           name="type"
           onChange={(e) => setCar({ ...car, type: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-        />
+        >
+          <option value="Gasoline">Gasoline</option>
+          <option value="Electric">Electric</option>
+          <option value="Hybrid">Hybrid</option>
+          <option value="PickUpTrucks">Pick Up Trucks</option>
+          <option value="Buses">Buses</option>
+          <option value="Lorries">Lorries</option>
+        </select>
       </div>
       <div className="mb-4">
         <label

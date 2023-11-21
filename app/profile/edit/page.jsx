@@ -6,16 +6,13 @@ import { useSession } from "next-auth/react";
 const initialPostState = {
   name: "",
   bio: "",
-  subscription: "Free",
   phoneNumber: "",
-  number_of_cars: 0,
 };
 const UpdateProfile = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState(initialPostState);
-
   const userId = session?.user.id;
   useEffect(() => {
     const getUserDetails = async () => {
@@ -23,14 +20,21 @@ const UpdateProfile = () => {
         const response = await fetch(`/api/profile/edit-profile`);
         const data = await response.json();
         if (data.name !== undefined) {
-          setPost((prevState) => ({ ...prevState, name: data.name }));
+          setPost((prevState) => ({
+            ...prevState,
+            name: data.name,
+            bio: data.bio || "",
+            phoneNumber: data.phoneNumber || "",
+          }));
         }
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
     };
 
-    if (userId) getUserDetails();
+    if (userId) {
+      getUserDetails();
+    }
   }, [userId]);
   const updateProfile = async (e) => {
     e.preventDefault();
@@ -42,9 +46,7 @@ const UpdateProfile = () => {
         body: JSON.stringify({
           name: post.name,
           bio: post.bio,
-          subscription: post.subscription,
           phoneNumber: post.phoneNumber,
-          number_of_cars: post.number_of_cars,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +64,7 @@ const UpdateProfile = () => {
       setSubmitting(false);
     }
   };
-
+  console.log(post);
   return (
     <ProfileForm
       type="Update"

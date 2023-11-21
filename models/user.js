@@ -31,7 +31,7 @@ const UserSchema = new Schema({
     type: Number,
     default: 0,
   },
-  phoneNumber: String,
+  phoneNumber: Number,
 });
 
 const User = models.User || model("User", UserSchema);

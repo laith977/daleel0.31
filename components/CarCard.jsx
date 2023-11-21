@@ -18,15 +18,20 @@ const CarCard = ({
           key={car?._id}
           className="bg-white p-4 rounded-lg text-center flex flex-col justify-around"
         >
-          <Link href={`/profile/${car.creator}/car/${car._id}`}>
-            <Image
-              src={car?.pictures[0] || ""}
-              alt="Car"
-              className="mx-auto"
-              width={300}
-              height={300}
-            />
-          </Link>
+          <div className="flex flex-col items-center">
+            <Link href={`/profile/${car.creator}/car/${car._id}`}>
+              <div className="relative w-64 h-32 sm:w-32 overflow-hidden rounded-md">
+                <Image
+                  src={car?.pictures[0] || ""}
+                  alt="Car"
+                  className="mx-auto object-cover w-full h-full"
+                  width={200}
+                  height={200}
+                />
+              </div>
+            </Link>
+          </div>
+
           <p className="text-black text-lg">{car?.name}</p>
           {session?.user?.id && car?.creator === session?.user?.id && (
             <div className="flex flex-col sm:flex-row justify-around mt-4">
