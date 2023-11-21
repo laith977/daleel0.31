@@ -42,11 +42,12 @@ export const PATCH = async (req, { params }) => {
       model,
       mileage,
       transmission,
-      type,
+      category,
       doors,
       color,
       fuel,
       region,
+      bodytype,
     } = await req.json();
 
     await connectToDatabase();
@@ -94,12 +95,13 @@ export const PATCH = async (req, { params }) => {
     existingCar.model = model;
     existingCar.mileage = mileage;
     existingCar.transmission = transmission;
-    existingCar.type = type;
+    existingCar.category = category;
     existingCar.doors = doors;
     existingCar.color = color;
     existingCar.fuel = fuel;
     existingCar.region = region;
     existingCar.pictures = carPictures;
+    existingCar.bodytype = bodytype;
 
     await existingCar.save();
 

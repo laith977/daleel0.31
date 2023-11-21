@@ -40,11 +40,12 @@ const UpdateCar = ({ params }) => {
         model: data["car"].model,
         mileage: data["car"].mileage,
         transmission: data["car"].transmission,
-        type: data["car"].type,
         doors: data["car"].doors,
         color: data["car"].color,
         fuel: data["car"].fuel,
         region: data["car"].region,
+        category: data["car"].category,
+        bodytype: data["car"].bodytype,
       });
     };
 
@@ -67,11 +68,12 @@ const UpdateCar = ({ params }) => {
           model: car.model,
           mileage: car.mileage,
           transmission: car.transmission,
-          type: car.type,
           doors: car.doors,
           color: car.color,
           fuel: car.fuel,
           region: car.region,
+          category: car.category,
+          bodytype: car.bodytype,
         }),
         headers: {
           "Content-Type": "application/json",

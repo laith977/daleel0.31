@@ -19,11 +19,11 @@ const CreateCar = () => {
     model: "",
     mileage: "",
     transmission: "",
-    type: "",
     doors: "",
     color: "",
     fuel: "",
     region: "",
+    bodytype: "",
   });
   const createCar = async (e) => {
     e.preventDefault();
@@ -43,11 +43,12 @@ const CreateCar = () => {
           model: Car.model,
           mileage: Car.mileage,
           transmission: Car.transmission,
-          type: Car.type,
           doors: Car.doors,
           color: Car.color,
           fuel: Car.fuel,
           region: Car.region,
+          bodytype: Car.bodytype, // Add bodytype to the payload
+          category: Car.category,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -57,10 +58,10 @@ const CreateCar = () => {
       if (response.ok) {
         router.push("/");
       } else {
-        console.error("Failed to update profile:", response.statusText);
+        console.error("Failed to create car:", response.statusText);
       }
     } catch (error) {
-      console.error("Error updating profile:", error.message);
+      console.error("Error creating car:", error.message);
     } finally {
       setSubmitting(false);
     }

@@ -43,7 +43,7 @@ const carSchema = new Schema({
     type: String,
     required: true,
   },
-  type: {
+  category: {
     type: String,
     required: true,
   },
@@ -52,6 +52,10 @@ const carSchema = new Schema({
     required: true,
   },
   color: {
+    type: String,
+    required: true,
+  },
+  bodytype: {
     type: String,
     required: true,
   },

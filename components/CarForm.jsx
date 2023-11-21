@@ -177,24 +177,49 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
 
       <div className="mb-4">
         <label
-          htmlFor="subscription"
+          htmlFor="category"
           className="block text-sm font-medium text-gray-600"
         >
-          type:
+          Category:
         </label>
         <select
-          value={car?.type || ""}
-          id="type"
-          name="type"
-          onChange={(e) => setCar({ ...car, type: e.target.value })}
+          value={car?.category || "gasoline"} // Set default value to "gasoline"
+          id="category"
+          name="category"
+          onChange={(e) => setCar({ ...car, category: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
-          <option value="Gasoline">Gasoline</option>
-          <option value="Electric">Electric</option>
-          <option value="Hybrid">Hybrid</option>
-          <option value="PickUpTrucks">Pick Up Trucks</option>
-          <option value="Buses">Buses</option>
-          <option value="Lorries">Lorries</option>
+          <option value="gasoline">Gasoline</option>
+          <option value="electric">Electric</option>
+          <option value="hybrid">Hybrid</option>
+          <option value="pick-up">Pick-Up Trucks</option>
+          <option value="bus">Buses</option>
+          <option value="lorry">Lorries</option>
+        </select>
+      </div>
+
+      <div className="mb-4">
+        <label
+          htmlFor="bodytype"
+          className="block text-sm font-medium text-gray-600"
+        >
+          Body Type:
+        </label>
+        <select
+          value={car?.bodytype || "coupe"} // Set default value to "coupe"
+          id="bodytype"
+          name="bodytype"
+          onChange={(e) => setCar({ ...car, bodytype: e.target.value })}
+          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+        >
+          <option value="coupe">Coupe</option>
+          <option value="sedan">Sedan</option>
+          <option value="hatch">Hatch</option>
+          <option value="wagon">Wagon</option>
+          <option value="suv">SUV</option>
+          <option value="pick-up">Pick-up</option>
+          <option value="minivan">Minivan</option>
+          <option value="other">Other</option>
         </select>
       </div>
       <div className="mb-4">

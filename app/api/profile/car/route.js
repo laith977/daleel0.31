@@ -31,11 +31,12 @@ export const POST = async (req) => {
       model,
       mileage,
       transmission,
-      type,
+      category,
       doors,
       color,
       fuel,
       region,
+      bodytype,
     } = await req.json();
     await connectToDatabase();
     const session = await getServerSession(authOptions);
@@ -72,12 +73,13 @@ export const POST = async (req) => {
       model,
       mileage,
       transmission,
-      type,
+      category,
       doors,
       color,
       fuel,
       region,
       pictures: carPictures,
+      bodytype,
     };
 
     const newCar = new Car(newCarData);
