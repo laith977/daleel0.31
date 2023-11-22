@@ -53,8 +53,16 @@ const Car = ({ data }) => {
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-black font-bold">Type</span>
-              <span className="text-black font-bold">{data["car"]?.type}</span>
+              <span className="text-black font-bold">Body Type</span>
+              <span className="text-black font-bold">
+                {data["car"]?.bodytype}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-black font-bold">Category</span>
+              <span className="text-black font-bold">
+                {data["car"]?.category}
+              </span>
             </div>
             <div className="flex justify-between">
               <span className="text-black font-bold">Doors</span>
@@ -75,13 +83,24 @@ const Car = ({ data }) => {
       <div className="mx-auto bg-gray-200 flex-col flex max-w-screen-md m-4 sm:m-8 lg:m-12 mt-8 border border-amber-700 p-4 sm:p-8 lg:p-12">
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
           <Link href={`/profile/${data["car"]?.creator}`}>
-            <Image
-              width={100}
-              height={100}
-              className="w-full md:w-48 h-full rounded-full cursor-pointer m-4"
-              src={data["user"]?.image || ""}
-              alt="Seller"
-            />
+            {data["user"]?.image && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "20vh",
+                }}
+              >
+                <Image
+                  style={{ borderRadius: "50%", width: "75%", height: "80%" }}
+                  src={data["user"]?.image}
+                  alt="Decoded Image"
+                  width={500}
+                  height={500}
+                />
+              </div>
+            )}
           </Link>
           <div className="flex flex-col my-auto text-center md:text-left">
             <p className="text-xl font-bold text-orange-400">

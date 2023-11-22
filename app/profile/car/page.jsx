@@ -24,6 +24,7 @@ const CreateCar = () => {
     fuel: "",
     region: "",
     bodytype: "",
+    category: "",
   });
   const createCar = async (e) => {
     e.preventDefault();
