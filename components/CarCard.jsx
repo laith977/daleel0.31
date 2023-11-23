@@ -2,15 +2,19 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { useParams } from 'next/navigation'
+
 
 const CarCard = ({
   data = [],
   handleEdit = () => {},
   handleDelete = () => {},
   handleTagClick = () => {},
-}) => {
+},) => {
   const { data: session } = useSession();
   console.log("Data in CarCard:", data);
+  const params = useParams();
+
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-12 mx-auto justify-center">
@@ -34,7 +38,7 @@ const CarCard = ({
           </div>
 
           <p className="text-black text-lg">{car?.name}</p>
-          {session?.user?.id && car?.creator === session?.user?.id && (
+{session?.user?.id && car?.creator === session?.user?.id && params?.profileid!==undefined &&(
             <div className="flex flex-col sm:flex-row justify-around mt-4">
               <button
                 className="text-white bg-red-600 hover:bg-red-700 py-2 px-4 rounded-lg mb-2 sm:mb-0"
@@ -45,9 +49,14 @@ const CarCard = ({
                 Delete
               </button>
               <Link href={`/profile/car/${car?._id}`}>
-                <button className="text-white bg-green-600 hover:bg-green-700 py-2 px-4 rounded-lg">
-                  Edit
-                </button>
+              <button
+                  className="text-white bg-green-600 hover:bg-green-700 py-2 px-4 rounded-lg"
+                onClick={() => {
+          handleEdit(car?._id);
+           }}
+>
+  Edit
+</button>
               </Link>
             </div>
           )}
