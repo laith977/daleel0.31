@@ -189,7 +189,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           onChange={(e) => setCar({ ...car, category: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
-          <option value="gasoline">Gasoline</option>
+          <option value="gasoline" selected>Gasoline</option>
           <option value="electric">Electric</option>
           <option value="hybrid">Hybrid</option>
           <option value="pick-up">Pick-Up Trucks</option>
@@ -212,7 +212,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           onChange={(e) => setCar({ ...car, bodytype: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
-          <option value="coupe">Coupe</option>
+          <option value="coupe" selected>Coupe</option>
           <option value="sedan">Sedan</option>
           <option value="hatch">Hatch</option>
           <option value="wagon">Wagon</option>
