@@ -32,7 +32,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           htmlFor="name"
           className="block text-sm font-medium text-gray-600"
         >
-          Name:
+          Post name:
         </label>
         <input
           value={car?.name || ""}
@@ -94,21 +94,30 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         />
       </div>
+
       <div className="mb-4">
         <label
           htmlFor="year"
           className="block text-sm font-medium text-gray-600"
         >
-          year:
+          Year:
         </label>
-        <input
-          value={car?.year || ""}
-          type="text"
+        <select
+          value={car?.year || 2000} // Set default value to "gasoline"
           id="year"
           name="year"
-          onChange={(e) => setCar({ ...car, year: e.target.value })}
+          onChange={(e) => setCar({ ...car, transmission: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-        />
+        >
+          {Array.from({ length: 24 }, (_, index) => {
+            const year = 2000 + index;
+            return (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            );
+          })}
+        </select>
       </div>
       <div className="mb-4">
         <label
@@ -149,30 +158,46 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         >
           mileage:
         </label>
-        <input
-          value={car?.mileage || ""}
-          type="text"
+        <select
+          value={car?.mileage || "gasoline"} // Set default value to "gasoline"
           id="mileage"
           name="mileage"
           onChange={(e) => setCar({ ...car, mileage: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-        />
+        >
+          {Array.from({ length: 25 }, (_, index) => {
+            const diff = 5000 + index * 5000;
+            return (
+              <option
+                key={`${diff - 5000}-${diff}`}
+                value={`${diff - 5000}-${diff}`}
+              >
+                {`${diff - 5000}-${diff}`}
+              </option>
+            );
+          })}
+        </select>
       </div>
+
       <div className="mb-4">
         <label
           htmlFor="transmission"
           className="block text-sm font-medium text-gray-600"
         >
-          transmission:
+          Transmission:
         </label>
-        <input
-          value={car?.transmission || ""}
-          type="text"
+        <select
+          value={car?.transmission || "gasoline"} // Set default value to "gasoline"
           id="transmission"
           name="transmission"
           onChange={(e) => setCar({ ...car, transmission: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-        />
+        >
+          <option value="normal" selected>
+            Normal
+          </option>
+          <option value="automatic">Automatic</option>
+        </select>
       </div>
 
       <div className="mb-4">
@@ -189,7 +214,9 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           onChange={(e) => setCar({ ...car, category: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
-          <option value="gasoline" selected>Gasoline</option>
+          <option value="gasoline" selected>
+            Gasoline
+          </option>
           <option value="electric">Electric</option>
           <option value="hybrid">Hybrid</option>
           <option value="pick-up">Pick-Up Trucks</option>
@@ -212,11 +239,14 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           onChange={(e) => setCar({ ...car, bodytype: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
-          <option value="coupe" selected>Coupe</option>
+          <option value="coupe" selected>
+            {" "}
+            Coupe
+          </option>
           <option value="sedan">Sedan</option>
           <option value="hatch">Hatch</option>
           <option value="wagon">Wagon</option>
-          <option value="suv">SUV</option>
+          <option value="suv selected">SUV</option>
           <option value="pick-up">Pick-up</option>
           <option value="minivan">Minivan</option>
           <option value="other">Other</option>
@@ -227,32 +257,49 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           htmlFor="doors"
           className="block text-sm font-medium text-gray-600"
         >
-          doors:
+          Doors:
         </label>
-        <input
-          value={car?.doors || ""}
-          type="text"
+        <select
+          value={car?.doors} // Set default value to "coupe"
           id="doors"
           name="doors"
           onChange={(e) => setCar({ ...car, doors: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-        />
+        >
+          <option value="2">2</option>
+          <option value="4">4</option>
+        </select>
       </div>
       <div className="mb-4">
         <label
           htmlFor="color"
           className="block text-sm font-medium text-gray-600"
         >
-          color:
+          Color:
         </label>
-        <input
-          value={car?.color || ""}
-          type="text"
+        <select
+          value={car?.color} // Set default value to "coupe"
           id="color"
           name="color"
           onChange={(e) => setCar({ ...car, color: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-        />
+        >
+          <option value="White" selected>
+            {" "}
+            White{" "}
+          </option>
+          <option value="Black">Black </option>
+          <option value="Silver"> Silver </option>
+          <option value="Blue">Blue</option>
+          <option value="Red"> Red </option>
+          <option value="Green">Green </option>
+          <option value="Yellow">Yellow </option>
+          <option value="Gold">Gold </option>
+          <option value="Beige">Beige </option>
+          <option value="Brown">Brown </option>
+          <option value="Orange">Orange </option>
+          <option value="Gray">Gray </option>
+        </select>
       </div>
       <div className="mb-4">
         <label
@@ -261,15 +308,19 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         >
           fuel:
         </label>
-        <input
-          value={car?.fuel || ""}
-          type="text"
+        <select
+          value={car?.fuel} // Set default value to "coupe"
           id="fuel"
           name="fuel"
           onChange={(e) => setCar({ ...car, fuel: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-        />
+        >
+          <option value="Electric"> Electric</option>
+          <option value="Hybrid">Hybrid</option>
+          <option value="Gasoline"> Gasoline</option>
+        </select>
       </div>
+
       <div className="mb-4">
         <label
           htmlFor="region"
@@ -278,7 +329,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           region:
         </label>
         <input
-          value={car?.region || ""}
+          value={/*car?.region*/ "jordan" || ""}
           type="text"
           id="region"
           name="region"

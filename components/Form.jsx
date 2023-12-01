@@ -1,10 +1,45 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
-const Form = () => {
+const Form = ({ onInputChange }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    price: "",
+    year: "",
+    make: "",
+    model: "",
+    mileage: "",
+    transmission: "",
+    category: "",
+    color: "",
+    bodyType: "",
+    fuel: "",
+  });
+
+  const handleInputChange = (e) => {
+    const updatedFormData = {
+      name: e.target.name.value,
+      price: e.target.price.value,
+      year: e.target.year.value,
+      make: e.target.make.value,
+      model: e.target.model.value,
+      mileage: e.target.mileage.value,
+      transmission: e.target.transmission.value,
+      category: e.target.category.value,
+      color: e.target.color.value,
+      bodyType: e.target.bodyType.value,
+      fuel: e.target.fuel.value,
+    };
+
+    // Pass the updated form data to the parent component
+    onInputChange(updatedFormData);
+  };
+
   return (
     <form
-      action=""
-      className="flex flex-col  text-white bg-black mt-32 w-96 ml-32  p-12"
+      onSubmit={(e) => e.preventDefault()}
+      onChange={handleInputChange}
+      className="flex flex-col text-white bg-black mt-32 w-96 ml-32 p-12"
     >
       <div className="flex flex-row my-2 justify-between gap-4">
         {" "}

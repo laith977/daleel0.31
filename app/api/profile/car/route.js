@@ -9,15 +9,28 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route.js";
 export const GET = async (request) => {
   try {
     await connectToDatabase();
-    const car = await Car.find({}).populate("name").sort({ createdAt: -1 });
 
-    return new Response(JSON.stringify(car), { status: 200 });
+    // Ensure that request.query is defined before attempting to destructure
+    const { name, year, make } = request.query || {};
+
+    console.log("Received query parameters:", { name, year, make });
+
+    // Build the filter object based on the provided query parameters
+    const filter = {};
+    if (name) filter.name = new RegExp(name, "i");
+    if (year) filter.year = year;
+    if (make) filter.make = new RegExp(make, "i");
+
+    const cars = await Car.find(filter)
+      .populate("name")
+      .sort({ createdAt: -1 });
+
+    return new Response(JSON.stringify(cars), { status: 200 });
   } catch (error) {
-    console.log(error);
-    return new Response("Failed to fetch all prompts", { status: 500 });
+    console.error(error);
+    return new Response("Failed to fetch cars", { status: 500 });
   }
 };
-
 export const POST = async (req) => {
   try {
     const {

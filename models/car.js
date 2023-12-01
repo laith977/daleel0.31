@@ -36,7 +36,7 @@ const carSchema = new Schema({
     required: true,
   },
   mileage: {
-    type: Number,
+    type: String,
     required: true,
   },
   transmission: {
