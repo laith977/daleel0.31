@@ -25,13 +25,10 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-md mx-auto my-32 p-4 bg-white rounded-md shadow-md"
+      className="max-w-6xl mx-auto my-32 p-4 bg-white rounded-md shadow-md grid grid-cols-3 gap-8"
     >
-      <div className="mb-4">
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium text-gray-600"
-        >
+      <div className="mb-4 col-span-3">
+        <label htmlFor="name" className="block text-sm font-medium text-gray-600">
           Post name:
         </label>
         <input
@@ -106,7 +103,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           value={car?.year || 2000} // Set default value to "gasoline"
           id="year"
           name="year"
-          onChange={(e) => setCar({ ...car, transmission: e.target.value })}
+          onChange={(e) => setCar({ ...car, year: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
           {Array.from({ length: 24 }, (_, index) => {
@@ -165,7 +162,13 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           onChange={(e) => setCar({ ...car, mileage: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
-          {Array.from({ length: 25 }, (_, index) => {
+          <option
+                key={`zero`}
+                value={`zero`}
+              >
+                {`Zero`}
+              </option>
+          {Array.from({ length: 20 }, (_, index) => {
             const diff = 5000 + index * 5000;
             return (
               <option
@@ -176,6 +179,12 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
               </option>
             );
           })}
+          <option
+                key={`100k`}
+                value={`100k+`}
+              >
+                {`100000+`}
+              </option>
         </select>
       </div>
 
