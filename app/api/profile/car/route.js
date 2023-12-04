@@ -10,16 +10,7 @@ export const GET = async (request) => {
   try {
     await connectToDatabase();
 
-    // Ensure that request.query is defined before attempting to destructure
-    const { name, year, make } = request.query || {};
-
-    console.log("Received query parameters:", { name, year, make });
-
-    // Build the filter object based on the provided query parameters
     const filter = {};
-    if (name) filter.name = new RegExp(name, "i");
-    if (year) filter.year = year;
-    if (make) filter.make = new RegExp(make, "i");
 
     const cars = await Car.find(filter)
       .populate("name")
