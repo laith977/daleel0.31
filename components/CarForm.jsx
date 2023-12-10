@@ -1,7 +1,77 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import FileUpload from "./FileUpload";
 
 const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
+  const [selectedMake, setSelectedMake] = useState("");
+  const [selectedModel, setSelectedModel] = useState("");
+  const carData = {
+    Audi: ["A3", "A4", "Q5", "Q7"],
+    "Alfa Romeo": [],
+    "Aston Martin": [],
+    Bentley: [],
+    BMW: [],
+    Bugatti: [],
+    Buick: [],
+    BYD: [],
+    Cadillac: [],
+    Changan: [],
+    Chevrolet: [],
+    Chrysler: [],
+    Citroën: [],
+    Dacia: [],
+    Daihatsu: [],
+    Dodge: [],
+    Ferrari: [],
+    Fiat: [],
+    Ford: [],
+    Genesis: [],
+    Geely: [],
+    GMC: [],
+    "Great Wall Motors": [],
+    Honda: [],
+    Hyundai: [],
+    Infiniti: [],
+    Isuzu: [],
+    Jaguar: [],
+    Jeep: [],
+    Kia: [],
+    "Land Rover": [],
+    Lamborghini: [],
+    Lexus: [],
+    Lincoln: [],
+    "Lucid Motors": [],
+    MAN: [],
+    Maserati: [],
+    Mazda: [],
+    McLaren: [],
+    "Mercedes-Benz": [],
+    MINI: [],
+    Mitsubishi: [],
+    Nissan: [],
+    Opel: [],
+    Pagani: [],
+    Peugeot: [],
+    Renault: [],
+    "Rolls-Royce": [],
+    Porsche: ["911", "Cayenne", "Panamera"],
+    Smart: [],
+    Subaru: [],
+    Suzuki: [],
+    Tesla: [],
+    Toyota: [],
+    Volkswagen: ["Golf", "Passat", "Tiguan", "Atlas"],
+    Volvo: [],
+    t03: [],
+  };
+  const handleMakeChange = (make) => {
+    setSelectedMake(make);
+    setSelectedModel(""); // Reset model when make changes
+  };
+
+  const handleModelChange = (model) => {
+    setSelectedModel(model);
+  };
   const handleImageChange = async (e) => {
     const files = e.target.files;
 
@@ -28,7 +98,10 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
       className="max-w-6xl mx-auto my-32 p-4 bg-white rounded-md shadow-md grid grid-cols-3 gap-8"
     >
       <div className="mb-4 col-span-3">
-        <label htmlFor="name" className="block text-sm font-medium text-gray-600">
+        <label
+          htmlFor="name"
+          className="block text-sm font-medium text-gray-600"
+        >
           Post name:
         </label>
         <input
@@ -121,32 +194,39 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           htmlFor="make"
           className="block text-sm font-medium text-gray-600"
         >
-          make:
+          Make:
         </label>
-        <input
-          value={car?.make || ""}
-          type="text"
-          id="make"
-          name="make"
-          onChange={(e) => setCar({ ...car, make: e.target.value })}
+        <select
+          value={selectedMake}
+          onChange={(e) => handleMakeChange(e.target.value)}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-        />
+        >
+          <option value="">Select Make</option>
+          {Object.keys(carData).map((make) => (
+            <option key={make} value={make}>
+              {make}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="mb-4">
-        <label
-          htmlFor="model"
-          className="block text-sm font-medium text-gray-600"
-        >
-          model:
-        </label>
-        <input
-          value={car?.model || ""}
-          type="text"
-          id="model"
-          name="model"
-          onChange={(e) => setCar({ ...car, model: e.target.value })}
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-        />
+        {selectedMake && (
+          <label>
+            Model:
+            <select
+              value={selectedModel}
+              onChange={(e) => handleModelChange(e.target.value)}
+              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            >
+              <option value="">Select Model</option>
+              {carData[selectedMake].map((model) => (
+                <option key={model} value={model}>
+                  {model}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
       </div>
       <div className="mb-4">
         <label
@@ -162,12 +242,9 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           onChange={(e) => setCar({ ...car, mileage: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
-          <option
-                key={`zero`}
-                value={`zero`}
-              >
-                {`Zero`}
-              </option>
+          <option key={`zero`} value={`zero`}>
+            {`Zero`}
+          </option>
           {Array.from({ length: 20 }, (_, index) => {
             const diff = 5000 + index * 5000;
             return (
@@ -179,12 +256,9 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
               </option>
             );
           })}
-          <option
-                key={`100k`}
-                value={`100k+`}
-              >
-                {`100000+`}
-              </option>
+          <option key={`100k`} value={`100k+`}>
+            {`100000+`}
+          </option>
         </select>
       </div>
 
