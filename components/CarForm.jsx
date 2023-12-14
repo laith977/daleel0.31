@@ -209,14 +209,16 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           ))}
         </select>
       </div>
+
       <div className="mb-4">
-        {selectedMake && (
+        {selectedMake ? (
           <label>
             Model:
             <select
               value={selectedModel}
               onChange={(e) => handleModelChange(e.target.value)}
               className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+              disabled={!selectedMake} // Add the disabled attribute when no make is selected
             >
               <option value="">Select Model</option>
               {carData[selectedMake].map((model) => (
@@ -226,8 +228,21 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
               ))}
             </select>
           </label>
+        ) : (
+          <label>
+            Model:
+            <select
+              value={selectedModel}
+              onChange={(e) => handleModelChange(e.target.value)}
+              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+              disabled={!selectedMake} // Add the disabled attribute when no make is selected
+            >
+              <option value="">Select Model</option>
+            </select>
+          </label>
         )}
       </div>
+
       <div className="mb-4">
         <label
           htmlFor="mileage"
