@@ -38,6 +38,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
     Kia: [],
     "Land Rover": [],
     Lamborghini: [],
+    LeapMotors: ["t03"],
     Lexus: [],
     Lincoln: [],
     "Lucid Motors": [],
@@ -62,7 +63,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
     Toyota: [],
     Volkswagen: ["Golf", "Passat", "Tiguan", "Atlas"],
     Volvo: [],
-    t03: [],
+    
   };
   const handleMakeChange = (make) => {
     setSelectedMake(make);
