@@ -5,69 +5,415 @@ import FileUpload from "./FileUpload";
 const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
   const [selectedMake, setSelectedMake] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
-  const carData = {
-    Audi: ["A3", "A4", "Q5", "Q7"],
-    "Alfa Romeo": [],
-    "Aston Martin": [],
-    Bentley: [],
-    BMW: [],
-    Bugatti: [],
-    Buick: [],
-    BYD: [],
-    Cadillac: [],
-    Changan: [],
-    Chevrolet: [],
-    Chrysler: [],
-    Citroën: [],
-    Dacia: [],
-    Daihatsu: [],
-    Dodge: [],
-    Ferrari: [],
-    Fiat: [],
-    Ford: [],
-    Genesis: [],
-    Geely: [],
-    GMC: [],
-    "Great Wall Motors": [],
-    Honda: [],
-    Hyundai: [],
-    Infiniti: [],
-    Isuzu: [],
-    Jaguar: [],
-    Jeep: [],
-    Kia: [],
-    "Land Rover": [],
-    Lamborghini: [],
-    LeapMotors: ["t03"],
-    Lexus: [],
-    Lincoln: [],
-    "Lucid Motors": [],
-    MAN: [],
-    Maserati: [],
-    Mazda: [],
-    McLaren: [],
-    "Mercedes-Benz": [],
-    MINI: [],
-    Mitsubishi: [],
-    Nissan: [],
-    Opel: [],
-    Pagani: [],
-    Peugeot: [],
-    Renault: [],
-    "Rolls-Royce": [],
-    Porsche: ["911", "Cayenne", "Panamera"],
-    Smart: [],
-    Subaru: [],
-    Suzuki: [],
-    Tesla: [],
-    Toyota: [],
-    Volkswagen: ["Golf", "Passat", "Tiguan", "Atlas"],
-    Volvo: [],
-    
-  };
+  const carBrands = [
+    {
+      brand: "Alfa Romeo",
+      models: ["Giulia", "Stelvio", "4C"],
+    },
+    {
+      brand: "Aston Martin",
+      models: ["DB11", "DBS Superleggera", "Vantage", "DBX"],
+    },
+    {
+      brand: "Audi",
+      models: [
+        "A1",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "A7",
+        "A8",
+        "Q2",
+        "Q3",
+        "Q5",
+        "Q7",
+        "Q8",
+        "e-Tron",
+      ],
+    },
+    {
+      brand: "BMW",
+      models: [
+        "1 Series",
+        "2 Series",
+        "3 Series",
+        "4 Series",
+        "5 Series",
+        "6 Series",
+        "7 Series",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "X7",
+        "Z4",
+        "i3",
+        "i4",
+        "iX3",
+      ],
+    },
+    {
+      brand: "BYD",
+      models: ["Han", "Tang", "Yuan", "Song", "e2", "e3", "e5", "e6"],
+    },
+    {
+      brand: "Bentley",
+      models: ["Bentayga", "Continental GT", "Flying Spur"],
+    },
+    {
+      brand: "Bugatti",
+      models: ["Chiron", "Veyron"],
+    },
+    {
+      brand: "Buick",
+      models: ["Encore", "Enclave", "Envision"],
+    },
+    {
+      brand: "Cadillac",
+      models: ["CT4", "CT5", "CT6", "Escalade", "XT4", "XT5", "XT6"],
+    },
+    {
+      brand: "Changan",
+      models: ["CS35 Plus", "CS55 Plus", "UNI-T", "Oshan X7", "Benben Mini"],
+    },
+    {
+      brand: "Chevrolet",
+      models: [
+        "Camaro",
+        "Corvette",
+        "Equinox",
+        "Malibu",
+        "Silverado",
+        "Suburban",
+        "Tahoe",
+        "Traverse",
+        "Trax",
+      ],
+    },
+    {
+      brand: "Chrysler",
+      models: ["300", "Pacifica", "Voyager"],
+    },
+    {
+      brand: "Citroën",
+      models: ["C3", "C4", "C5", "Berlingo", "C3 Aircross", "C4 Cactus"],
+    },
+    {
+      brand: "Dacia",
+      models: ["Duster", "Sandero", "Logan"],
+    },
+    {
+      brand: "Daihatsu",
+      models: ["Copen", "Hijet", "Mira", "Terios"],
+    },
+    {
+      brand: "Dodge",
+      models: ["Challenger", "Charger", "Durango", "Journey"],
+    },
+    {
+      brand: "Ferrari",
+      models: ["488 GTB", "488 Pista", "812 Superfast", "SF90 Stradale"],
+    },
+    {
+      brand: "Fiat",
+      models: ["500", "500X", "500L", "124 Spider", "Panda", "Tipo"],
+    },
+    {
+      brand: "Ford",
+      models: [
+        "Bronco",
+        "Escape",
+        "Expedition",
+        "Explorer",
+        "F-150",
+        "Maverick",
+        "Mustang",
+        "Ranger",
+      ],
+    },
+    {
+      brand: "Genesis",
+      models: ["G70", "G80", "G90"],
+    },
+    {
+      brand: "Geely",
+      models: ["Coolray", "Azkarra", "Emgrand", "Binrui", "Bo Rui", "Xing Yue"],
+    },
+    {
+      brand: "GMC",
+      models: ["Acadia", "Canyon", "Sierra", "Terrain", "Yukon"],
+    },
+    {
+      brand: "Great Wall Motors",
+      models: [
+        "Haval H6",
+        "Haval F7",
+        "Wey VV5",
+        "Wey VV7",
+        "Ora Good Cat",
+        "Ora R1",
+      ],
+    },
+    {
+      brand: "Honda",
+      models: [
+        "Accord",
+        "Civic",
+        "CR-V",
+        "Fit",
+        "HR-V",
+        "Insight",
+        "Odyssey",
+        "Passport",
+        "Pilot",
+        "Ridgeline",
+      ],
+    },
+    {
+      brand: "Hyundai",
+      models: [
+        "Accent",
+        "Elantra",
+        "Kona",
+        "Nexo",
+        "Palisade",
+        "Santa Fe",
+        "Sonata",
+        "Tucson",
+        "Veloster",
+      ],
+    },
+    {
+      brand: "Infiniti",
+      models: ["Q50", "Q60", "QX50", "QX60", "QX80"],
+    },
+    {
+      brand: "Isuzu",
+      models: ["D-Max", "MUX"],
+    },
+    {
+      brand: "Jaguar",
+      models: ["E-PACE", "F-PACE", "I-PACE", "XE", "XF", "XJ"],
+    },
+    {
+      brand: "Jeep",
+      models: ["Cherokee", "Compass", "Grand Cherokee", "Renegade", "Wrangler"],
+    },
+    {
+      brand: "Kia",
+      models: [
+        "Cadenza",
+        "Forte",
+        "K5",
+        "Niro",
+        "Optima",
+        "Rio",
+        "Seltos",
+        "Soul",
+        "Sportage",
+        "Stinger",
+        "Telluride",
+      ],
+    },
+    {
+      brand: "Lamborghini",
+      models: ["Aventador", "Huracan", "Urus"],
+    },
+    {
+      brand: "Land Rover",
+      models: [
+        "Defender",
+        "Discovery",
+        "Discovery Sport",
+        "Range Rover",
+        "Range Rover Evoque",
+        "Range Rover Sport",
+        "Range Rover Velar",
+      ],
+    },
+    {
+      brand: "Leap Motors",
+      models: ["T03"],
+    },
+    {
+      brand: "Lexus",
+      models: ["ES", "GX", "IS", "LC", "LS", "LX", "NX", "RC", "RX", "UX"],
+    },
+    {
+      brand: "Lincoln",
+      models: ["Aviator", "Corsair", "Nautilus", "Navigator"],
+    },
+    {
+      brand: "Lucid Motors",
+      models: ["Air", "Gravity"],
+    },
+    {
+      brand: "MAN",
+      models: ["TGE", "TGX", "TGS"],
+    },
+    {
+      brand: "Maserati",
+      models: ["Ghibli", "Levante", "Quattroporte"],
+    },
+    {
+      brand: "Mazda",
+      models: [
+        "CX-3",
+        "CX-5",
+        "CX-9",
+        "Mazda2",
+        "Mazda3",
+        "Mazda6",
+        "MX-5 Miata",
+      ],
+    },
+    {
+      brand: "McLaren",
+      models: ["Artura", "570S", "600LT", "720S", "GT"],
+    },
+    {
+      brand: "Mercedes-Benz",
+      models: [
+        "A-Class",
+        "C-Class",
+        "E-Class",
+        "S-Class",
+        "CLA",
+        "CLS",
+        "GLA",
+        "GLB",
+        "GLC",
+        "GLE",
+        "GLS",
+        "G-Class",
+        "AMG GT",
+        "EQC",
+      ],
+    },
+    {
+      brand: "MINI",
+      models: ["Cooper", "Clubman", "Countryman", "Convertible", "Hardtop"],
+    },
+    {
+      brand: "Mitsubishi",
+      models: ["Eclipse Cross", "Outlander", "Outlander Sport"],
+    },
+    {
+      brand: "Nissan",
+      models: [
+        "Altima",
+        "Armada",
+        "Frontier",
+        "Kicks",
+        "Leaf",
+        "Maxima",
+        "Murano",
+        "Pathfinder",
+        "Rogue",
+        "Rogue Sport",
+        "Titan",
+        "Versa",
+      ],
+    },
+    {
+      brand: "Opel",
+      models: ["Corsa", "Astra", "Insignia", "Mokka", "Crossland", "Grandland"],
+    },
+    {
+      brand: "Pagani",
+      models: ["Huayra", "Huayra Roadster"],
+    },
+    {
+      brand: "Peugeot",
+      models: ["208", "308", "508", "2008", "3008", "5008"],
+    },
+    {
+      brand: "Porsche",
+      models: ["911", "Cayenne", "Macan", "Panamera", "Taycan"],
+    },
+    {
+      brand: "Renault",
+      models: [
+        "Clio",
+        "Mégane",
+        "Captur",
+        "Kadjar",
+        "Scénic",
+        "Talisman",
+        "Twingo",
+        "ZOE",
+      ],
+    },
+    {
+      brand: "Rolls-Royce",
+      models: ["Cullinan", "Dawn", "Ghost", "Phantom", "Wraith"],
+    },
+    {
+      brand: "Smart",
+      models: ["EQ ForTwo", "EQ ForFour"],
+    },
+    {
+      brand: "Subaru",
+      models: [
+        "Ascent",
+        "BRZ",
+        "Crosstrek",
+        "Forester",
+        "Impreza",
+        "Legacy",
+        "Outback",
+      ],
+    },
+    {
+      brand: "Suzuki",
+      models: ["Jimny", "Swift", "Vitara"],
+    },
+    {
+      brand: "Tesla",
+      models: [
+        "Model S",
+        "Model 3",
+        "Model X",
+        "Model Y",
+        "Cybertruck",
+        "Roadster",
+      ],
+    },
+    {
+      brand: "Toyota",
+      models: [
+        "Camry",
+        "Corolla",
+        "Prius",
+        "RAV4",
+        "Highlander",
+        "Tacoma",
+        "Tundra",
+        "4Runner",
+        "Land Cruiser",
+        "Avalon",
+        "Sienna",
+        "Yaris",
+        "C-HR",
+        "Sequoia",
+        "Supra",
+      ],
+    },
+    {
+      brand: "Volkswagen",
+      models: ["Golf", "Passat", "Tiguan", "Atlas", "Arteon", "ID.4"],
+    },
+    {
+      brand: "Volvo",
+      models: ["S60", "S90", "V60", "V90", "XC40", "XC60", "XC90"],
+    },
+  ];
   const handleMakeChange = (make) => {
     setSelectedMake(make);
-    setSelectedModel(""); // Reset model when make changes
+    setSelectedModel("");
   };
 
   const handleModelChange = (model) => {
@@ -190,60 +536,53 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           })}
         </select>
       </div>
-      <div className="mb-4">
-        <label
-          htmlFor="make"
-          className="block text-sm font-medium text-gray-600"
-        >
-          Make:
-        </label>
-        <select
-          value={selectedMake}
-          onChange={(e) => handleMakeChange(e.target.value)}
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-        >
-          <option value="">Select Make</option>
-          {Object.keys(carData).map((make) => (
-            <option key={make} value={make}>
-              {make}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="mb-4">
-        {selectedMake ? (
-          <label>
-            Model:
-            <select
-              value={selectedModel}
-              onChange={(e) => handleModelChange(e.target.value)}
-              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              disabled={!selectedMake} // Add the disabled attribute when no make is selected
-            >
-              <option value="">Select Model</option>
-              {carData[selectedMake].map((model) => (
-                <option key={model} value={model}>
-                  {model}
-                </option>
-              ))}
-            </select>
+      <div>
+        <div className="mb-4">
+          <label
+            htmlFor="make"
+            className="block text-sm font-medium text-gray-600"
+          >
+            Make:
           </label>
-        ) : (
-          <label>
-            Model:
-            <select
-              value={selectedModel}
-              onChange={(e) => handleModelChange(e.target.value)}
-              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              disabled={!selectedMake} // Add the disabled attribute when no make is selected
-            >
-              <option value="">Select Model</option>
-            </select>
-          </label>
-        )}
-      </div>
+          <select
+            value={selectedMake}
+            onChange={(e) => handleMakeChange(e.target.value)}
+            className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          >
+            <option value="">Select Make</option>
+            {carBrands.map((car) => (
+              <option key={car.brand} value={car.brand}>
+                {car.brand}
+              </option>
+            ))}
+          </select>
+        </div>
 
+        <div className="mb-4">
+          <label
+            htmlFor="model"
+            className="block text-sm font-medium text-gray-600"
+          >
+            Model:
+          </label>
+          <select
+            value={selectedModel}
+            onChange={(e) => handleModelChange(e.target.value)}
+            className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            disabled={!selectedMake}
+          >
+            <option value="">Select Model</option>
+            {selectedMake &&
+              carBrands
+                .find((car) => car.brand === selectedMake)
+                ?.models.map((model) => (
+                  <option key={model} value={model}>
+                    {model}
+                  </option>
+                ))}
+          </select>
+        </div>
+      </div>
       <div className="mb-4">
         <label
           htmlFor="mileage"
