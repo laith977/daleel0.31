@@ -91,6 +91,8 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         "Tahoe",
         "Traverse",
         "Trax",
+        "Minlo",
+        "Spark",
       ],
     },
     {
@@ -132,6 +134,8 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         "Maverick",
         "Mustang",
         "Ranger",
+        "Fusion",
+        "Focus",
       ],
     },
     {
@@ -170,6 +174,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         "Passport",
         "Pilot",
         "Ridgeline",
+        "E-NS1",
       ],
     },
     {
@@ -184,6 +189,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         "Sonata",
         "Tucson",
         "Veloster",
+        "Ioniq",
       ],
     },
     {
@@ -216,6 +222,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         "Sportage",
         "Stinger",
         "Telluride",
+        "EV6",
       ],
     },
     {
@@ -244,7 +251,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
     },
     {
       brand: "Lincoln",
-      models: ["Aviator", "Corsair", "Nautilus", "Navigator"],
+      models: ["Aviator", "Corsair", "Nautilus", "Navigator", "MKZ", "MKX"],
     },
     {
       brand: "Lucid Motors",
@@ -316,6 +323,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         "Rogue Sport",
         "Titan",
         "Versa",
+        "Slyphy",
       ],
     },
     {
@@ -400,24 +408,40 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         "C-HR",
         "Sequoia",
         "Supra",
+        "BZ4",
+        "BZ3",
       ],
     },
     {
       brand: "Volkswagen",
-      models: ["Golf", "Passat", "Tiguan", "Atlas", "Arteon", "ID.4"],
+      models: [
+        "Golf",
+        "Passat",
+        "Tiguan",
+        "Atlas",
+        "Arteon",
+        "ID.4",
+        "ID.6",
+        "ID.3",
+        "E-Golf",
+      ],
     },
     {
       brand: "Volvo",
       models: ["S60", "S90", "V60", "V90", "XC40", "XC60", "XC90"],
     },
   ];
+  console.log(selectedMake);
+  console.log(selectedModel);
   const handleMakeChange = (make) => {
     setSelectedMake(make);
     setSelectedModel("");
+    setCar({ ...car, make: make, model: "" }); // Update make in the car state
   };
 
   const handleModelChange = (model) => {
     setSelectedModel(model);
+    setCar({ ...car, model: model }); // Update model in the car state
   };
   const handleImageChange = async (e) => {
     const files = e.target.files;
@@ -488,7 +512,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         </label>
         <input
           value={car?.price || ""}
-          type="text"
+          type="number"
           id="price"
           name="price"
           onChange={(e) => setCar({ ...car, price: e.target.value })}
@@ -520,7 +544,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           Year:
         </label>
         <select
-          value={car?.year || 2000} // Set default value to "gasoline"
+          value={car?.year}
           id="year"
           name="year"
           onChange={(e) => setCar({ ...car, year: e.target.value })}
@@ -549,9 +573,8 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             onChange={(e) => handleMakeChange(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
           >
-            <option value="">Select Make</option>
             {carBrands.map((car) => (
-              <option key={car.brand} value={car.brand}>
+              <option key={car.brand} value={car.brand} id={car?.brand}>
                 {car.brand}
               </option>
             ))}
@@ -576,7 +599,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
               carBrands
                 .find((car) => car.brand === selectedMake)
                 ?.models.map((model) => (
-                  <option key={model} value={model}>
+                  <option key={model} value={model} id={model}>
                     {model}
                   </option>
                 ))}
@@ -631,7 +654,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           onChange={(e) => setCar({ ...car, transmission: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
-          <option value="normal" selected>
+          <option value="normal" defaultValue>
             Normal
           </option>
           <option value="automatic">Automatic</option>
@@ -652,7 +675,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           onChange={(e) => setCar({ ...car, category: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
-          <option value="gasoline" selected>
+          <option value="gasoline" defaultValue>
             Gasoline
           </option>
           <option value="electric">Electric</option>
@@ -677,14 +700,14 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           onChange={(e) => setCar({ ...car, bodytype: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
-          <option value="coupe" selected>
+          <option value="coupe" defaultValue>
             {" "}
             Coupe
           </option>
           <option value="sedan">Sedan</option>
           <option value="hatch">Hatch</option>
           <option value="wagon">Wagon</option>
-          <option value="suv selected">SUV</option>
+          <option value="suv">SUV</option>
           <option value="pick-up">Pick-up</option>
           <option value="minivan">Minivan</option>
           <option value="other">Other</option>
@@ -722,7 +745,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           onChange={(e) => setCar({ ...car, color: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
-          <option value="White" selected>
+          <option value="White" defaultValue>
             {" "}
             White{" "}
           </option>
@@ -767,11 +790,11 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           region:
         </label>
         <input
-          value={/*car?.region*/ "jordan" || ""}
+          value={car.region}
           type="text"
           id="region"
           name="region"
-          onChange={(e) => setCar({ ...car, region: e.target.value })}
+          readOnly // make it read-only
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         />
       </div>
