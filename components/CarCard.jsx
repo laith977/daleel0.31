@@ -3,8 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useParams } from 'next/navigation'
-
-
 const CarCard = ({
   data = [],
   handleEdit = () => {},
