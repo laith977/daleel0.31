@@ -39,7 +39,6 @@ const Feed = () => {
   const fetchPosts = async () => {
     const response = await fetch("/api/profile/car");
     const data = await response.json();
-    console.log("Fetched data:", data);
     setAllPosts(data);
   };
 

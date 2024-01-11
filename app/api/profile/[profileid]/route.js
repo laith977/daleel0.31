@@ -5,7 +5,6 @@ import { connectToDatabase } from "@/utils/database";
 export const GET = async (request, { params }) => {
   try {
     await connectToDatabase();
-    console.log("fetch user and cars");
 
     // Fetch user data
     const user = await User.findOne({ _id: params.profileid });

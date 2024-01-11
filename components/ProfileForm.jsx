@@ -2,7 +2,6 @@ import React from "react";
 import FileUpload from "./FileUpload";
 
 const ProfileForm = ({ type, post, setPost, submitting, handleSubmit }) => {
-  console.log(post);
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
 

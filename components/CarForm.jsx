@@ -431,8 +431,6 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
       models: ["S60", "S90", "V60", "V90", "XC40", "XC60", "XC90"],
     },
   ];
-  console.log(selectedMake);
-  console.log(selectedModel);
   const handleMakeChange = (make) => {
     setSelectedMake(make);
     setSelectedModel("");

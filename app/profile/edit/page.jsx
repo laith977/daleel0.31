@@ -64,7 +64,6 @@ const UpdateProfile = () => {
       setSubmitting(false);
     }
   };
-  console.log(post);
   return (
     <ProfileForm
       type="Update"

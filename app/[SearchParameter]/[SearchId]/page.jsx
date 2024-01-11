@@ -41,7 +41,6 @@ const TypeSearch = ({ params }) => {
       `/api/${params.SearchParameter}/${params.SearchId}`
     );
     const data = await response.json();
-    console.log("Fetched data:", data);
     setAllPosts(data);
   };
 

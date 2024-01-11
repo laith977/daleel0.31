@@ -28,8 +28,6 @@ const UpdateCar = ({ params }) => {
     const getCarDetails = async () => {
       const response = await fetch(`/api/profile/car/${params.carid}`);
       const data = await response.json();
-      console.log(data["car"]);
-
       setCar({
         name: data["car"].name,
         description: data["car"].description,
