@@ -20,6 +20,7 @@ const Profile = ({ user, cars, handleDelete }) => {
                 }}
               >
                 <Image
+                  unoptimized
                   style={{ borderRadius: "50%", width: "75%", height: "80%" }}
                   src={user?.image}
                   alt="Decoded Image"
@@ -40,9 +41,7 @@ const Profile = ({ user, cars, handleDelete }) => {
           </div>
 
           <div className="flex flex-col py-8">
-            <p className="text-xl italic p-24 md:text-md">
-              {user?.bio}
-            </p>
+            <p className="text-xl italic p-24 md:text-md">{user?.bio}</p>
             <button className="bg-green-600 mx-auto rounded-md py-4 px-32 text-white">
               {user?.phoneNumber}
             </button>

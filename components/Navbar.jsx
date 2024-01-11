@@ -30,6 +30,7 @@ const Nav = () => {
           <div>
             <Link href="/">
               <Image
+                unoptimized
                 priority
                 src="/images/blacklogo.jpg"
                 alt="..."

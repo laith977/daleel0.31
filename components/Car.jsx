@@ -8,6 +8,7 @@ const Car = ({ data }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {data["car"]?.pictures?.map((element, index) => (
             <Image
+              unoptimized
               key={index}
               src={element}
               alt={`Car Picture ${index + 1}`}
@@ -93,6 +94,7 @@ const Car = ({ data }) => {
                 }}
               >
                 <Image
+                  unoptimized
                   style={{ borderRadius: "50%", width: "75%", height: "80%" }}
                   src={data["user"]?.image}
                   alt="Decoded Image"
