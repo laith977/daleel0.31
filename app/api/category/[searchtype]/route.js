@@ -1,6 +1,5 @@
 import Car from "@/models/car";
 import { connectToDatabase } from "@/utils/database";
-import User from "@/models/user";
 export const GET = async (request, { params }) => {
   try {
     await connectToDatabase();
