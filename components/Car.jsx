@@ -5,18 +5,22 @@ const Car = ({ data }) => {
   return (
     <>
       <div className="flex flex-col items-center md:flex-row justify-between my-32 mx-4 sm:mx-8 lg:mx-32">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {data["car"]?.pictures?.map((element, index) => (
-            <Image
-              unoptimized
-              key={index}
-              src={element}
-              alt={`Car Picture ${index + 1}`}
-              className="mx-auto object-cover w-full h-full"
-              width={250}
-              height={250}
-            />
-          ))}
+        <div className="flex flex-col items-center md:flex-row justify-between my-8 mx-4 sm:mx-8 lg:mx-32">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {data["car"]?.pictures?.map((element, index) => (
+              <div key={index} className="relative overflow-hidden rounded-md">
+                <Image
+                  unoptimized
+                  src={element}
+                  alt={`Car Picture ${index + 1}`}
+                  className="object-cover w-full h-48 md:h-64 lg:h-80 xl:h-96"
+                  width={400}
+                  height={300}
+                />
+                {/* You can add an overlay or additional content here */}
+              </div>
+            ))}
+          </div>
         </div>
         <div className="flex flex-col space-y-4 bg-gray-100 border-8 rounded-md border-amber-700 p-4 sm:p-8 lg:p-12 pb-0 mt-4 md:mt-0">
           <p className="text-orange-300 text-3xl">
