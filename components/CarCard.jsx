@@ -10,7 +10,6 @@ const CarCard = ({
   handleTagClick = () => {},
 },) => {
   const { data: session } = useSession();
-  console.log("Data in CarCard:", data);
   const params = useParams();
 
 

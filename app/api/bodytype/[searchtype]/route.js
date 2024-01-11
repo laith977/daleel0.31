@@ -2,7 +2,6 @@ import Car from "@/models/car";
 import { connectToDatabase } from "@/utils/database";
 export const GET = async (request, { params }) => {
   try {
-    console.log(params);
     await connectToDatabase();
     const car = await Car.find({
       bodytype: params.searchtype,
