@@ -12,7 +12,7 @@ const Car = ({ data }) => {
               key={index}
               src={element}
               alt={`Car Picture ${index + 1}`}
-              className="rounded-lg"
+              className="mx-auto object-cover w-full h-full"
               width={250}
               height={250}
             />
