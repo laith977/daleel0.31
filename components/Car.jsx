@@ -13,9 +13,9 @@ const Car = ({ data }) => {
                   unoptimized
                   src={element}
                   alt={`Car Picture ${index + 1}`}
-                  className="object-cover w-full h-48 md:h-64 lg:h-80 xl:h-96"
-                  width={400}
-                  height={300}
+                  className="object-cover w-full h-16 md:h-20 lg:h-24 xl:h-32"
+                  width={80}
+                  height={60}
                 />
                 {/* You can add an overlay or additional content here */}
               </div>
