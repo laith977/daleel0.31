@@ -83,7 +83,7 @@ export const POST = async (req) => {
       fuel,
       region,
       pictures: carPictures,
-      bodytype,
+      bodytype: "dqw",
     };
 
     const newCar = new Car(newCarData);

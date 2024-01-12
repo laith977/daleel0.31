@@ -30,10 +30,10 @@ const Profile = ({ user, cars, handleDelete }) => {
               </div>
             )}
             <p className="font-mono text-orange-700 text-3xl p-5 text-center">
-              {"Subscription: " + user?.subscription}
+              {user?.subscription + ":الأشتراك"}
             </p>
             <p className="font-mono text-orange-700 text-3xl p-5 text-center">
-              {"Number Of Cars: " + cars?.length}
+              {cars?.length + ":عدد السيارات"}
             </p>
             {/* <p className="font-mono text-orange-700 text-3xl p-5 text-center">
               Type Of Organization
@@ -43,7 +43,7 @@ const Profile = ({ user, cars, handleDelete }) => {
           <div className="flex flex-col py-8">
             <p className="text-xl italic p-24 md:text-md">{user?.bio}</p>
             <button className="bg-green-600 mx-auto rounded-md py-4 px-32 text-white">
-              {user?.phoneNumber}
+              {user?.phoneNumber + "      :رقم الهاتف"}
             </button>
           </div>
         </div>

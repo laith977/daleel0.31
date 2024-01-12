@@ -66,7 +66,7 @@ const UpdateProfile = () => {
   };
   return (
     <ProfileForm
-      type="Update"
+      type="تعديل"
       post={post}
       setPost={setPost}
       submitting={submitting}

@@ -471,7 +471,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           htmlFor="name"
           className="block text-sm font-medium text-gray-600"
         >
-          Post name:
+          :اسم الاعلان
         </label>
         <input
           value={car?.name || ""}
@@ -489,7 +489,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           htmlFor="description"
           className="block text-sm font-medium text-gray-600"
         >
-          Description:
+          :صندوق الوصف
         </label>
         <textarea
           type="textarea"
@@ -506,7 +506,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           htmlFor="price"
           className="block text-sm font-medium text-gray-600"
         >
-          Price:
+          :السعر
         </label>
         <input
           value={car?.price || ""}
@@ -522,7 +522,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           htmlFor="price"
           className="block text-sm font-medium text-gray-600"
         >
-          phone number:
+          :الرقم الهاتفي
         </label>
         <input
           value={car?.phone_number || ""}
@@ -539,7 +539,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           htmlFor="year"
           className="block text-sm font-medium text-gray-600"
         >
-          Year:
+          :سنة الصنع
         </label>
         <select
           value={car?.year}
@@ -564,7 +564,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             htmlFor="make"
             className="block text-sm font-medium text-gray-600"
           >
-            Make:
+            :المصنع
           </label>
           <select
             value={selectedMake}
@@ -584,7 +584,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             htmlFor="model"
             className="block text-sm font-medium text-gray-600"
           >
-            Model:
+            :الموديل
           </label>
           <select
             value={selectedModel}
@@ -592,7 +592,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
             disabled={!selectedMake}
           >
-            <option value="">Select Model</option>
+            <option value="">اختر موديل</option>
             {selectedMake &&
               carBrands
                 .find((car) => car.brand === selectedMake)
@@ -609,7 +609,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           htmlFor="mileage"
           className="block text-sm font-medium text-gray-600"
         >
-          mileage:
+          :ممشى
         </label>
         <select
           value={car?.mileage || "gasoline"} // Set default value to "gasoline"
@@ -643,7 +643,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           htmlFor="transmission"
           className="block text-sm font-medium text-gray-600"
         >
-          Transmission:
+          :ناقل الحركة
         </label>
         <select
           value={car?.transmission || "gasoline"} // Set default value to "gasoline"
@@ -653,9 +653,9 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
           <option value="normal" defaultValue>
-            Normal
+            ناقل يدوي
           </option>
-          <option value="automatic">Automatic</option>
+          <option value="automatic">اوتوماتيك</option>
         </select>
       </div>
 
@@ -664,7 +664,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           htmlFor="category"
           className="block text-sm font-medium text-gray-600"
         >
-          Category:
+          :الفئة
         </label>
         <select
           value={car?.category || "gasoline"} // Set default value to "gasoline"
@@ -674,17 +674,17 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
           <option value="gasoline" defaultValue>
-            Gasoline
+            وقود
           </option>
-          <option value="electric">Electric</option>
-          <option value="hybrid">Hybrid</option>
-          <option value="pick-up">Pick-Up Trucks</option>
-          <option value="bus">Buses</option>
-          <option value="lorry">Lorries</option>
+          <option value="electric">كهربائية</option>
+          <option value="hybrid">هايبرد</option>
+          <option value="pick-up">شاحنات بيك اب</option>
+          <option value="bus">باصات</option>
+          <option value="lorry">شاحنات نقل</option>
         </select>
       </div>
 
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <label
           htmlFor="bodytype"
           className="block text-sm font-medium text-gray-600"
@@ -710,13 +710,13 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           <option value="minivan">Minivan</option>
           <option value="other">Other</option>
         </select>
-      </div>
+      </div> */}
       <div className="mb-4">
         <label
           htmlFor="doors"
           className="block text-sm font-medium text-gray-600"
         >
-          Doors:
+          :عدد الابواب
         </label>
         <select
           value={car?.doors} // Set default value to "coupe"
@@ -734,7 +734,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           htmlFor="color"
           className="block text-sm font-medium text-gray-600"
         >
-          Color:
+          :اللون
         </label>
         <select
           value={car?.color} // Set default value to "coupe"
@@ -745,19 +745,19 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         >
           <option value="White" defaultValue>
             {" "}
-            White{" "}
+            ابيض{" "}
           </option>
-          <option value="Black">Black </option>
-          <option value="Silver"> Silver </option>
-          <option value="Blue">Blue</option>
-          <option value="Red"> Red </option>
-          <option value="Green">Green </option>
-          <option value="Yellow">Yellow </option>
-          <option value="Gold">Gold </option>
-          <option value="Beige">Beige </option>
-          <option value="Brown">Brown </option>
-          <option value="Orange">Orange </option>
-          <option value="Gray">Gray </option>
+          <option value="Black">اسود </option>
+          <option value="Silver"> فضي </option>
+          <option value="Blue">ازرق</option>
+          <option value="Red"> احمر </option>
+          <option value="Green">اخضر </option>
+          <option value="Yellow">اصفر </option>
+          <option value="Gold">ذهبي </option>
+          <option value="Beige">بيج </option>
+          <option value="Brown">بني </option>
+          <option value="Orange">برتقالي </option>
+          <option value="Gray">سكني </option>
         </select>
       </div>
       <div className="mb-4">
@@ -765,7 +765,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           htmlFor="fuel"
           className="block text-sm font-medium text-gray-600"
         >
-          fuel:
+          :نوع الوقود
         </label>
         <select
           value={car?.fuel} // Set default value to "coupe"
@@ -774,9 +774,8 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           onChange={(e) => setCar({ ...car, fuel: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
-          <option value="Electric"> Electric</option>
-          <option value="Hybrid">Hybrid</option>
-          <option value="Gasoline"> Gasoline</option>
+          <option value="Electric"> بنزين</option>
+          <option value="Hybrid">ديزل</option>
         </select>
       </div>
 
@@ -785,7 +784,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           htmlFor="region"
           className="block text-sm font-medium text-gray-600"
         >
-          region:
+          :اللون
         </label>
         <input
           value={car.region}
@@ -803,7 +802,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           disabled={submitting}
           className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
         >
-          {submitting ? `${type}ing...` : type}
+          {type}
         </button>
       </div>
     </form>

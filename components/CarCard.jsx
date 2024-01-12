@@ -17,24 +17,23 @@ const CarCard = ({
       {(Array.isArray(data) ? data : []).map((car) => (
         <div
           key={car?._id}
-          className="bg-white p-4 rounded-lg text-center flex flex-col justify-around"
+          className="bg-white p-4 rounded-lg text-center flex flex-col justify-between border border-gray-200 shadow-md"
         >
-          <div className="flex flex-col items-center">
-            <Link href={`/profile/${car.creator}/car/${car._id}`}>
-              <div className="relative w-64 h-32 sm:w-32 overflow-hidden rounded-md mx-auto">
-                <Image
-                  unoptimized
-                  src={car?.pictures[0] || ""}
-                  alt="Car"
-                  className="mx-auto object-cover w-full h-full"
-                  width={200}
-                  height={200}
-                />
-              </div>
-            </Link>
-          </div>
+          <Link href={`/profile/${car.creator}/car/${car._id}`}>
+            <div className="relative overflow-hidden rounded-md h-40 sm:h-48">
+              <Image
+                unoptimized
+                src={car?.pictures[0] || ""}
+                alt="Car"
+                className="object-cover w-full h-full"
+                layout="fill"
+              />
+            </div>
+          </Link>
 
-          <p className="text-black text-lg">{car?.name}</p>
+          <p className="text-black text-lg mt-4">{car?.name}</p>
+          <p className="text-black text-lg mt-2">السعر: {car?.price}</p>
+
           {session?.user?.id &&
             car?.creator === session?.user?.id &&
             params?.profileid !== undefined && (
@@ -45,7 +44,7 @@ const CarCard = ({
                     handleDelete(car?._id);
                   }}
                 >
-                  Delete
+                  حذف
                 </button>
                 <Link href={`/profile/car/${car?._id}`}>
                   <button
@@ -54,7 +53,7 @@ const CarCard = ({
                       handleEdit(car?._id);
                     }}
                   >
-                    Edit
+                    تعديل
                   </button>
                 </Link>
               </div>

@@ -27,27 +27,31 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="font-[Poppins]  bg-gray-900 h-screen">
+    <div className="font-[Poppins]  bg-gray-900 h-screen px-8">
       {isLoading ? (
         <LoadingSkeleton />
       ) : (
         <>
-          <div className="text-center mt-24 flex flex-col items-center">
-            <p className={`text-white text-2xl`}>Get the help you need</p>
-            <h2 className={`text-white text-7xl`}>Daleel AlHurra For Cars</h2>
+          <div className="text-center mt-24 flex flex-col items-center pt-8">
+            <p className={`text-white text-2xl`}>
+              شريكك للحصول على أقل الأسعار
+            </p>
+            <h2 className={`text-white text-7xl`}>
+              موقع دليل الحرة لتجارة السيارات
+            </h2>
             <div className="flex justify-center m-16">
               <Image
-                className="cursor-pointer min-w-xs lg:max-w-md"
+                className="cursor-pointer min-w-xs lg:max-w-md rounded-full"
                 src="/images/whitelogo.png"
                 alt="..."
                 width={720}
                 height={720}
               ></Image>
             </div>
-            <p className="text-white text-4xl">Trade, Buy, Sell Cars Online.</p>
+            <p className="text-white text-4xl">تجارة، شراء، بيع السيارات</p>
           </div>
           <p className="text-white text-6xl text-center mt-12  bg-gray-900 ">
-            Categories
+            الفئات
           </p>
           <div className=" grid grid-cols-3 gap-8 lg:mx-32 md:mx-8 xs:mx-auto my-4 bg-gray-900 justify-between">
             <div className="bg-white p-4 rounded-lg text-center ">
@@ -61,7 +65,7 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl">Gasoline</p>
+                <p className="text-black text-2xl">وقود</p>
               </Link>
             </div>
             <div className="bg-white p-4 rounded-lg text-center">
@@ -75,7 +79,7 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl">Electric</p>
+                <p className="text-black text-2xl">كهربائية</p>
               </Link>
             </div>
             <div className="bg-white p-4 rounded-lg text-center">
@@ -89,7 +93,7 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl">Pickup trucks</p>
+                <p className="text-black text-2xl"> شاحنات البيك أب</p>
               </Link>
             </div>
             <div className="bg-white p-4 rounded-lg text-center w-auto">
@@ -103,7 +107,7 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl">Hybrid</p>
+                <p className="text-black text-2xl">هايبرد</p>
               </Link>
             </div>
             <div className="bg-white p-4 rounded-lg text-center">
@@ -115,7 +119,7 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl">Buses</p>
+                <p className="text-black text-2xl">باصات</p>
               </Link>
             </div>
             <div className="bg-white p-4 rounded-lg text-center">
@@ -127,14 +131,14 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl pt-8">Lorrys</p>
+                <p className="text-black text-2xl pt-8">شاحنات نقل</p>
               </Link>
             </div>
           </div>
-          <p className="text-white text-6xl text-center mt-12  bg-gray-900 ">
+          {/* <p className="text-white text-6xl text-center mt-12  bg-gray-900 ">
             Body Type
           </p>
-          <div className=" grid grid-cols-8 gap-8 lg:mx-32 md:mx-8 xs:mx-auto my-4 bg-gray-900 justify-between">
+          <div className="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 gap-8 mx-4 md:mx-8 lg:mx-32 my-4 bg-gray-900 justify-between">
             <div className="bg-white p-4 rounded-lg text-center ">
               <Link href={`/bodytype/${getImageFileName("/images/coupe.svg")}`}>
                 <Image
@@ -144,10 +148,10 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl">Coupe</p>
+                <p className="text-black text-lg md:text-2xl">Coupe</p>
               </Link>
             </div>
-            <div className="bg-white p-4 rounded-lg text-center">
+            <div className="bg-white p-2 md:p-4 rounded-lg text-center">
               <Link href={`/bodytype/${getImageFileName("/images/sedan.svg")}`}>
                 <Image
                   src="/images/sedan.svg"
@@ -156,10 +160,10 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl">Sedan</p>
+                <p className="text-black text-lg md:text-2xl">Sedan</p>
               </Link>
             </div>
-            <div className="bg-white p-4 rounded-lg text-center">
+            <div className="bg-white p-2 md:p-4 rounded-lg text-center">
               <Link href={`/bodytype/${getImageFileName("/images/hatch.svg")}`}>
                 <Image
                   src="/images/hatch.svg"
@@ -168,10 +172,10 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl">Hatch</p>
+                <p className="text-black text-lg md:text-2xl">Hatch</p>
               </Link>
             </div>
-            <div className="bg-white p-4 rounded-lg text-center w-auto">
+            <div className="bg-white p-2 md:p-4 rounded-lg text-center">
               <Link href={`/bodytype/${getImageFileName("/images/wagon.svg")}`}>
                 <Image
                   src="/images/wagon.svg"
@@ -180,10 +184,10 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl">Wagon</p>
+                <p className="text-black text-lg md:text-2xl">Wagon</p>
               </Link>
             </div>
-            <div className="bg-white p-4 rounded-lg text-center">
+            <div className="bg-white p-2 md:p-4 rounded-lg text-center">
               <Link href={`/bodytype/${getImageFileName("/images/suv.svg")}`}>
                 <Image
                   src="/images/suv.svg"
@@ -192,10 +196,10 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl">SUV</p>
+                <p className="text-black text-lg md:text-2xl">SUV</p>
               </Link>
             </div>
-            <div className="bg-white p-4 rounded-lg text-center">
+            <div className="bg-white p-2 md:p-4 rounded-lg text-center">
               <Link
                 href={`/bodytype/${getImageFileName("/images/pick-up.svg")}`}
               >
@@ -206,10 +210,10 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl">Pickup</p>
+                <p className="text-black text-lg md:text-2xl">Pickup</p>
               </Link>
             </div>
-            <div className="bg-white p-4 rounded-lg text-center">
+            <div className="bg-white p-2 md:p-4 rounded-lg text-center">
               <Link
                 href={`/bodytype/${getImageFileName("/images/minivan.svg")}`}
               >
@@ -220,10 +224,10 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl">Minivan</p>
+                <p className="text-black text-lg md:text-2xl">Minivan</p>
               </Link>
             </div>
-            <div className="bg-white p-4 rounded-lg text-center">
+            <div className="bg-white p-2 md:p-4 rounded-lg text-center">
               <Link href={`/bodytype/${getImageFileName("/images/other.svg")}`}>
                 <Image
                   src="/images/other.svg"
@@ -232,12 +236,12 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl">Other</p>
+                <p className="text-black text-lg md:text-2xl">Other</p>
               </Link>
             </div>
-          </div>
-          <div className="flex flex-col mx-auto text-center">
-            <p className="text-white text-6xl ">Latest Cars</p>
+          </div> */}
+          <div className="flex flex-col mx-auto text-center pt-12">
+            <p className="text-white text-6xl ">السيارات المعروضة</p>
           </div>
 
           <Feed />

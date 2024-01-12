@@ -7,7 +7,7 @@ const FileUpload = ({ handleImageChange }) => {
         htmlFor="image"
         className="block text-sm font-medium text-gray-600"
       >
-        Upload Image:
+        :رفع الصور
       </label>
       <input
         type="file"

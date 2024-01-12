@@ -92,7 +92,7 @@ const UpdateCar = ({ params }) => {
   };
   return (
     <CarForm
-      type="Update"
+      type="تعديل"
       car={car}
       setCar={setCar}
       submitting={Submitting}

@@ -13,7 +13,7 @@ const Feed = () => {
 
   const handleSearchChange = (e) => {
     const inputValue = e.target.value;
-    clearTimeout(searchTimeout);  
+    clearTimeout(searchTimeout);
     setSearchText(inputValue);
 
     //debounce search
@@ -71,9 +71,9 @@ const Feed = () => {
       const lowerCaseFuel = item.fuel.toLowerCase();
 
       return (
-        lowerCaseName.includes(searchText.toLowerCase()) ||
-        lowerCaseMake.includes(searchText.toLowerCase()) ||
-        lowerCaseFuel.includes(searchText.toLowerCase())
+        lowerCaseName.match(regex) ||
+        lowerCaseMake.match(regex) ||
+        lowerCaseFuel.match(regex)
       );
     });
   };
@@ -82,7 +82,7 @@ const Feed = () => {
       <form className="">
         <input
           type="text"
-          placeholder="Search for a tag or a username"
+          placeholder="أبحث عن سيارة"
           value={searchText}
           onChange={handleSearchChange}
           className="text-center px-12 p-4  mx-auto my-6"

@@ -22,9 +22,9 @@ const CreateCar = () => {
     category: "gasoline",
     doors: "2",
     color: "White",
-    bodytype: "coupe",
+    // bodytype: "",
     fuel: "Electric",
-    region: "jordan",
+    region: "الأردن",
   });
   const createCar = async (e) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ const CreateCar = () => {
           color: Car.color,
           fuel: Car.fuel,
           region: "jordan",
-          bodytype: Car.bodytype, // Add bodytype to the payload
+          // bodytype: "", // Add bodytype to the payload
           category: Car.category,
         }),
         headers: {
@@ -69,7 +69,7 @@ const CreateCar = () => {
   };
   return (
     <CarForm
-      type="Create"
+      type="انشئ الأعلان"
       car={Car}
       setCar={setCar}
       submitting={Submitting}

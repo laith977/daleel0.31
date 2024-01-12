@@ -2,123 +2,90 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 const Car = ({ data }) => {
+  const infoRows = [
+    { label: "Year", value: data["car"]?.year },
+    { label: "Make", value: data["car"]?.make },
+    { label: "Model", value: data["car"]?.model },
+    { label: "Mileage", value: `${data["car"]?.mileage}km` },
+    { label: "Transmission", value: data["car"]?.transmission },
+    { label: "Body Type", value: data["car"]?.bodytype },
+    { label: "Category", value: data["car"]?.category },
+    { label: "Doors", value: data["car"]?.doors },
+    { label: "Color", value: data["car"]?.color },
+    { label: "Fuel", value: data["car"]?.fuel },
+  ];
   return (
     <>
-      <div className="flex flex-col items-center md:flex-row justify-between my-32 mx-4 sm:mx-8 lg:mx-32">
-        <div className="flex flex-col items-center md:flex-row justify-between my-8 mx-4 sm:mx-8 lg:mx-32">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {data["car"]?.pictures?.map((element, index) => (
-              <div key={index} className="relative overflow-hidden rounded-md">
-                <Image
-                  unoptimized
-                  src={element}
-                  alt={`Car Picture ${index + 1}`}
-                  className="object-cover w-full h-16 md:h-20 lg:h-24 xl:h-32"
-                  width={80}
-                  height={60}
-                />
-                {/* You can add an overlay or additional content here */}
-              </div>
-            ))}
-          </div>
+      <div className="flex flex-col md:flex-row justify-between items-center mx-4 sm:mx-8 lg:mx-32 my-8 pt-32 space-y-4 md:space-y-0 gap-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {data["car"]?.pictures?.map((element, index) => (
+            <div key={index} className="relative overflow-hidden rounded-md">
+              <Image
+                unoptimized
+                src={element}
+                alt={`Car Picture ${index + 1}`}
+                className="object-cover w-full h-24 sm:h-32 md:h-40 lg:h-48"
+                width={80}
+                height={60}
+              />
+            </div>
+          ))}
         </div>
-        <div className="flex flex-col space-y-4 bg-gray-100 border-8 rounded-md border-amber-700 p-4 sm:p-8 lg:p-12 pb-0 mt-4 md:mt-0">
-          <p className="text-orange-300 text-3xl">
+
+        <div className="flex flex-col bg-gray-100 border-8 rounded-md border-amber-700 p-6 sm:p-8 lg:p-12 mt-8">
+          <p className="text-orange-400 text-2xl md:text-3xl lg:text-4xl font-semibold mb-6">
             Price: {data["car"]?.price} JOD
           </p>
-          <button className="bg-green-600 mx-auto rounded-md py-2 px-6 text-white">
+          <button className="bg-green-600 text-white rounded-md py-2 px-6 mb-4 md:mb-6">
             Call Seller
           </button>
-          <button className="bg-amber-600 mx-auto rounded-md py-2 px-6 text-white">
+          <button className="bg-amber-600 text-white rounded-md py-2 px-6 mb-6 md:mb-8">
             Message Seller
           </button>
-          <div className="flex flex-col space-y-4 text-center md:text-left">
-            <div className="flex justify-between">
-              <span className="text-black font-bold">Year</span>
-              <span className="text-black font-bold">{data["car"]?.year}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-black font-bold">Make</span>
-              <span className="text-black font-bold">{data["car"]?.make}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-black font-bold">Model</span>
-              <span className="text-black font-bold">{data["car"]?.model}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-black font-bold">Mileage</span>
-              <span className="text-black font-bold">
-                {data["car"]?.mileage}km
+
+          {infoRows.map((info, index) => (
+            <div key={index} className="mb-8 flex justify-between gap-8">
+              <span className="text-black font-bold text-lg md:text-xl lg:text-2xl mb-1">
+                {info.label}
+              </span>
+              <span className="text-black text-base md:text-lg lg:text-xl">
+                {info.value}
               </span>
             </div>
-            <div className="flex justify-between">
-              <span className="text-black font-bold">Transmission</span>
-              <span className="text-black font-bold">
-                {data["car"]?.transmission}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-black font-bold">Body Type</span>
-              <span className="text-black font-bold">
-                {data["car"]?.bodytype}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-black font-bold">Category</span>
-              <span className="text-black font-bold">
-                {data["car"]?.category}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-black font-bold">Doors</span>
-              <span className="text-black font-bold">{data["car"]?.doors}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-black font-bold">Color</span>
-              <span className="text-black font-bold">{data["car"]?.color}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-black font-bold">Fuel</span>
-              <span className="text-black font-bold">{data["car"]?.fuel}</span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-
-      <div className="mx-auto bg-gray-200 flex-col flex max-w-screen-md m-4 sm:m-8 lg:m-12 mt-8 border border-amber-700 p-4 sm:p-8 lg:p-12">
-        <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
-          <Link href={`/profile/${data["car"]?.creator}`}>
-            {data["user"]?.image && (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "20vh",
-                }}
-              >
-                <Image
-                  unoptimized
-                  style={{ borderRadius: "50%", width: "75%", height: "80%" }}
-                  src={data["user"]?.image}
-                  alt="Decoded Image"
-                  width={500}
-                  height={500}
-                />
-              </div>
-            )}
-          </Link>
-          <div className="flex flex-col my-auto text-center md:text-left">
-            <p className="text-xl font-bold text-orange-400">
-              {data["user"]?.name}
-            </p>
-            <p className="text-xl font-bold text-black-500">
-              {data["car"]?.region}
-            </p>
+      <div className="flex flex-col mx-auto px-24 ">
+        <div className="bg-gray-200 flex-col flex m-4 sm:m-8 lg:m-12 mt-8 border border-amber-700 p-4 sm:p-8 lg:p-12 mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
+            <Link href={`/profile/${data["car"]?.creator}`}>
+              {data["user"]?.image && (
+                <div className="rounded-full overflow-hidden h-20 w-20 md:h-32 md:w-32 lg:h-40 lg:w-40">
+                  <Image
+                    unoptimized
+                    className="object-cover w-full h-full"
+                    src={data["user"]?.image}
+                    alt="User Image"
+                    width={160}
+                    height={160}
+                  />
+                </div>
+              )}
+            </Link>
+            <div className="flex flex-col my-auto text-center ">
+              <p className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-400">
+                {data["user"]?.name}
+              </p>
+              <p className="text-lg md:text-xl lg:text-2xl font-bold text-black-500 mt-2 md:mt-4 lg:mt-6">
+                {data["car"]?.region}
+              </p>
+            </div>
           </div>
+          <br />
+          <p className="text-base md:text-lg lg:text-xl leading-relaxed mt-4">
+            {data["car"]?.description}
+          </p>
         </div>
-        <br />
-        <p className="text-lg leading-relaxed">{data["car"]?.description}</p>
       </div>
     </>
   );

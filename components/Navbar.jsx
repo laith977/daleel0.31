@@ -34,9 +34,9 @@ const Nav = () => {
                 priority
                 src="/images/blacklogo.jpg"
                 alt="..."
-                width={48} // Reduced the width
+                width={72} // Reduced the width
                 height={48} // Reduced the height
-                className="cursor-pointer m-2" // Adjusted the margin
+                className="cursor-pointer m-2 rounded-sm" // Adjusted the margin
               />
             </Link>
           </div>
@@ -51,7 +51,7 @@ const Nav = () => {
               <button className="bg-[#5c97ff] text-white px-4 py-2 rounded-full hover:bg-[#367fff]">
                 {" "}
                 {/* Adjusted padding */}
-                <Link href="/profile/car">Post Car</Link>
+                <Link href="/profile/car">أضف سيارة</Link>
               </button>
             )}
             <button className="bg-[#5c97ff] text-white px-4 py-2 rounded-full hover:bg-[#1b6eff]">
@@ -64,7 +64,7 @@ const Nav = () => {
                     signOut();
                   }}
                 >
-                  Sign Out
+                  تسجيل الخروج
                 </Link>
               ) : (
                 <Link
@@ -74,7 +74,7 @@ const Nav = () => {
                     signIn();
                   }}
                 >
-                  Sign in
+                  تسجيل الدخول
                 </Link>
               )}
             </button>
@@ -89,11 +89,11 @@ const Nav = () => {
       {menuOpen && session?.user && (
         <div className="flex flex-col fixed top-16 right-0 w-48 bg-gray-600 z-10">
           <p className="text-black bg-white text-center text-md p-3 hover:bg-[#bbbbbb]">
-            <Link href={session?.user && `/profile/edit`}>Edit Profile</Link>
+            <Link href={session?.user && `/profile/edit`}>تعديل الحساب</Link>
           </p>
           <p className="text-black bg-white text-center text-md p-3 hover:bg-[#bbbbbb]">
             <Link href={session?.user && `/profile/${session?.user.id}`}>
-              My Profile
+              حسابي
             </Link>
           </p>
         </div>

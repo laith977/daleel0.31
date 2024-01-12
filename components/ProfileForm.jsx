@@ -26,7 +26,7 @@ const ProfileForm = ({ type, post, setPost, submitting, handleSubmit }) => {
           htmlFor="name"
           className="block text-sm font-medium text-gray-600"
         >
-          Name:
+          أسم المستخدم:
         </label>
         <input
           value={post.name || ""}
@@ -44,7 +44,7 @@ const ProfileForm = ({ type, post, setPost, submitting, handleSubmit }) => {
           htmlFor="bio"
           className="block text-sm font-medium text-gray-600"
         >
-          Bio:
+          التعريف الشخصي:
         </label>
         <textarea
           type="textarea"
@@ -82,7 +82,7 @@ const ProfileForm = ({ type, post, setPost, submitting, handleSubmit }) => {
           htmlFor="phoneNumber"
           className="block text-sm font-medium text-gray-600"
         >
-          Phone Number:
+          الرقم الهاتفي:
         </label>
         <input
           value={post.phoneNumber || ""}
@@ -117,7 +117,7 @@ const ProfileForm = ({ type, post, setPost, submitting, handleSubmit }) => {
           disabled={submitting}
           className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
         >
-          {submitting ? `${type}ing...` : type}
+          {type}
         </button>
       </div>
     </form>
