@@ -47,12 +47,13 @@ const UpdateProfile = () => {
           name: post.name,
           bio: post.bio,
           phoneNumber: post.phoneNumber,
+          image: post.image,
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
-
+      console.log(post);
       if (response.ok) {
         router.push("/");
       } else {

@@ -29,9 +29,12 @@ export const PATCH = async (req) => {
     if (image) {
       const imageData = Buffer.from(image, "base64");
       const uploadsDir = path.join(process.cwd(), "public/uploads");
-      const fileName = `${existingUser._id}_123456789.png`;
+      const fileName = `${
+        Math.random() * 1000 + Math.random() * 1000
+      }_123456789.png`;
       const filePath = path.join(uploadsDir, fileName);
-
+      console.log("File Path:", filePath);
+      console.log("Image Data Length:", imageData.length);
       // Write the image to the server
       await fs.writeFile(filePath, imageData);
 
