@@ -3,16 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 const Car = ({ data }) => {
   const infoRows = [
-    { label: "Year", value: data["car"]?.year },
-    { label: "Make", value: data["car"]?.make },
-    { label: "Model", value: data["car"]?.model },
-    { label: "Mileage", value: `${data["car"]?.mileage}km` },
-    { label: "Transmission", value: data["car"]?.transmission },
-    { label: "Body Type", value: data["car"]?.bodytype },
-    { label: "Category", value: data["car"]?.category },
-    { label: "Doors", value: data["car"]?.doors },
-    { label: "Color", value: data["car"]?.color },
-    { label: "Fuel", value: data["car"]?.fuel },
+    { label: "السنة", value: data["car"]?.year },
+    { label: "المصنع", value: data["car"]?.make },
+    { label: "الموديل", value: data["car"]?.model },
+    { label: "ممشى", value: `${data["car"]?.mileage} ` + "km" },
+    { label: "ناقل الحركة", value: data["car"]?.transmission },
+    // { label: "Body Type", value: data["car"]?.bodytype },
+    { label: "الفئة", value: data["car"]?.category },
+    { label: "عدد الأبواب", value: data["car"]?.doors },
+    { label: "اللون", value: data["car"]?.color },
+    { label: "نوع الوقود", value: data["car"]?.fuel },
   ];
   return (
     <>
@@ -34,13 +34,15 @@ const Car = ({ data }) => {
 
         <div className="flex flex-col bg-gray-100 border-8 rounded-md border-amber-700 p-6 sm:p-8 lg:p-12 mt-8">
           <p className="text-orange-400 text-2xl md:text-3xl lg:text-4xl font-semibold mb-6">
-            Price: {data["car"]?.price} JOD
+            السعر:
+            {` ${data["car"]?.price} `}
+            دينار
           </p>
           <button className="bg-green-600 text-white rounded-md py-2 px-6 mb-4 md:mb-6">
-            Call Seller
+            أتصل بالتاجر
           </button>
           <button className="bg-amber-600 text-white rounded-md py-2 px-6 mb-6 md:mb-8">
-            Message Seller
+            مراسلة التاجر
           </button>
 
           {infoRows.map((info, index) => (
