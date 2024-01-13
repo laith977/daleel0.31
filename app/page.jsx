@@ -93,7 +93,7 @@ const Home = () => {
                   width={240}
                   height={300}
                 />
-                <p className="text-black text-2xl"> شاحنات البيك أب</p>
+                <p className="text-black text-2xl"> البيك أب </p>
               </Link>
             </div>
             <div className="bg-white p-4 rounded-lg text-center w-auto">

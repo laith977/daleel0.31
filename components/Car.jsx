@@ -6,7 +6,7 @@ const Car = ({ data }) => {
     { label: "السنة", value: data["car"]?.year },
     { label: "المصنع", value: data["car"]?.make },
     { label: "الموديل", value: data["car"]?.model },
-    { label: "ممشى", value: `${data["car"]?.mileage} ` + "km" },
+    { label: "عدد الكيلومترات", value: `${data["car"]?.mileage} ` + "" },
     { label: "ناقل الحركة", value: data["car"]?.transmission },
     // { label: "Body Type", value: data["car"]?.bodytype },
     { label: "الفئة", value: data["car"]?.category },
@@ -38,10 +38,26 @@ const Car = ({ data }) => {
             {` ${data["car"]?.price} `}
             دينار
           </p>
-          <button className="bg-green-600 text-white rounded-md py-2 px-6 mb-4 md:mb-6">
+          <button
+            className="bg-green-600 text-white rounded-md py-2 px-6 mb-4 md:mb-6"
+            onClick={() =>
+              (window.location.href = `tel:${data["user"]?.phoneNumber}`)
+            }
+          >
             أتصل بالتاجر
           </button>
-          <button className="bg-amber-600 text-white rounded-md py-2 px-6 mb-6 md:mb-8">
+
+          <button
+            className="bg-amber-600 text-white rounded-md py-2 px-6 mb-6 md:mb-8"
+            onClick={() => {
+              const phoneNumber = data["user"]?.phoneNumber;
+              if (phoneNumber) {
+                const message = encodeURIComponent("Your custom message here");
+                const whatsappWebURL = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+                window.open(whatsappWebURL, "_blank");
+              }
+            }}
+          >
             مراسلة التاجر
           </button>
 
