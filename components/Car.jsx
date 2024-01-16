@@ -52,7 +52,7 @@ const Car = ({ data }) => {
             onClick={() => {
               const phoneNumber = data["user"]?.phoneNumber;
               if (phoneNumber) {
-                const message = encodeURIComponent("Your custom message here");
+                const message = encodeURIComponent("مرحبا");
                 const whatsappWebURL = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
                 window.open(whatsappWebURL, "_blank");
               }
