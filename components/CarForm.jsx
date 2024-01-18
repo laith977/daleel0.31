@@ -5,6 +5,7 @@ import FileUpload from "./FileUpload";
 const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
   const [selectedMake, setSelectedMake] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
+  const [DisableInput, setDisableInput] = useState(false);
   const carBrands = [
     {
       brand: "Alfa Romeo",
@@ -670,7 +671,10 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           value={car?.category || "gasoline"} // Set default value to "gasoline"
           id="category"
           name="category"
-          onChange={(e) => setCar({ ...car, category: e.target.value })}
+          onChange={(e) => {
+            setCar({ ...car, category: e.target.value });
+            setDisableInput(() => !DisableInput);
+          }}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
         >
           <option value="gasoline" defaultValue>
@@ -678,7 +682,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           </option>
           <option value="electric">كهربائية</option>
           <option value="hybrid">هايبرد</option>
-          <option value="pick-up">شاحنات بيك اب</option>
+          <option value="pick-up"> بيك اب</option>
           <option value="bus">باصات</option>
           <option value="lorry">شاحنات نقل</option>
         </select>
@@ -773,9 +777,16 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           name="fuel"
           onChange={(e) => setCar({ ...car, fuel: e.target.value })}
           className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          disabled={DisableInput}
         >
-          <option value="Electric"> بنزين</option>
-          <option value="Hybrid">ديزل</option>
+          {DisableInput && (
+            <option value="Electric" selected>
+              {" "}
+              كهربائية
+            </option>
+          )}
+          <option value="gasoline"> بنزين</option>
+          <option value="Diesel">ديزل</option>
         </select>
       </div>
 
