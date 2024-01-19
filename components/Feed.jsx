@@ -85,7 +85,7 @@ const Feed = () => {
           placeholder="أبحث عن سيارة"
           value={searchText}
           onChange={handleSearchChange}
-          className="text-center px-12 p-4  mx-auto my-6"
+          className="text-center p-4 mx-auto my-6 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl"
           required
         />
       </form>

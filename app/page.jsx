@@ -32,8 +32,8 @@ const Home = () => {
         <LoadingSkeleton />
       ) : (
         <>
-          <div className="text-center mt-24 flex flex-col items-center pt-8">
-            <p className={`text-white text-2xl`}>
+          <div className="text-center mt-56 lg:mt-32 flex flex-col items-center pt-8">
+            <p className={`text-white text-2xl mb-8`}>
               شريكك للحصول على أقل الأسعار
             </p>
             <h2 className={`text-white text-7xl`}>
@@ -41,20 +41,21 @@ const Home = () => {
             </h2>
             <div className="flex justify-center m-16">
               <Image
-                className="cursor-pointer min-w-xs lg:max-w-md rounded-full"
+                className="cursor-pointer w-full lg:max-w-md mx-auto rounded-3xl  "
                 src="/images/whitelogo.png"
-                alt="..."
-                width={720}
-                height={720}
-              ></Image>
+                alt="Hero Image"
+                width={1200}
+                height={800}
+                style={{ aspectRatio: "10/8" }}
+              />
             </div>
             <p className="text-white text-4xl">تجارة، شراء، بيع السيارات</p>
           </div>
           <p className="text-white text-6xl text-center mt-12  bg-gray-900 ">
             الفئات
           </p>
-          <div className=" grid grid-cols-3 gap-8 lg:mx-32 md:mx-8 xs:mx-auto my-4 bg-gray-900 justify-between">
-            <div className="bg-white p-4 rounded-lg text-center ">
+          <div className=" grid lg:grid-cols-3  grid-cols-2 gap-8 lg:mx-32 md:mx-8 sm:mx-auto  my-4 bg-gray-900 justify-between">
+            <div className="bg-white p-4 rounded-lg text-center">
               <Link
                 href={`/category/${getImageFileName("/images/gasoline.jpg")}`}
               >
