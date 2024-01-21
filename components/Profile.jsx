@@ -6,7 +6,7 @@ import CarCard from "@/components/CarCard";
 const Profile = ({ user, cars, handleDelete }) => {
   return (
     <>
-      <div className="flex flex-col my-32 space-y-18 text-white">
+      <div className="flex flex-col my-32 space-y-18 text-white px-4">
         <p className="header text-center text-7xl pt-8">{user?.name}</p>
         <div className="flex flex-col py-8">
           <div className="flex flex-col mx-auto py-8 ">

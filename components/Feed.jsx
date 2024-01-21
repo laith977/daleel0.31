@@ -78,7 +78,7 @@ const Feed = () => {
     });
   };
   return (
-    <section className="text-center px-12 p-4  mx-auto my-6">
+    <section className="text-center px-12 max-sm:px-4   mx-auto mb-6">
       <form className="">
         <input
           type="text"
@@ -89,7 +89,7 @@ const Feed = () => {
           required
         />
       </form>
-
+      
       {loading ? (
         <p>Loading...</p>
       ) : (

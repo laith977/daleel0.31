@@ -36,12 +36,12 @@ const Nav = () => {
                 alt="..."
                 width={72} // Reduced the width
                 height={48} // Reduced the height
-                className="cursor-pointer m-2 rounded-sm" // Adjusted the margin
+                className="cursor-pointer m-4 rounded-sm max-sm:w-48" // Adjusted the margin
               />
             </Link>
           </div>
           <div
-            className={`md:min-h-fit min-h-[16vh] transform md:translate-x-0 md:w-auto w-full flex items-center px-3`} // Adjusted height and padding
+            className={`md:min-h-fit min-h-[12vh] transform md:translate-x-0 md:w-auto w-full flex items-center px-3`} // Adjusted height and padding
             style={{ visibility: menuOpen ? "visible" : "hidden" }}
           ></div>
           <div className="flex items-center gap-4">

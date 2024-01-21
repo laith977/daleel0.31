@@ -82,14 +82,14 @@ const TypeSearch = ({ params }) => {
     });
   };
   return (
-    <section className="px-4 sm:px-8 lg:px-16 xl:px-32 mt-48 mx-auto">
-      <form className="mb-6 w-64">
+    <section className="text-center px-12 max-sm:px-4   mx-auto mb-6 mt-48">
+      <form className="">
         <input
           type="text"
-          placeholder="Search for a tag or a username"
+          placeholder="أبحث عن سيارة"
           value={searchText}
           onChange={handleSearchChange}
-          className="w-full p-4 border rounded-md"
+          className="  rounded-lg text-center p-4 mx-auto my-6 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl"
           required
         />
       </form>

@@ -13,14 +13,14 @@ const CarCard = ({
   const params = useParams();
 
   return (
-    <div className=" grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-6 gap-x-12 sm:gap-6 lg:gap-12 mx-auto justify-center ">
+    <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6  justify-center">
       {(Array.isArray(data) ? data : []).map((car) => (
         <div
           key={car?._id}
-          className=" bg-white p-2 w-36 rounded-lg text-center flex flex-col justify-between border border-gray-200 shadow-md"
+          className=" bg-white p-2 rounded-xl text-center flex flex-col justify-between shadow-md "
         >
           <Link href={`/profile/${car.creator}/car/${car._id}`}>
-            <div className="relative overflow-hidden rounded-md h-40 sm:h-48">
+            <div className="relative  rounded-md h-40 sm:h-48">
               <Image
                 unoptimized
                 src={car?.pictures[0] || ""}
