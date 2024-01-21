@@ -45,8 +45,6 @@ const Nav = () => {
             style={{ visibility: menuOpen ? "visible" : "hidden" }}
           ></div>
           <div className="flex items-center gap-4">
-            {" "}
-            {/* Adjusted the gap */}
             {session?.user && (
               <button className="bg-[#5c97ff] text-white px-4 py-2 rounded-full hover:bg-[#367fff]">
                 {" "}
@@ -54,7 +52,7 @@ const Nav = () => {
                 <Link href="/profile/car">أضف سيارة</Link>
               </button>
             )}
-            <button className="bg-[#5c97ff] text-white px-4 py-2 rounded-full hover:bg-[#1b6eff]">
+            <button className="bg-[#5c97ff] text-white px-4 py-2 mx-6 rounded-full hover:bg-[#1b6eff]">
               {" "}
               {/* Adjusted padding */}
               {session?.user ? (
@@ -78,7 +76,10 @@ const Nav = () => {
                 </Link>
               )}
             </button>
-            <button onClick={toggleMenu} className="text-2xl cursor-pointer">
+            <button
+              onClick={toggleMenu}
+              className="text-2xl cursor-pointer  max-sm:pr-6"
+            >
               {" "}
               {/* Adjusted font size */}
               {menuOpen && session?.user ? "×" : "☰"}
@@ -87,7 +88,7 @@ const Nav = () => {
         </nav>
       </header>
       {menuOpen && session?.user && (
-        <div className="flex flex-col fixed top-16 right-0 w-48 bg-gray-600 z-10">
+        <div className="flex flex-col fixed top-20 right-0 w-48 bg-gray-600 z-10">
           <p className="text-black bg-white text-center text-md p-3 hover:bg-[#bbbbbb]">
             <Link href={session?.user && `/profile/edit`}>تعديل الحساب</Link>
           </p>
