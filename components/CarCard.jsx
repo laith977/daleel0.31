@@ -13,7 +13,7 @@ const CarCard = ({
   const params = useParams();
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-12 mx-auto justify-center">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-12 mx-auto justify-center">
       {(Array.isArray(data) ? data : []).map((car) => (
         <div
           key={car?._id}
@@ -31,8 +31,10 @@ const CarCard = ({
             </div>
           </Link>
 
-          <p className="text-black text-lg mt-4">{car?.name}</p>
-          <p className="text-black text-lg mt-2">السعر: {car?.price}</p>
+          <p className="text-black text-xl max-sm:text-sm mt-2">{car?.name}</p>
+          <p className="text-black text-xl max-sm:text-sm mt-2">
+            السعر: {car?.price}
+          </p>
 
           {session?.user?.id &&
             car?.creator === session?.user?.id &&
