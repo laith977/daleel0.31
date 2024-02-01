@@ -5,7 +5,6 @@ import CarCard from "@/components/CarCard";
 import LoadingSkeleton from "@/app/Loading";
 
 import { useState ,useEffect} from "react";
-import {useState} from "react";
 const Profile = ({ user, cars, handleDelete }) => {
 
   const [isLoading, setIsLoading] = useState(true);
