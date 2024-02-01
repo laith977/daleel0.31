@@ -2,12 +2,11 @@
 
 import { useEffect, useState } from "react";
 import CarCard from "./CarCard";
+import LoadingSkeleton from "@/app/Loading";
 
 const Feed = () => {
   const [allPosts, setAllPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  //SEARCH
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null); //to prevent too many requests
 
@@ -78,20 +77,20 @@ const Feed = () => {
     });
   };
   return (
-    <section className="text-center px-12 max-sm:px-4   mx-auto mb-6">
+    <section className="search-section">
       <form className="">
         <input
           type="text"
           placeholder="أبحث عن سيارة"
           value={searchText}
           onChange={handleSearchChange}
-          className="text-center p-4 mx-auto my-6 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl"
+          className="search-text"
           required
         />
       </form>
       
       {loading ? (
-        <p>Loading...</p>
+        <LoadingSkeleton/>
       ) : (
         <CarCard handleTagClick={handleTagClick} data={allPosts} />
       )}

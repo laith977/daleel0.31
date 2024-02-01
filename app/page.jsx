@@ -34,12 +34,12 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="font-[Poppins]  bg-gray-900">
+    <div className="p-body">
       {isLoading ? (
         <LoadingSkeleton />
       ) : (
         <>
-          <div className="text-center mt-56 lg:mt-32 flex flex-col items-center pt-8">
+          <div className="big-text">
             <p className={`text-white text-2xl mb-8`}>
               شريكك للحصول على أقل الأسعار
             </p>
@@ -48,7 +48,7 @@ const Home = () => {
             </h2>
             <div className="flex justify-center m-16">
               <Image
-                className="cursor-pointer w-full lg:max-w-md mx-auto rounded-3xl  "
+                className=" hero-pic"
                 src="/images/whitelogo.png"
                 alt="Hero Image"
                 width={1200}
@@ -61,7 +61,7 @@ const Home = () => {
           <p className="text-white text-6xl text-center mt-12  bg-gray-900 ">
             الفئات
           </p>
-          <div className="grid lg:grid-cols-3 grid-cols-2 gap-8 lg:mx-32 md:mx-8 sm:mx-auto my-4 bg-gray-900 justify-between mx-8">
+          <div className="category-div">
             {categories.map((category, index) => (
               <div key={index} className="bg-white p-4 rounded-lg text-center">
                 <Link href={`/category/${getImageFileName(category.image)}`}>

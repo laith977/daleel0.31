@@ -13,37 +13,37 @@ const CarCard = ({
   const params = useParams();
 
   return (
-    <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6  justify-center">
+    <div className=" car-cards-div">
       {(Array.isArray(data) ? data : []).map((car) => (
         <div
           key={car?._id}
-          className=" bg-white p-2 rounded-xl text-center flex flex-col justify-between shadow-md "
+          className=" car-card-div "
         >
           <Link href={`/profile/${car.creator}/car/${car._id}`}>
-            <div className="relative  rounded-md h-40 sm:h-48">
+            <div className="car-card-link">
               <Image
                 unoptimized
                 src={car?.pictures[0] || ""}
                 alt="Car"
-                className="object-cover w-full h-full"
+                className="car-card-pic"
                 layout="fill"
               />
             </div>
           </Link>
 
-          <p className="text-black text-xl max-sm:text-sm mt-2 font-satoshi">
+          <p className="car-name">
             {car?.name}
           </p>
-          <p className="text-black text-xl max-sm:text-sm mt-2 font-satoshi">
+          <p className="car-price">
             السعر: {car?.price}
           </p>
 
           {session?.user?.id &&
             car?.creator === session?.user?.id &&
             params?.profileid !== undefined && (
-              <div className="flex flex-col sm:flex-row justify-around mt-4">
+              <div className="car-buttons">
                 <button
-                  className="text-white bg-red-600 hover:bg-red-700 py-2 px-4 rounded-lg mb-2 sm:mb-0"
+                  className="del-button"
                   onClick={() => {
                     handleDelete(car?._id);
                   }}
@@ -52,7 +52,7 @@ const CarCard = ({
                 </button>
                 <Link href={`/profile/car/${car?._id}`}>
                   <button
-                    className="text-white bg-green-600 hover:bg-green-700 py-2 px-4 rounded-lg"
+                    className="edit-button"
                     onClick={() => {
                       handleEdit(car?._id);
                     }}

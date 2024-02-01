@@ -25,8 +25,8 @@ const Nav = () => {
 
   return (
     <>
-      <header className="bg-white fixed top-0 w-full z-10">
-        <nav className="flex justify-between items-center w-full md:w-[92%] mx-auto py-2">
+      <header className="nav-header">
+        <nav className="nav-body">
           <div>
             <Link href="/">
               <Image
@@ -34,25 +34,25 @@ const Nav = () => {
                 priority
                 src="/images/blacklogo.jpg"
                 alt="..."
-                width={72} // Reduced the width
-                height={48} // Reduced the height
-                className="cursor-pointer m-4 rounded-sm max-sm:w-48" // Adjusted the margin
+                width={72} 
+                height={48} 
+                className="nav-pic" 
               />
             </Link>
           </div>
           <div
-            className={`md:min-h-fit min-h-[12vh] transform md:translate-x-0 md:w-auto w-full flex items-center px-3`} // Adjusted height and padding
+            className={`nav-menu`}
             style={{ visibility: menuOpen ? "visible" : "hidden" }}
           ></div>
           <div className="flex items-center gap-4">
             {session?.user && (
-              <button className="bg-[#5c97ff] text-white px-4 py-2 rounded-full hover:bg-[#367fff]">
+              <button className="nav-buttons">
                 {" "}
                 {/* Adjusted padding */}
                 <Link href="/profile/car">أضف سيارة</Link>
               </button>
             )}
-            <button className="bg-[#5c97ff] text-white px-4 py-2 mx-6 rounded-full hover:bg-[#1b6eff]">
+            <button className="nav-buttons">
               {" "}
               {/* Adjusted padding */}
               {session?.user ? (
@@ -78,7 +78,7 @@ const Nav = () => {
             </button>
             <button
               onClick={toggleMenu}
-              className="text-2xl cursor-pointer  max-sm:pr-6"
+              className="menu-toggle"
             >
               {" "}
               {/* Adjusted font size */}
@@ -88,11 +88,11 @@ const Nav = () => {
         </nav>
       </header>
       {menuOpen && session?.user && (
-        <div className="flex flex-col fixed top-20 right-0 w-48 bg-gray-600 z-10">
-          <p className="text-black bg-white text-center text-md p-3 hover:bg-[#bbbbbb]">
+        <div className="menu-container">
+          <p className="menu-text">
             <Link href={session?.user && `/profile/edit`}>تعديل الحساب</Link>
           </p>
-          <p className="text-black bg-white text-center text-md p-3 hover:bg-[#bbbbbb]">
+          <p className="menu-text">
             <Link href={session?.user && `/profile/${session?.user.id}`}>
               حسابي
             </Link>

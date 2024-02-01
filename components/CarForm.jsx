@@ -435,12 +435,12 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
   const handleMakeChange = (make) => {
     setSelectedMake(make);
     setSelectedModel("");
-    setCar({ ...car, make: make, model: "" }); // Update make in the car state
+    setCar({ ...car, make: make, model: "" });
   };
 
   const handleModelChange = (model) => {
     setSelectedModel(model);
-    setCar({ ...car, model: model }); // Update model in the car state
+    setCar({ ...car, model: model });
   };
   const handleImageChange = async (e) => {
     const files = e.target.files;
@@ -463,14 +463,16 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
     }
   };
   return (
+    <>
+    {/* <p className=" text-white py-8 px-12 mt-64  bg-orange-600 mx-auto w-fit text-6xl rounded-full   ">أضف سيارة</p> */}
     <form
       onSubmit={handleSubmit}
-      className="max-w-6xl mx-auto my-32 p-4 bg-white rounded-md shadow-md grid grid-cols-3 gap-8"
+      className="car-form"
     >
-      <div className="mb-4 col-span-3">
+      <div className="mb-4 col-span-3 max-sm:col-span-1">
         <label
           htmlFor="name"
-          className="block text-sm font-medium text-gray-600"
+          className="car-input-label"
         >
           :اسم الاعلان
         </label>
@@ -481,14 +483,14 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           name="name"
           onChange={(e) => setCar({ ...car, name: e.target.value })}
           required
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          className="car-input-text"
         />
       </div>
       <FileUpload handleImageChange={handleImageChange} />
-      <div className="mb-4">
+      <div className="mb-4 xl:w-96">
         <label
           htmlFor="description"
-          className="block text-sm font-medium text-gray-600"
+          className="car-input-label"
         >
           :صندوق الوصف
         </label>
@@ -499,13 +501,13 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           name="description"
           value={car?.description || ""}
           onChange={(e) => setCar({ ...car, description: e.target.value })}
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300 "
+          className="car-input-text "
         />
       </div>
       <div className="mb-4">
         <label
           htmlFor="price"
-          className="block text-sm font-medium text-gray-600"
+          className="car-input-label"
         >
           :السعر
         </label>
@@ -515,13 +517,13 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           id="price"
           name="price"
           onChange={(e) => setCar({ ...car, price: e.target.value })}
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          className="car-input-text"
         />
       </div>
       <div className="mb-4">
         <label
           htmlFor="price"
-          className="block text-sm font-medium text-gray-600"
+          className="car-input-label"
         >
           :الرقم الهاتفي
         </label>
@@ -531,14 +533,14 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           id="phone_number"
           name="phone_number"
           onChange={(e) => setCar({ ...car, phone_number: e.target.value })}
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          className="car-input-text"
         />
       </div>
 
       <div className="mb-4">
         <label
           htmlFor="year"
-          className="block text-sm font-medium text-gray-600"
+          className="car-input-label"
         >
           :سنة الصنع
         </label>
@@ -547,7 +549,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           id="year"
           name="year"
           onChange={(e) => setCar({ ...car, year: e.target.value })}
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          className="car-input-text"
         >
           {Array.from({ length: 24 }, (_, index) => {
             const year = 2000 + index;
@@ -563,14 +565,14 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         <div className="mb-4">
           <label
             htmlFor="make"
-            className="block text-sm font-medium text-gray-600"
+            className="car-input-label"
           >
             :المصنع
           </label>
           <select
             value={selectedMake}
             onChange={(e) => handleMakeChange(e.target.value)}
-            className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            className="car-input-text"
           >
             {carBrands.map((car) => (
               <option key={car.brand} value={car.brand} id={car?.brand}>
@@ -583,14 +585,14 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         <div className="mb-4">
           <label
             htmlFor="model"
-            className="block text-sm font-medium text-gray-600"
+            className="car-input-label"
           >
             :الموديل
           </label>
           <select
             value={selectedModel}
             onChange={(e) => handleModelChange(e.target.value)}
-            className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            className="car-input-text"
             disabled={!selectedMake}
           >
             <option value="">اختر موديل</option>
@@ -608,16 +610,16 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
       <div className="mb-4">
         <label
           htmlFor="mileage"
-          className="block text-sm font-medium text-gray-600"
+          className="car-input-label"
         >
           :ممشى
         </label>
         <select
-          value={car?.mileage || "gasoline"} // Set default value to "gasoline"
+          value={car?.mileage || "gasoline"} 
           id="mileage"
           name="mileage"
           onChange={(e) => setCar({ ...car, mileage: e.target.value })}
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          className="car-input-text"
         >
           <option key={`zero`} value={`zero`}>
             {`Zero`}
@@ -642,16 +644,16 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
       <div className="mb-4">
         <label
           htmlFor="transmission"
-          className="block text-sm font-medium text-gray-600"
+          className="car-input-label"
         >
           :ناقل الحركة
         </label>
         <select
-          value={car?.transmission || "gasoline"} // Set default value to "gasoline"
+          value={car?.transmission || "gasoline"} 
           id="transmission"
           name="transmission"
           onChange={(e) => setCar({ ...car, transmission: e.target.value })}
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          className="car-input-text"
         >
           <option value="normal" defaultValue>
             ناقل يدوي
@@ -663,19 +665,19 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
       <div className="mb-4">
         <label
           htmlFor="category"
-          className="block text-sm font-medium text-gray-600"
+          className="car-input-label"
         >
           :الفئة
         </label>
         <select
-          value={car?.category || "gasoline"} // Set default value to "gasoline"
+          value={car?.category || "gasoline"} 
           id="category"
           name="category"
           onChange={(e) => {
             setCar({ ...car, category: e.target.value });
             setDisableInput(() => !DisableInput);
           }}
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          className="car-input-text"
         >
           <option value="gasoline" defaultValue>
             وقود
@@ -718,16 +720,16 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
       <div className="mb-4">
         <label
           htmlFor="doors"
-          className="block text-sm font-medium text-gray-600"
+          className="car-input-label"
         >
           :عدد الابواب
         </label>
         <select
-          value={car?.doors} // Set default value to "coupe"
+          value={car?.doors} 
           id="doors"
           name="doors"
           onChange={(e) => setCar({ ...car, doors: e.target.value })}
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          className="car-input-text"
         >
           <option value="2">2</option>
           <option value="4">4</option>
@@ -736,16 +738,16 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
       <div className="mb-4">
         <label
           htmlFor="color"
-          className="block text-sm font-medium text-gray-600"
+          className="car-input-label"
         >
           :اللون
         </label>
         <select
-          value={car?.color} // Set default value to "coupe"
+          value={car?.color}
           id="color"
           name="color"
           onChange={(e) => setCar({ ...car, color: e.target.value })}
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          className="car-input-text"
         >
           <option value="White" defaultValue>
             {" "}
@@ -767,16 +769,16 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
       <div className="mb-4">
         <label
           htmlFor="fuel"
-          className="block text-sm font-medium text-gray-600"
+          className="car-input-label"
         >
           :نوع الوقود
         </label>
         <select
-          value={car?.fuel} // Set default value to "coupe"
+          value={car?.fuel} 
           id="fuel"
           name="fuel"
           onChange={(e) => setCar({ ...car, fuel: e.target.value })}
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          className="car-input-text"
           disabled={DisableInput}
         >
           {DisableInput && (
@@ -793,7 +795,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
       <div className="mb-4">
         <label
           htmlFor="region"
-          className="block text-sm font-medium text-gray-600"
+          className="car-input-label"
         >
           :اللون
         </label>
@@ -802,21 +804,23 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           type="text"
           id="region"
           name="region"
-          readOnly // make it read-only
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          readOnly 
+          className="car-input-text"
         />
       </div>
+      <div className="mb-4 max-sm:mb-0">
 
-      <div className="mb-4">
+      </div>
+      <div className="mb-4 mx-auto xl:mt-6     ">
         <button
           type="submit"
           disabled={submitting}
-          className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
+          className="submit-button"
         >
           {type}
         </button>
       </div>
-    </form>
+    </form></>
   );
 };
 
