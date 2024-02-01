@@ -3,9 +3,19 @@ import React from "react";
 import Image from "next/image";
 import CarCard from "@/components/CarCard";
 import LoadingSkeleton from "@/app/Loading";
-
+import { useState ,useEffect} from "react";
 const Profile = ({ user, cars, handleDelete }) => {
+
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
       {

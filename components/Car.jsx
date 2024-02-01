@@ -1,7 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState ,useEffect} from "react";
+import LoadingSkeleton from "@/app/Loading";
 const Car = ({ data }) => {
+
   const infoRows = [
     { label: "السنة", value: data["car"]?.year },
     { label: "المصنع", value: data["car"]?.make },
@@ -13,8 +16,20 @@ const Car = ({ data }) => {
     { label: "اللون", value: data["car"]?.color },
     { label: "نوع الوقود", value: data["car"]?.fuel },
   ];
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
+    
+    {isLoading?(<LoadingSkeleton/>):(
+      <>
       <div className="car-div">
         <div className="car-col-container">
           {data["car"]?.pictures?.map((element, index) => (
@@ -103,8 +118,10 @@ const Car = ({ data }) => {
             {data["car"]?.description}
           </p>
         </div>
-      </div>
+      </div></>)
+      }
     </>
+              
   );
 };
 
