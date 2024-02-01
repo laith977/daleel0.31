@@ -3,7 +3,11 @@ import React from "react";
 import Image from "next/image";
 import CarCard from "@/components/CarCard";
 import LoadingSkeleton from "@/app/Loading";
+<<<<<<< HEAD
 import { useState ,useEffect} from "react";
+=======
+import {useState} from "react";
+>>>>>>> 9dd1c2f (dwq)
 const Profile = ({ user, cars, handleDelete }) => {
 
   const [isLoading, setIsLoading] = useState(true);
