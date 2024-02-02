@@ -27,16 +27,16 @@ services:
       - dhparam:/etc/ssl/certs
     depends_on:
       - web
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
-      - web-root:/var/www/html
-    depends_on:
-      - webserver
-    command: certonly --webroot --webroot-path=/var/www/html --email daleelalhurra@gmail.com --agree-tos --no-eff-email --force-renewal -d daleelalhurra.com  -d www.daleelalhurra.com
+  #certbot:
+    #image: certbot/certbot
+    #container_name: certbot
+    #volumes:
+      #- certbot-etc:/etc/letsencrypt
+      #- certbot-var:/var/lib/letsencrypt
+      #- web-root:/var/www/html
+    #depends_on:
+      #- webserver
+    #command: certonly --webroot --webroot-path=/var/www/html --email daleelalhurra@gmail.com --agree-tos --no-eff-email --force-renewal -d daleelalhurra.com  -d www.daleelalhurra.com
 volumes:
   certbot-etc:
   certbot-var:
