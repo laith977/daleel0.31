@@ -464,233 +464,200 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
   };
   return (
     <>
-    {/* <p className=" text-white py-8 px-12 mt-64  bg-orange-600 mx-auto w-fit text-6xl rounded-full   ">أضف سيارة</p> */}
-    <form
-      onSubmit={handleSubmit}
-      className="car-form"
-    >
-      <div className="mb-4 col-span-3 max-sm:col-span-1">
-        <label
-          htmlFor="name"
-          className="car-input-label"
-        >
-          :اسم الاعلان
-        </label>
-        <input
-          value={car?.name || ""}
-          type="text"
-          id="name"
-          name="name"
-          onChange={(e) => setCar({ ...car, name: e.target.value })}
-          required
-          className="car-input-text"
-        />
-      </div>
-      <FileUpload handleImageChange={handleImageChange} />
-      <div className="mb-4 xl:w-96">
-        <label
-          htmlFor="description"
-          className="car-input-label"
-        >
-          :صندوق الوصف
-        </label>
-        <textarea
-          type="textarea"
-          rows="6"
-          id="description"
-          name="description"
-          value={car?.description || ""}
-          onChange={(e) => setCar({ ...car, description: e.target.value })}
-          className="car-input-text "
-        />
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="price"
-          className="car-input-label"
-        >
-          :السعر
-        </label>
-        <input
-          value={car?.price || ""}
-          type="number"
-          id="price"
-          name="price"
-          onChange={(e) => setCar({ ...car, price: e.target.value })}
-          className="car-input-text"
-        />
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="price"
-          className="car-input-label"
-        >
-          :الرقم الهاتفي
-        </label>
-        <input
-          value={car?.phone_number || ""}
-          type="text"
-          id="phone_number"
-          name="phone_number"
-          onChange={(e) => setCar({ ...car, phone_number: e.target.value })}
-          className="car-input-text"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label
-          htmlFor="year"
-          className="car-input-label"
-        >
-          :سنة الصنع
-        </label>
-        <select
-          value={car?.year}
-          id="year"
-          name="year"
-          onChange={(e) => setCar({ ...car, year: e.target.value })}
-          className="car-input-text"
-        >
-          {Array.from({ length: 24 }, (_, index) => {
-            const year = 2000 + index;
-            return (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            );
-          })}
-        </select>
-      </div>
-      <div>
+      {/* <p className=" text-white py-8 px-12 mt-64  bg-orange-600 mx-auto w-fit text-6xl rounded-full   ">أضف سيارة</p> */}
+      <form onSubmit={handleSubmit} className="car-form">
+        <div className="mb-4 col-span-3 max-sm:col-span-1">
+          <label htmlFor="name" className="car-input-label">
+            :اسم الاعلان
+          </label>
+          <input
+            value={car?.name || ""}
+            type="text"
+            id="name"
+            name="name"
+            onChange={(e) => setCar({ ...car, name: e.target.value })}
+            required
+            className="car-input-text"
+          />
+        </div>
+        <FileUpload handleImageChange={handleImageChange} />
+        <div className="mb-4 xl:w-96">
+          <label htmlFor="description" className="car-input-label">
+            :صندوق الوصف
+          </label>
+          <textarea
+            type="textarea"
+            rows="6"
+            id="description"
+            name="description"
+            value={car?.description || ""}
+            onChange={(e) => setCar({ ...car, description: e.target.value })}
+            className="car-input-text "
+          />
+        </div>
         <div className="mb-4">
-          <label
-            htmlFor="make"
-            className="car-input-label"
-          >
-            :المصنع
+          <label htmlFor="price" className="car-input-label">
+            :السعر
+          </label>
+          <input
+            value={car?.price || ""}
+            type="number"
+            id="price"
+            name="price"
+            onChange={(e) => setCar({ ...car, price: e.target.value })}
+            className="car-input-text"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="price" className="car-input-label ">
+            :الرقم الهاتفي
+          </label>
+          <input
+            value={car?.phone_number || ""}
+            type="text"
+            id="phone_number"
+            name="phone_number"
+            onChange={(e) => setCar({ ...car, phone_number: e.target.value })}
+            className="car-input-text "
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="year" className="car-input-label">
+            :سنة الصنع
           </label>
           <select
-            value={selectedMake}
-            onChange={(e) => handleMakeChange(e.target.value)}
+            value={car?.year}
+            id="year"
+            name="year"
+            onChange={(e) => setCar({ ...car, year: e.target.value })}
             className="car-input-text"
           >
-            {carBrands.map((car) => (
-              <option key={car.brand} value={car.brand} id={car?.brand}>
-                {car.brand}
-              </option>
-            ))}
+            {Array.from({ length: 24 }, (_, index) => {
+              const year = 2000 + index;
+              return (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div>
+          <div className="mb-4">
+            <label htmlFor="make" className="car-input-label">
+              :المصنع
+            </label>
+            <select
+              value={selectedMake}
+              onChange={(e) => handleMakeChange(e.target.value)}
+              className="car-input-text"
+            >
+              {carBrands.map((car) => (
+                <option key={car.brand} value={car.brand} id={car?.brand}>
+                  {car.brand}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="model" className="car-input-label">
+              :الموديل
+            </label>
+            <select
+              value={selectedModel}
+              onChange={(e) => handleModelChange(e.target.value)}
+              className="car-input-text"
+              disabled={!selectedMake}
+            >
+              <option value="">اختر موديل</option>
+              {selectedMake &&
+                carBrands
+                  .find((car) => car.brand === selectedMake)
+                  ?.models.map((model) => (
+                    <option key={model} value={model} id={model}>
+                      {model}
+                    </option>
+                  ))}
+            </select>
+          </div>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="mileage" className="car-input-label">
+            :ممشى
+          </label>
+          <select
+            value={car?.mileage || "gasoline"}
+            id="mileage"
+            name="mileage"
+            onChange={(e) => setCar({ ...car, mileage: e.target.value })}
+            className="car-input-text"
+          >
+            <option key={`zero`} value={`zero`}>
+              {`Zero`}
+            </option>
+            {Array.from({ length: 20 }, (_, index) => {
+              const diff = 5000 + index * 5000;
+              return (
+                <option
+                  key={`${diff - 5000}-${diff}`}
+                  value={`${diff - 5000}-${diff}`}
+                >
+                  {`${diff - 5000}-${diff}`}
+                </option>
+              );
+            })}
+            <option key={`100k`} value={`100k+`}>
+              {`100000+`}
+            </option>
           </select>
         </div>
 
         <div className="mb-4">
-          <label
-            htmlFor="model"
-            className="car-input-label"
-          >
-            :الموديل
+          <label htmlFor="transmission" className="car-input-label">
+            :ناقل الحركة
           </label>
           <select
-            value={selectedModel}
-            onChange={(e) => handleModelChange(e.target.value)}
+            value={car?.transmission || "gasoline"}
+            id="transmission"
+            name="transmission"
+            onChange={(e) => setCar({ ...car, transmission: e.target.value })}
             className="car-input-text"
-            disabled={!selectedMake}
           >
-            <option value="">اختر موديل</option>
-            {selectedMake &&
-              carBrands
-                .find((car) => car.brand === selectedMake)
-                ?.models.map((model) => (
-                  <option key={model} value={model} id={model}>
-                    {model}
-                  </option>
-                ))}
+            <option value="normal" defaultValue>
+              ناقل يدوي
+            </option>
+            <option value="automatic">اوتوماتيك</option>
           </select>
         </div>
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="mileage"
-          className="car-input-label"
-        >
-          :ممشى
-        </label>
-        <select
-          value={car?.mileage || "gasoline"} 
-          id="mileage"
-          name="mileage"
-          onChange={(e) => setCar({ ...car, mileage: e.target.value })}
-          className="car-input-text"
-        >
-          <option key={`zero`} value={`zero`}>
-            {`Zero`}
-          </option>
-          {Array.from({ length: 20 }, (_, index) => {
-            const diff = 5000 + index * 5000;
-            return (
-              <option
-                key={`${diff - 5000}-${diff}`}
-                value={`${diff - 5000}-${diff}`}
-              >
-                {`${diff - 5000}-${diff}`}
-              </option>
-            );
-          })}
-          <option key={`100k`} value={`100k+`}>
-            {`100000+`}
-          </option>
-        </select>
-      </div>
 
-      <div className="mb-4">
-        <label
-          htmlFor="transmission"
-          className="car-input-label"
-        >
-          :ناقل الحركة
-        </label>
-        <select
-          value={car?.transmission || "gasoline"} 
-          id="transmission"
-          name="transmission"
-          onChange={(e) => setCar({ ...car, transmission: e.target.value })}
-          className="car-input-text"
-        >
-          <option value="normal" defaultValue>
-            ناقل يدوي
-          </option>
-          <option value="automatic">اوتوماتيك</option>
-        </select>
-      </div>
+        <div className="mb-4">
+          <label htmlFor="category" className="car-input-label">
+            :الفئة
+          </label>
+          <select
+            value={car?.category || "gasoline"}
+            id="category"
+            name="category"
+            onChange={(e) => {
+              setCar({ ...car, category: e.target.value });
+              setDisableInput(() => !DisableInput);
+            }}
+            className="car-input-text"
+          >
+            <option value="gasoline" defaultValue>
+              وقود
+            </option>
+            <option value="electric">كهربائية</option>
+            <option value="hybrid">هايبرد</option>
+            <option value="pick-up"> بيك اب</option>
+            <option value="bus">باصات</option>
+            <option value="lorry">شاحنات نقل</option>
+          </select>
+        </div>
 
-      <div className="mb-4">
-        <label
-          htmlFor="category"
-          className="car-input-label"
-        >
-          :الفئة
-        </label>
-        <select
-          value={car?.category || "gasoline"} 
-          id="category"
-          name="category"
-          onChange={(e) => {
-            setCar({ ...car, category: e.target.value });
-            setDisableInput(() => !DisableInput);
-          }}
-          className="car-input-text"
-        >
-          <option value="gasoline" defaultValue>
-            وقود
-          </option>
-          <option value="electric">كهربائية</option>
-          <option value="hybrid">هايبرد</option>
-          <option value="pick-up"> بيك اب</option>
-          <option value="bus">باصات</option>
-          <option value="lorry">شاحنات نقل</option>
-        </select>
-      </div>
-
-      {/* <div className="mb-4">
+        {/* <div className="mb-4">
         <label
           htmlFor="bodytype"
           className="block text-sm font-medium text-gray-600"
@@ -717,110 +684,93 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           <option value="other">Other</option>
         </select>
       </div> */}
-      <div className="mb-4">
-        <label
-          htmlFor="doors"
-          className="car-input-label"
-        >
-          :عدد الابواب
-        </label>
-        <select
-          value={car?.doors} 
-          id="doors"
-          name="doors"
-          onChange={(e) => setCar({ ...car, doors: e.target.value })}
-          className="car-input-text"
-        >
-          <option value="2">2</option>
-          <option value="4">4</option>
-        </select>
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="color"
-          className="car-input-label"
-        >
-          :اللون
-        </label>
-        <select
-          value={car?.color}
-          id="color"
-          name="color"
-          onChange={(e) => setCar({ ...car, color: e.target.value })}
-          className="car-input-text"
-        >
-          <option value="White" defaultValue>
-            {" "}
-            ابيض{" "}
-          </option>
-          <option value="Black">اسود </option>
-          <option value="Silver"> فضي </option>
-          <option value="Blue">ازرق</option>
-          <option value="Red"> احمر </option>
-          <option value="Green">اخضر </option>
-          <option value="Yellow">اصفر </option>
-          <option value="Gold">ذهبي </option>
-          <option value="Beige">بيج </option>
-          <option value="Brown">بني </option>
-          <option value="Orange">برتقالي </option>
-          <option value="Gray">سكني </option>
-        </select>
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="fuel"
-          className="car-input-label"
-        >
-          :نوع الوقود
-        </label>
-        <select
-          value={car?.fuel} 
-          id="fuel"
-          name="fuel"
-          onChange={(e) => setCar({ ...car, fuel: e.target.value })}
-          className="car-input-text"
-          disabled={DisableInput}
-        >
-          {DisableInput && (
-            <option value="Electric" selected>
+        <div className="mb-4">
+          <label htmlFor="doors" className="car-input-label">
+            :عدد الابواب
+          </label>
+          <select
+            value={car?.doors}
+            id="doors"
+            name="doors"
+            onChange={(e) => setCar({ ...car, doors: e.target.value })}
+            className="car-input-text"
+          >
+            <option value="2">2</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="color" className="car-input-label">
+            :اللون
+          </label>
+          <select
+            value={car?.color}
+            id="color"
+            name="color"
+            onChange={(e) => setCar({ ...car, color: e.target.value })}
+            className="car-input-text"
+          >
+            <option value="White" defaultValue>
               {" "}
-              كهربائية
+              ابيض{" "}
             </option>
-          )}
-          <option value="gasoline"> بنزين</option>
-          <option value="Diesel">ديزل</option>
-        </select>
-      </div>
+            <option value="Black">اسود </option>
+            <option value="Silver"> فضي </option>
+            <option value="Blue">ازرق</option>
+            <option value="Red"> احمر </option>
+            <option value="Green">اخضر </option>
+            <option value="Yellow">اصفر </option>
+            <option value="Gold">ذهبي </option>
+            <option value="Beige">بيج </option>
+            <option value="Brown">بني </option>
+            <option value="Orange">برتقالي </option>
+            <option value="Gray">سكني </option>
+          </select>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="fuel" className="car-input-label">
+            :نوع الوقود
+          </label>
+          <select
+            value={car?.fuel}
+            id="fuel"
+            name="fuel"
+            onChange={(e) => setCar({ ...car, fuel: e.target.value })}
+            className="car-input-text"
+            disabled={DisableInput}
+          >
+            {DisableInput && (
+              <option value="Electric" selected>
+                {" "}
+                كهربائية
+              </option>
+            )}
+            <option value="gasoline"> بنزين</option>
+            <option value="Diesel">ديزل</option>
+          </select>
+        </div>
 
-      <div className="mb-4">
-        <label
-          htmlFor="region"
-          className="car-input-label"
-        >
-          :اللون
-        </label>
-        <input
-          value={car.region}
-          type="text"
-          id="region"
-          name="region"
-          readOnly 
-          className="car-input-text"
-        />
-      </div>
-      <div className="mb-4 max-sm:mb-0">
-
-      </div>
-      <div className="mb-4 mx-auto xl:mt-6     ">
-        <button
-          type="submit"
-          disabled={submitting}
-          className="submit-button"
-        >
-          {type}
-        </button>
-      </div>
-    </form></>
+        <div className="mb-4">
+          <label htmlFor="region" className="car-input-label">
+            :المنطقة
+          </label>
+          <input
+            value={car.region}
+            type="text"
+            id="region"
+            name="region"
+            readOnly
+            className="car-input-text"
+          />
+        </div>
+        <div className="mb-4 max-sm:mb-0"></div>
+        <div className="mb-4 mx-auto xl:mt-6     ">
+          <button type="submit" disabled={submitting} className="submit-button">
+            {type}
+          </button>
+        </div>
+      </form>
+    </>
   );
 };
 

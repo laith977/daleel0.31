@@ -34,7 +34,7 @@ export const PATCH = async (req, { params }) => {
     const {
       name,
       description,
-      image, // Assuming pictures is an array of base64-encoded images
+      image,
       price,
       phone_number,
       year,
@@ -64,7 +64,6 @@ export const PATCH = async (req, { params }) => {
       return new Response("Car not found", { status: 404 });
     }
 
-    // Check if the user is the creator of the existing car
     if (existingCar.creator.toString() !== session?.user.id) {
       return new Response("Unauthorized", { status: 401 });
     }
@@ -80,12 +79,10 @@ export const PATCH = async (req, { params }) => {
 
         const imageData = Buffer.from(picture, "base64");
 
-        // Write the new image to the server
         await fs.writeFile(filePath, imageData);
       }
     }
 
-    // Update the car data
     existingCar.name = name;
     existingCar.description = description;
     existingCar.price = price;
@@ -120,6 +117,7 @@ export const PATCH = async (req, { params }) => {
 export const DELETE = async (request, { params }) => {
   try {
     await connectToDatabase();
+
     const car = await Car.findByIdAndDelete(params.carid);
 
     if (!car) {

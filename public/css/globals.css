@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .loader-container {
   width: 100%;
   height: 100vh;
@@ -20,189 +19,182 @@
   width: 64px;
   height: 64px;
   border: 8px solid;
-  border-color: #FFFFfF transparent #FFFFfF transparent;
+  border-color: #ffffff transparent #ffffff transparent;
   border-radius: 50%;
   animation: spin-anim 1.2s linear infinite;
 }
 
 @keyframes spin-anim {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
-.p-body{
+.p-body {
   @apply font-[Poppins]  bg-gray-900;
 }
-.big-text{
+.big-text {
   @apply text-center mt-56 lg:mt-32 flex flex-col items-center pt-8;
 }
-.hero-pic{
+.hero-pic {
   @apply cursor-pointer w-full lg:max-w-md mx-auto rounded-3xl;
 }
-.category-div{
+.category-div {
   @apply grid lg:grid-cols-3 grid-cols-2 gap-8 lg:mx-32 md:mx-8 sm:mx-auto my-4 bg-gray-900 justify-between mx-8;
 }
-.search-text{
+.search-text {
   @apply text-center p-4 mx-auto my-6 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl;
 }
-.search-section{
-  @apply  text-center px-12 max-sm:px-4   mx-auto mb-6;
+.search-section {
+  @apply text-center px-12 max-sm:px-4   mx-auto mb-6;
 }
-.car-form{
-
+.car-form {
   @apply max-w-6xl mx-auto my-64 max-sm:my-48 p-4 bg-white rounded-md shadow-md grid grid-cols-1 lg:grid-cols-1 gap-8 max-sm:mx-6;
 }
-.car-input-label{
+.car-input-label {
   @apply block text-sm font-medium text-gray-600;
 }
-.car-input-text{
-
+.car-input-text {
   @apply mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300;
 }
-.profile-form{
+.profile-form {
   @apply max-w-md mx-auto my-48 p-4 bg-white rounded-md shadow-md;
 }
-.submit-button{
+.submit-button {
   @apply px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white;
 }
-.nav-header{
-@apply bg-white fixed top-0 w-full z-10;
+.nav-header {
+  @apply bg-white fixed top-0 w-full z-10;
 }
-.nav-body{
-@apply flex justify-between items-center w-full md:w-[92%] mx-auto py-2;
+.nav-body {
+  @apply flex justify-between items-center w-full md:w-[92%] mx-auto py-2;
 }
-.nav-pic{
-@apply cursor-pointer m-4 rounded-sm max-sm:w-48;
-
+.nav-pic {
+  @apply cursor-pointer m-4 rounded-sm max-sm:w-48;
 }
-.nav-menu{
-@apply md:min-h-fit min-h-[12vh] transform md:translate-x-0 md:w-auto w-full flex items-center px-3
-
+.nav-menu {
+  @apply md:min-h-fit min-h-[12vh] transform md:translate-x-0 md:w-auto w-full flex items-center px-3;
 }
 
-.nav-buttons{
-@apply bg-[#5c97ff] text-white px-4 py-2 rounded-full hover:bg-[#367fff]
+.nav-buttons {
+  @apply bg-[#5c97ff] text-white px-4 py-2 rounded-full hover:bg-[#367fff];
 }
-.menu-toggle{
-@apply text-2xl cursor-pointer  max-sm:pr-6;
+.menu-toggle {
+  @apply text-2xl cursor-pointer  max-sm:pr-6;
 }
-.menu-container{
+.menu-container {
   @apply flex flex-col fixed top-20 right-0 w-48 bg-gray-600 z-10;
 }
-.menu-text{
-  @apply  text-black bg-white text-center text-sm p-3 hover:bg-[#bbbbbb];
+.menu-text {
+  @apply text-black bg-white text-center text-sm p-3 hover:bg-[#bbbbbb];
 }
-.file-upload{
+.file-upload {
   @apply mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300;
 }
-.profile-div{
+.profile-div {
   @apply flex flex-col my-32 space-y-16 text-white px-4;
 }
-.profile-name{
-  @apply  text-center text-7xl pt-8;
+.profile-name {
+  @apply text-center text-7xl pt-8;
 }
 
-.profile-info2{
- @apply font-mono text-orange-700 text-3xl p-5 text-center;
+.profile-info2 {
+  @apply font-mono text-orange-700 text-3xl p-5 text-center;
 }
-.profile-stats{
-@apply flex flex-col py-8;
+.profile-stats {
+  @apply flex flex-col py-8;
 }
-.profile-bio{
-@apply text-xl italic p-24 md:text-sm;
+.profile-bio {
+  @apply text-xl italic p-24 md:text-sm;
 }
-.profile-phone-button{
-@apply bg-green-600 mx-auto rounded-md py-4 px-32 text-white;
+.profile-phone-button {
+  @apply bg-green-600 mx-auto rounded-md py-4 px-32 text-white;
 }
 
-.car-cards-div{
+.car-cards-div {
   @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6  justify-center;
 }
-.car-card-div{
-@apply bg-white p-2 rounded-xl text-center flex flex-col justify-between shadow-md;
+.car-card-div {
+  @apply bg-white p-2 rounded-xl text-center flex flex-col justify-between shadow-md;
 }
 
-
-.car-card-link{
+.car-card-link {
   @apply relative  rounded-md h-40 sm:h-48;
 }
-.car-card-pic{
+.car-card-pic {
   @apply object-cover w-full h-full;
 }
-.car-name{
-@apply text-black text-xl max-sm:text-sm mt-2 font-satoshi;
+.car-name {
+  @apply text-black text-xl max-sm:text-sm mt-2 font-satoshi;
 }
-.car-price{
-@apply text-black text-xl max-sm:text-sm mt-2 font-satoshi;
+.car-price {
+  @apply text-black text-xl max-sm:text-sm mt-2 font-satoshi;
 }
-.car-buttons{
-  @apply flex flex-col sm:flex-row justify-around mt-4
+.car-buttons {
+  @apply flex flex-col sm:flex-row justify-around mt-4;
 }
-.del-button{
+.del-button {
   @apply text-white bg-red-600 hover:bg-red-700 py-2 px-4 rounded-lg mb-2 sm:mb-0;
 }
-.edit-button{
+.edit-button {
   @apply text-white bg-green-600 hover:bg-green-700 py-2 px-4 rounded-lg;
 }
 
-.car-div{
-@apply  flex flex-col md:flex-row justify-between items-center mx-4 sm:mx-8 lg:mx-32 my-8 pt-32 space-y-4 md:space-y-0 gap-12;
+.car-div {
+  @apply flex flex-col md:flex-row justify-between items-center mx-4 sm:mx-8 lg:mx-32 my-8 pt-32 space-y-4 md:space-y-0 gap-12;
 }
-.car-col-container{
-@apply  grid grid-cols-2 md:grid-cols-4 gap-4
+.car-col-container {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-4;
 }
-.car-col-pic-div{
-  @apply  relative overflow-hidden rounded-md
+.car-col-pic-div {
+  @apply relative overflow-hidden rounded-md;
 }
-.car-col-pic{
-@apply object-cover w-full h-24 sm:h-32 md:h-40 lg:h-48
+.car-col-pic {
+  @apply object-cover w-full h-24 sm:h-32 md:h-40 lg:h-48;
 }
-.car-info-container{
-@apply flex flex-col bg-gray-100 border-8 rounded-md border-amber-700 p-6 sm:p-8 lg:p-12 mt-8;
+.car-info-container {
+  @apply flex flex-col bg-gray-100 border-8 rounded-md border-amber-700 p-6 sm:p-8 lg:p-12 mt-8;
 }
-.car-col-price{
-@apply text-orange-400 text-2xl md:text-3xl lg:text-4xl font-semibold mb-6
+.car-col-price {
+  @apply text-orange-400 text-2xl md:text-3xl lg:text-4xl font-semibold mb-6;
 }
-.car-col-call{
-@apply bg-green-600 text-white rounded-md py-2 px-6 mb-4 md:mb-6
+.car-col-call {
+  @apply bg-green-600 text-white rounded-md py-2 px-6 mb-4 md:mb-6;
 }
-.car-col-msg{
-@apply bg-amber-600 text-white rounded-md py-2 px-6 mb-6 md:mb-8
+.car-col-msg {
+  @apply bg-amber-600 text-white rounded-md py-2 px-6 mb-6 md:mb-8;
 }
-.car-info-div{
-@apply mb-8 flex justify-between gap-8
+.car-info-div {
+  @apply mb-8 flex justify-between gap-8;
 }
-.car-info-label{
-@apply  text-black text-base md:text-lg lg:text-xl
+.car-info-label {
+  @apply text-black text-base md:text-lg lg:text-xl;
 }
-.car-info-label1{
-  @apply  text-black font-bold text-lg md:text-xl lg:text-2xl mb-1
-  }
-
-.car-desc-div1{
-@apply flex flex-col mx-auto px-24
-}
-.car-desc-div2{
-@apply bg-gray-200 flex-col flex m-4 sm:m-8 lg:m-12 mt-8 border border-amber-700 p-4 sm:p-8 lg:p-12 mx-auto
-}
-.car-desc-div3{
-@apply flex flex-col md:flex-row items-center justify-center md:justify-between
-}
-.car-user-pic{
-@apply rounded-full overflow-hidden h-20 w-20 md:h-32 md:w-32 lg:h-40 lg:w-40
-}
-.car-user-name{
-@apply text-xl md:text-2xl lg:text-3xl font-bold text-orange-400
-}
-.car-region{
-@apply text-lg md:text-xl lg:text-2xl font-bold text-black mt-2 md:mt-4 lg:mt-6;
-}
-.car-desc{
-@apply text-base md:text-lg lg:text-xl leading-relaxed mt-4;
+.car-info-label1 {
+  @apply text-black font-bold text-lg md:text-xl lg:text-2xl mb-1;
 }
 
-
+.car-desc-div1 {
+  @apply flex flex-col mx-auto px-24;
+}
+.car-desc-div2 {
+  @apply bg-gray-200 flex-col flex m-4 sm:m-8 lg:m-12 mt-8 border border-amber-700 p-4 sm:p-8 lg:p-12 mx-auto;
+}
+.car-desc-div3 {
+  @apply flex flex-col md:flex-row items-center justify-center md:justify-between;
+}
+.car-user-pic {
+  @apply rounded-full overflow-hidden h-20 w-20 md:h-32 md:w-32 lg:h-40 lg:w-40;
+}
+.car-user-name {
+  @apply text-xl md:text-2xl lg:text-3xl font-bold text-orange-400;
+}
+.car-region {
+  @apply text-lg md:text-xl lg:text-2xl font-bold text-black mt-2 md:mt-4 lg:mt-6;
+}
+.car-desc {
+  @apply text-base md:text-lg lg:text-xl leading-relaxed mt-4;
+}
