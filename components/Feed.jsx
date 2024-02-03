@@ -88,11 +88,11 @@ const Feed = () => {
           required
         />
       </form>
-      
+
       {loading ? (
-        <LoadingSkeleton/>
+        <LoadingSkeleton />
       ) : (
-        <CarCard handleTagClick={handleTagClick} data={allPosts} />
+        <CarCard handleTagClick={handleTagClick} data={allPosts.slice(0, 15)} />
       )}
     </section>
   );

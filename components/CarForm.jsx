@@ -486,6 +486,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             :صندوق الوصف
           </label>
           <textarea
+            required
             type="textarea"
             rows="6"
             id="description"
@@ -500,6 +501,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             :السعر
           </label>
           <input
+            required
             value={car?.price || ""}
             type="number"
             id="price"
@@ -513,6 +515,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             :الرقم الهاتفي
           </label>
           <input
+            required
             value={car?.phone_number || ""}
             type="text"
             id="phone_number"
@@ -527,6 +530,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             :سنة الصنع
           </label>
           <select
+            required
             value={car?.year}
             id="year"
             name="year"
@@ -549,6 +553,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
               :المصنع
             </label>
             <select
+              required
               value={selectedMake}
               onChange={(e) => handleMakeChange(e.target.value)}
               className="car-input-text"
@@ -566,6 +571,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
               :الموديل
             </label>
             <select
+              required
               value={selectedModel}
               onChange={(e) => handleModelChange(e.target.value)}
               className="car-input-text"
@@ -588,6 +594,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             :ممشى
           </label>
           <select
+            required
             value={car?.mileage || "gasoline"}
             id="mileage"
             name="mileage"
@@ -619,6 +626,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             :ناقل الحركة
           </label>
           <select
+            required
             value={car?.transmission || "gasoline"}
             id="transmission"
             name="transmission"
@@ -637,6 +645,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             :الفئة
           </label>
           <select
+            required
             value={car?.category || "gasoline"}
             id="category"
             name="category"
@@ -689,6 +698,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             :عدد الابواب
           </label>
           <select
+            required
             value={car?.doors}
             id="doors"
             name="doors"
@@ -704,6 +714,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             :اللون
           </label>
           <select
+            required
             value={car?.color}
             id="color"
             name="color"
@@ -732,6 +743,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             :نوع الوقود
           </label>
           <select
+            required
             value={car?.fuel}
             id="fuel"
             name="fuel"
