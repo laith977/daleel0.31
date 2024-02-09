@@ -9,6 +9,8 @@ const Feed = () => {
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null); //to prevent too many requests
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 20;
 
   const handleSearchChange = (e) => {
     const inputValue = e.target.value;
@@ -22,7 +24,8 @@ const Feed = () => {
           fetchPosts();
         } else {
           const searchResult = filteredPosts(inputValue);
-          setAllPosts(searchResult);
+          setCurrentPage(1); // Reset currentPage when search changes
+          setAllPosts(searchResult); // Update allPosts state with filtered result
         }
       }, 500)
     );
@@ -76,6 +79,13 @@ const Feed = () => {
       );
     });
   };
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <section className="search-section">
       <form className="">
@@ -92,7 +102,33 @@ const Feed = () => {
       {loading ? (
         <LoadingSkeleton />
       ) : (
-        <CarCard handleTagClick={handleTagClick} data={allPosts.slice(0, 15)} />
+        <>
+          <div className="flex flex-row justify-center xl:space-x-28 my-6 max-sm:space-x-12">
+            <button
+              className="edit-button"
+              onClick={() => paginate(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              الصفحة السابقة
+            </button>
+            <p className="text-white text-xl">
+              يتم اظهار{" "}
+              {`${(currentPage - 1) * postsPerPage + 1} - ${Math.min(
+                currentPage * postsPerPage,
+                filteredPosts(searchText).length
+              )}  من الاعلانات `}
+            </p>
+
+            <button
+              className="edit-button"
+              onClick={() => paginate(currentPage + 1)}
+              disabled={currentPosts.length < postsPerPage}
+            >
+              الصفحة التالية
+            </button>
+          </div>
+          <CarCard handleTagClick={handleTagClick} data={currentPosts} />
+        </>
       )}
     </section>
   );

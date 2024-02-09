@@ -1,11 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FileUpload from "./FileUpload";
+import Dropzone from "./Dropzone";
 
-const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
+const CarForm = ({ type, car, setCar, submitting, handleSubmit, ppp }) => {
   const [selectedMake, setSelectedMake] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
   const [DisableInput, setDisableInput] = useState(false);
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  console.log(ppp);
   const carBrands = [
     {
       brand: "Alfa Romeo",
@@ -53,12 +56,24 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         "Z4",
         "i3",
         "i4",
+        "i3",
         "iX3",
       ],
     },
     {
       brand: "BYD",
-      models: ["Han", "Tang", "Yuan", "Song", "e2", "e3", "e5", "e6"],
+      models: [
+        "Han",
+        "Tang",
+        "Yuan",
+        "Song",
+        "e2",
+        "e3",
+        "e5",
+        "e6",
+        "Champion",
+        "Seagull",
+      ],
     },
     {
       brand: "Bentley",
@@ -78,7 +93,15 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
     },
     {
       brand: "Changan",
-      models: ["CS35 Plus", "CS55 Plus", "UNI-T", "Oshan X7", "Benben Mini"],
+      models: [
+        "CS35 Plus",
+        "CS55 Plus",
+        "UNI-T",
+        "Oshan X7",
+        "Benben Mini",
+        "E-Star",
+        "Eado",
+      ],
     },
     {
       brand: "Chevrolet",
@@ -94,6 +117,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         "Trax",
         "Minlo",
         "Spark",
+        "Bolt",
       ],
     },
     {
@@ -114,7 +138,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
     },
     {
       brand: "Dodge",
-      models: ["Challenger", "Charger", "Durango", "Journey"],
+      models: ["Challenger", "Charger", "Durango", "Journey", "RAM"],
     },
     {
       brand: "Ferrari",
@@ -176,6 +200,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         "Pilot",
         "Ridgeline",
         "E-NS1",
+        "E-NP1",
       ],
     },
     {
@@ -203,7 +228,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
     },
     {
       brand: "Jaguar",
-      models: ["E-PACE", "F-PACE", "I-PACE", "XE", "XF", "XJ"],
+      models: ["E-PACE", "F-PACE", "I-PACE", "XE", "XF", "XJ", "F-Type"],
     },
     {
       brand: "Jeep",
@@ -214,8 +239,10 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
       models: [
         "Cadenza",
         "Forte",
+        "k3",
         "K5",
         "Niro",
+        "Cerato",
         "Optima",
         "Rio",
         "Seltos",
@@ -276,11 +303,15 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         "Mazda3",
         "Mazda6",
         "MX-5 Miata",
+        "CX-30",
+        "CX-50",
+        "CX-70",
+        "CX-90",
       ],
     },
     {
       brand: "McLaren",
-      models: ["Artura", "570S", "600LT", "720S", "GT"],
+      models: ["Artura", "570S", "600LT", "720S", "GT", "765LT"],
     },
     {
       brand: "Mercedes-Benz",
@@ -299,6 +330,8 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         "G-Class",
         "AMG GT",
         "EQC",
+        "EQE",
+        "EQS",
       ],
     },
     {
@@ -333,7 +366,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
     },
     {
       brand: "Pagani",
-      models: ["Huayra", "Huayra Roadster"],
+      models: ["Huayra", "Huayra Roadster", "Zonda"],
     },
     {
       brand: "Peugeot",
@@ -425,6 +458,8 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
         "ID.6",
         "ID.3",
         "E-Golf",
+        "E-Bora",
+        "E-Lavida",
       ],
     },
     {
@@ -432,6 +467,12 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
       models: ["S60", "S90", "V60", "V90", "XC40", "XC60", "XC90"],
     },
   ];
+  useEffect(() => {
+    if (car) {
+      setSelectedMake(car.make);
+      setSelectedModel(car.model);
+    }
+  }, [car]);
   const handleMakeChange = (make) => {
     setSelectedMake(make);
     setSelectedModel("");
@@ -442,30 +483,28 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
     setSelectedModel(model);
     setCar({ ...car, model: model });
   };
-  const handleImageChange = async (e) => {
-    const files = e.target.files;
 
-    if (files && files.length > 0) {
-      const imagesArray = [];
-
-      for (const file of files) {
-        const reader = new FileReader();
-
-        reader.onloadend = () => {
-          const base64String = reader.result.split(",")[1];
-          imagesArray.push(base64String);
-        };
-
-        reader.readAsDataURL(file);
-      }
-
-      setCar({ ...car, image: imagesArray });
-    }
+  const handleImageChange = (files) => {
+    setCar({ ...car, images: [...files] });
   };
+  const handleCategoryChange = (e) => {
+    const selectedCategory = e.target.value;
+    setCar({ ...car, category: selectedCategory });
+    setDisableInput(selectedCategory === "كهربائية");
+  };
+
   return (
     <>
       {/* <p className=" text-white py-8 px-12 mt-64  bg-orange-600 mx-auto w-fit text-6xl rounded-full   ">أضف سيارة</p> */}
       <form onSubmit={handleSubmit} className="car-form">
+        {ppp ? (
+          <></>
+        ) : (
+          <div className="mb-4 col-span-3 max-sm:col-span-1">
+            <Dropzone handleImageChange={handleImageChange} />
+          </div>
+        )}
+
         <div className="mb-4 col-span-3 max-sm:col-span-1">
           <label htmlFor="name" className="car-input-label">
             :اسم الاعلان
@@ -480,7 +519,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             className="car-input-text"
           />
         </div>
-        <FileUpload handleImageChange={handleImageChange} />
+        {/* <FileUpload handleImageChange={handleImageChange} /> */}
         <div className="mb-4 xl:w-96">
           <label htmlFor="description" className="car-input-label">
             :صندوق الوصف
@@ -537,7 +576,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             onChange={(e) => setCar({ ...car, year: e.target.value })}
             className="car-input-text"
           >
-            {Array.from({ length: 24 }, (_, index) => {
+            {Array.from({ length: 26 }, (_, index) => {
               const year = 2000 + index;
               return (
                 <option key={year} value={year}>
@@ -633,10 +672,10 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             onChange={(e) => setCar({ ...car, transmission: e.target.value })}
             className="car-input-text"
           >
-            <option value="normal" defaultValue>
-              ناقل يدوي
+            <option value="اوتوماتيك" defaultValue>
+              اوتوماتيك{" "}
             </option>
-            <option value="automatic">اوتوماتيك</option>
+            <option value="ناقل يدوي">ناقل يدوي</option>
           </select>
         </div>
 
@@ -646,23 +685,18 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           </label>
           <select
             required
-            value={car?.category || "gasoline"}
+            value={car.category}
             id="category"
             name="category"
-            onChange={(e) => {
-              setCar({ ...car, category: e.target.value });
-              setDisableInput(() => !DisableInput);
-            }}
+            onChange={handleCategoryChange}
             className="car-input-text"
           >
-            <option value="gasoline" defaultValue>
-              وقود
-            </option>
-            <option value="electric">كهربائية</option>
-            <option value="hybrid">هايبرد</option>
-            <option value="pick-up"> بيك اب</option>
-            <option value="bus">باصات</option>
-            <option value="lorry">شاحنات نقل</option>
+            <option value="وقود">وقود</option>
+            <option value="كهربائية">كهربائية</option>
+            <option value="هايبرد">هايبرد</option>
+            <option value="بيك اب"> بيك اب</option>
+            <option value="باصات">باصات</option>
+            <option value=">شاحنات نقل">شاحنات نقل</option>
           </select>
         </div>
 
@@ -705,8 +739,10 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
             onChange={(e) => setCar({ ...car, doors: e.target.value })}
             className="car-input-text"
           >
-            <option value="2">2</option>
-            <option value="4">4</option>
+            <option value="4" defaultValue>
+              2
+            </option>
+            <option value="2">4</option>
           </select>
         </div>
         <div className="mb-4">
@@ -725,17 +761,26 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
               {" "}
               ابيض{" "}
             </option>
-            <option value="Black">اسود </option>
-            <option value="Silver"> فضي </option>
-            <option value="Blue">ازرق</option>
-            <option value="Red"> احمر </option>
-            <option value="Green">اخضر </option>
-            <option value="Yellow">اصفر </option>
-            <option value="Gold">ذهبي </option>
-            <option value="Beige">بيج </option>
-            <option value="Brown">بني </option>
-            <option value="Orange">برتقالي </option>
-            <option value="Gray">سكني </option>
+            <option value="أسود">أسود</option>
+            <option value="فضي">فضي</option>
+            <option value="رمادي">رمادي</option>
+            <option value="أسمنتي">أسمنتي</option>
+            <option value="أحمر">أحمر</option>
+            <option value="خمري">خمري</option>
+            <option value="أصفر">أصفر</option>
+            <option value="برتقالي">برتقالي</option>
+            <option value="ذهبي">ذهبي</option>
+            <option value="برونزي">برونزي</option>
+            <option value="بني">بني</option>
+            <option value="بيج">بيج</option>
+            <option value="أزرق">أزرق</option>
+            <option value="كحلي">كحلي</option>
+            <option value="أزرق فاتح">أزرق فاتح</option>
+            <option value="أخضر">أخضر</option>
+            <option value="زيتي">زيتي</option>
+            <option value="تركواز">تركواز</option>
+            <option value="بترولي">بترولي</option>
+            <option value="بنفسجي">بنفسجي</option>
           </select>
         </div>
         <div className="mb-4">
@@ -744,24 +789,23 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit }) => {
           </label>
           <select
             required
-            value={car?.fuel}
+            value={car.fuel}
             id="fuel"
             name="fuel"
             onChange={(e) => setCar({ ...car, fuel: e.target.value })}
             className="car-input-text"
             disabled={DisableInput}
           >
-            {DisableInput && (
-              <option value="Electric" selected>
-                {" "}
-                كهربائية
-              </option>
+            {DisableInput ? (
+              <option value="كهربائية">كهربائية</option>
+            ) : (
+              <>
+                <option value="بنزين">بنزين</option>
+                <option value="ديزل">ديزل</option>
+              </>
             )}
-            <option value="gasoline"> بنزين</option>
-            <option value="Diesel">ديزل</option>
           </select>
         </div>
-
         <div className="mb-4">
           <label htmlFor="region" className="car-input-label">
             :المنطقة

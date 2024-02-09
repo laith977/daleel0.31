@@ -40,12 +40,10 @@ const Home = () => {
       ) : (
         <>
           <div className="big-text">
-            <p className={`text-white text-2xl mb-8`}>
+            {/* <p className={`text-white text-2xl mb-8`}>
               شريكك للحصول على أقل الأسعار
-            </p>
-            <h2 className={`text-white text-7xl`}>
-              موقع دليل الحرة لتجارة السيارات
-            </h2>
+            </p> */}
+            <h2 className={`text-white text-7xl`}>دليل الحرة</h2>
             <div className="flex justify-center m-16">
               <Image
                 className=" hero-pic"
@@ -56,7 +54,7 @@ const Home = () => {
                 style={{ aspectRatio: "10/8" }}
               />
             </div>
-            <p className="text-white text-4xl">تجارة، شراء، بيع السيارات</p>
+            <p className="text-white text-4xl">شريكك للحصول على اقل الأسعار</p>
           </div>
           <p className="text-white text-6xl text-center mt-12  bg-gray-900 ">
             الفئات

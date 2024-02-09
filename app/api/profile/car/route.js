@@ -6,6 +6,8 @@ import path from "path";
 import fs from "fs/promises";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route.js";
 
+const randomKey = () => (Math.random() + 1).toString(36).substring(7);
+
 export const GET = async (request) => {
   try {
     await connectToDatabase();
@@ -24,10 +26,20 @@ export const GET = async (request) => {
 };
 export const POST = async (req) => {
   try {
+    const formData = await req.formData();
+    const car = {};
+    for (const [key, value] of formData.entries()) {
+      if (car[key]) {
+        car[key] = [car[key], value];
+      } else {
+        car[key] = value;
+      }
+    }
+    car.images = formData.getAll("images") || [];
     const {
       name,
       description,
-      image, // Assuming pictures is an array of base64-encoded images
+      images,
       price,
       phone_number,
       year,
@@ -41,7 +53,8 @@ export const POST = async (req) => {
       fuel,
       region,
       bodytype,
-    } = await req.json();
+    } = car;
+
     await connectToDatabase();
     const session = await getServerSession(authOptions);
     const existingUser = await User.findById(session?.user.id);
@@ -52,17 +65,16 @@ export const POST = async (req) => {
 
     let carPictures = [];
 
-    if (image && image.length > 0) {
+    if (images && images.length > 0) {
       // Process each picture in the array
-      for (const picture of image) {
-        const fileName = `${existingUser._id + Math.random()}_123456789.png`;
+      for (const file of images) {
+        const fileName = `${
+          existingUser._id + Math.random()
+        }_${randomKey()}.png`;
         const filePath = path.join(process.cwd(), "public/uploads", fileName);
         carPictures.push(`/uploads/${fileName}`);
 
-        const imageData = Buffer.from(picture, "base64");
-
-        // Write the image to the server
-        await fs.writeFile(filePath, imageData);
+        await fs.writeFile(filePath, Buffer.from(await file.arrayBuffer()));
       }
     }
 

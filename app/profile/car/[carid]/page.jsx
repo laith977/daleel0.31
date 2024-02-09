@@ -9,7 +9,7 @@ const UpdateCar = ({ params }) => {
   const [car, setCar] = useState({
     name: "",
     description: "",
-    image: "",
+    images: [],
     price: "",
     phone_number: "",
     year: "",
@@ -31,7 +31,7 @@ const UpdateCar = ({ params }) => {
       setCar({
         name: data["car"].name,
         description: data["car"].description,
-        image: data["car"].image,
+        images: data["car"].image,
         price: data["car"].price,
         phone_number: data["car"].phone_number,
         year: data["car"].year,
@@ -59,7 +59,7 @@ const UpdateCar = ({ params }) => {
         body: JSON.stringify({
           name: car.name,
           description: car.description,
-          image: car.image,
+          image: car.images,
           price: car.price,
           phone_number: car.phone_number,
           year: car.year,
@@ -97,6 +97,7 @@ const UpdateCar = ({ params }) => {
       setCar={setCar}
       submitting={Submitting}
       handleSubmit={updateCar}
+      ppp={params.carid}
     ></CarForm>
   );
 };

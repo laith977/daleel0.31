@@ -156,16 +156,16 @@
   @apply object-cover w-full h-24 sm:h-32 md:h-40 lg:h-48;
 }
 .car-info-container {
-  @apply flex flex-col bg-gray-100 border-8 rounded-md border-amber-700 p-6 sm:p-8 lg:p-12 mt-8;
+  @apply flex flex-col bg-gray-100 border-8 rounded-md border-custom-yellow p-6 sm:p-8 lg:p-12 mt-8;
 }
 .car-col-price {
-  @apply text-orange-400 text-2xl md:text-3xl lg:text-4xl font-semibold mb-6;
+  @apply text-color-car text-2xl md:text-3xl lg:text-4xl font-semibold mb-6;
 }
 .car-col-call {
   @apply bg-green-600 text-white rounded-md py-2 px-6 mb-4 md:mb-6;
 }
 .car-col-msg {
-  @apply bg-amber-600 text-white rounded-md py-2 px-6 mb-6 md:mb-8;
+  @apply bg-yellow text-white rounded-md py-2 px-6 mb-6 md:mb-8;
 }
 .car-info-div {
   @apply mb-8 flex justify-between gap-8;
@@ -174,14 +174,14 @@
   @apply text-black text-base md:text-lg lg:text-xl;
 }
 .car-info-label1 {
-  @apply text-black font-bold text-lg md:text-xl lg:text-2xl mb-1;
+  @apply text-color-car font-bold text-lg md:text-xl lg:text-2xl mb-1;
 }
 
 .car-desc-div1 {
   @apply flex flex-col mx-auto px-24;
 }
 .car-desc-div2 {
-  @apply bg-gray-200 flex-col flex m-4 sm:m-8 lg:m-12 mt-8 border border-amber-700 p-4 sm:p-8 lg:p-12 mx-auto;
+  @apply bg-gray-200 flex-col flex m-4 sm:m-8 lg:m-12 mt-8 border-4 border-custom-yellow p-4 sm:p-8 lg:p-12 mx-auto;
 }
 .car-desc-div3 {
   @apply flex flex-col md:flex-row items-center justify-center md:justify-between;
@@ -190,11 +190,89 @@
   @apply rounded-full overflow-hidden h-20 w-20 md:h-32 md:w-32 lg:h-40 lg:w-40;
 }
 .car-user-name {
-  @apply text-xl md:text-2xl lg:text-3xl font-bold text-orange-400;
+  @apply text-xl md:text-2xl lg:text-3xl font-bold text-color-car;
 }
 .car-region {
   @apply text-lg md:text-xl lg:text-2xl font-bold text-black mt-2 md:mt-4 lg:mt-6;
 }
 .car-desc {
   @apply text-base md:text-lg lg:text-xl leading-relaxed mt-4;
+}
+.border-custom-yellow {
+  border-color: rgba(254, 189, 89, 1);
+}
+.text-color-car {
+  color: rgba(254, 189, 89, 1);
+}
+
+.bg-yellow {
+  background-color: rgba(254, 189, 89, 1);
+}
+
+.thumbnail img {
+  border: 2px solid #f00; /* Example border for the thumbnail */
+}
+.fullscreen-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 998; /* Ensure the overlay is behind the modal content */
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Ensure the modal content is above the overlay */
+}
+
+.image-container {
+  position: relative;
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navigation-button {
+  position: absolute;
+  top: 50%;
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1000; /* Ensure the navigation buttons are above the modal content */
+}
+
+.left {
+  left: 20px;
+}
+
+.right {
+  right: 20px;
 }

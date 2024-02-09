@@ -4,14 +4,15 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import CarForm from "@/components/CarForm";
+
 const CreateCar = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const [Submitting, setSubmitting] = useState(false);
-  const [Car, setCar] = useState({
+  const [car, setCar] = useState({
     name: "",
     description: "",
-    image: "",
+    images: [],
     price: "",
     phone_number: "",
     year: 2000,
@@ -26,34 +27,39 @@ const CreateCar = () => {
     fuel: "Electric",
     region: "الأردن",
   });
+
+
+
   const createCar = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     try {
+      const formData = new FormData();
+      formData.append("creator", session?.user?.id);
+      formData.append("name", car.name);
+      formData.append("description", car.description);
+      formData.append("price", car.price);
+      formData.append("phone_number", car.phone_number);
+      formData.append("year", car.year);
+      formData.append("make", car.make);
+      formData.append("model", car.model);
+      formData.append("mileage", car.mileage);
+      formData.append("transmission", car.transmission);
+      formData.append("doors", car.doors);
+      formData.append("color", car.color);
+      formData.append("fuel", car.fuel);
+      formData.append("region", "jordan");
+      // formData.append('bodytype', ''); // Add bodytype to the payload
+      formData.append("category", car.category);
+
+      // Append each image file separately
+      car.images.forEach((image) => {
+        formData.append("images", image);
+      });
+
       const response = await fetch(`/api/profile/car`, {
         method: "POST",
-        body: JSON.stringify({
-          creator: session?.user?.id,
-          name: Car.name,
-          description: Car.description,
-          image: Car.image,
-          price: Car.price,
-          phone_number: Car.phone_number,
-          year: Car.year,
-          make: Car.make,
-          model: Car.model,
-          mileage: Car.mileage,
-          transmission: Car.transmission,
-          doors: Car.doors,
-          color: Car.color,
-          fuel: Car.fuel,
-          region: "jordan",
-          // bodytype: "", // Add bodytype to the payload
-          category: Car.category,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        body: formData,
       });
 
       if (response.ok) {
@@ -70,11 +76,11 @@ const CreateCar = () => {
   return (
     <CarForm
       type="انشئ الأعلان"
-      car={Car}
+      car={car}
       setCar={setCar}
       submitting={Submitting}
       handleSubmit={createCar}
-    ></CarForm>
+    />
   );
 };
 
