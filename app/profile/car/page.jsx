@@ -28,8 +28,6 @@ const CreateCar = () => {
     region: "الأردن",
   });
 
-
-
   const createCar = async (e) => {
     e.preventDefault();
     setSubmitting(true);
