@@ -17,11 +17,7 @@ export default function RootLayout({ children }) {
       <Head>
         <meta
           http-equiv="Content-Security-Policy"
-          content="
-            worker-src blob:; 
-            child-src blob: gap:;
-            img-src 'self' blob: data:;
-            default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:"
+          content="default-src *;img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *"
         />
       </Head>
       <body className="bg-gray-900">
