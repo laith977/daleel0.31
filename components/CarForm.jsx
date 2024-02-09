@@ -8,7 +8,6 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit, ppp }) => {
   const [selectedModel, setSelectedModel] = useState("");
   const [DisableInput, setDisableInput] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState([]);
-  console.log(ppp);
   const carBrands = [
     {
       brand: "Alfa Romeo",

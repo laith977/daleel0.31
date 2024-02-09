@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
+
 const Dropzone = ({ handleImageChange }) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [primaryImageIndex, setPrimaryImageIndex] = useState(null);
@@ -65,7 +66,7 @@ const Dropzone = ({ handleImageChange }) => {
               unoptimized
               width={120}
               height={80}
-            ></Image>
+            />
             <div className=" flex flex-row justify-end">
               <button
                 type="button"
