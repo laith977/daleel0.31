@@ -12,8 +12,7 @@ const cspHeader = `
     block-all-mixed-content;
     upgrade-insecure-requests;
 `;
-
-const nextConfig = {
+module.exports = {
   output: "standalone",
   experimental: {
     // appDir: true,
@@ -21,8 +20,6 @@ const nextConfig = {
   },
   exclude: ["**/uploads/**"],
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
   images: {
@@ -35,20 +32,4 @@ const nextConfig = {
     };
     return config;
   },
-
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          {
-            key: "Content-Security-Policy",
-            value: cspHeader.replace(/\n/g, ""),
-          },
-        ],
-      },
-    ];
-  },
 };
-
-module.exports = nextConfig;
