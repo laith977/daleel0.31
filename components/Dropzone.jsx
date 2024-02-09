@@ -1,10 +1,29 @@
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useState, useEffect } from "react";
+
 const Dropzone = ({ handleImageChange }) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [base64Previews, setBase64Previews] = useState([]);
   const [primaryImageIndex, setPrimaryImageIndex] = useState(null);
+  useEffect(() => {
+    const fetchBase64Previews = async () => {
+      const base64Array = await Promise.all(
+        selectedFiles.map(async (file) => {
+          try {
+            const base64 = await getBase64(file);
+            return base64;
+          } catch (error) {
+            console.error("Error converting file to base64:", error);
+            return null;
+          }
+        })
+      );
+      setBase64Previews(base64Array);
+    };
 
-  const handleFileChange = async (e) => {
+    fetchBase64Previews();
+  }, [selectedFiles]);
+
+  const handleFileChange = (e) => {
     const files = e.target.files;
     if (files && files.length > 0) {
       const filesArray = Array.from(files);
@@ -14,14 +33,14 @@ const Dropzone = ({ handleImageChange }) => {
   };
 
   const handleSetPrimaryImage = (index) => {
-    setPrimaryImageIndex(index);
-    const updatedFiles = [...selectedFiles];
     if (index !== 0) {
+      const updatedFiles = [...selectedFiles];
       const fileToMove = updatedFiles.splice(index, 1)[0];
-      updatedFiles.unshift(fileToMove);
+      updatedFiles.splice(0, 0, fileToMove);
+      setSelectedFiles(updatedFiles);
+      handleImageChange(updatedFiles);
     }
-    setSelectedFiles(updatedFiles);
-    handleImageChange(updatedFiles);
+    setPrimaryImageIndex(0);
   };
 
   const handleDeleteImage = (index) => {
@@ -33,6 +52,15 @@ const Dropzone = ({ handleImageChange }) => {
     } else if (primaryImageIndex > index) {
       setPrimaryImageIndex(primaryImageIndex - 1);
     }
+  };
+
+  const getBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
   };
 
   return (
@@ -56,16 +84,15 @@ const Dropzone = ({ handleImageChange }) => {
         className="hidden"
       />
       <div className="grid grid-cols-2 gap-4 mt-4">
-        {selectedFiles.map((file, index) => (
-          <div key={file.name} className=" relative flex items-center">
-            <Image
-              src={URL.createObjectURL(file)}
-              alt={file.name}
+        {base64Previews.map((base64, index) => (
+          <div key={`image_${index}`} className=" relative flex items-center">
+            <img
+              src={base64}
+              alt={`Preview ${index}`}
               className="car-col-pic"
-              unoptimized
               width={120}
               height={80}
-            ></Image>
+            />
             <div className=" flex flex-row justify-end">
               <button
                 type="button"
