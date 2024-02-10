@@ -466,6 +466,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit, ppp }) => {
       models: ["S60", "S90", "V60", "V90", "XC40", "XC60", "XC90"],
     },
   ];
+  console.log(car);
   useEffect(() => {
     if (car) {
       setSelectedMake(car.make);
@@ -488,8 +489,13 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit, ppp }) => {
   };
   const handleCategoryChange = (e) => {
     const selectedCategory = e.target.value;
-    setCar({ ...car, category: selectedCategory });
-    setDisableInput(selectedCategory === "كهربائية");
+    console.log(selectedCategory);
+    if (selectedCategory === "كهربائية") {
+      setDisableInput(true);
+    } else {
+      setDisableInput(false);
+    }
+    setCar({ ...car, category: selectedCategory, fuel: selectedCategory }); // تحديث قيمة الفئة والوقود
   };
 
   return (
@@ -739,9 +745,9 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit, ppp }) => {
             className="car-input-text"
           >
             <option value="4" defaultValue>
-              2
+              4
             </option>
-            <option value="2">4</option>
+            <option value="2">2</option>
           </select>
         </div>
         <div className="mb-4">
@@ -793,7 +799,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit, ppp }) => {
             name="fuel"
             onChange={(e) => setCar({ ...car, fuel: e.target.value })}
             className="car-input-text"
-            disabled={DisableInput}
+            readOnly={DisableInput}
           >
             {DisableInput ? (
               <option value="كهربائية">كهربائية</option>
