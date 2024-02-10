@@ -129,6 +129,7 @@ const Car = ({ data }) => {
                       X
                     </button>
                     <Image
+                      unoptimized
                       src={data["car"]?.pictures[selectedImageIndex]}
                       alt={`Car Picture ${selectedImageIndex + 1}`}
                       width={800}
