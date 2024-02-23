@@ -60,9 +60,7 @@ const Home = () => {
             </div> */}
           </div>
           {/* <div className="text-effect mt-12">الفئـــات</div> */}
-          <h1 className="mt-24 max-sm:text-8xl text-center text-white">
-            الفئات
-          </h1>
+          <h1 className="mt-24 text-8xl text-center text-white">الفئات</h1>
           <div className="category-div">
             {categories.map((category, index) => (
               <div key={index} className="card">
@@ -189,7 +187,9 @@ const Home = () => {
             </div>
           </div> */}
           {/* <h1 className="text-effect my-24">السيارات المعروضة </h1> */}
-          <h1 className="text-white text-4xl text-center">السيارات المعروضة</h1>
+          <h1 className="text-white text-7xl mt-24 text-center">
+            السيارات المعروضة
+          </h1>
 
           <Feed />
         </>
