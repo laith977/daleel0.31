@@ -33,8 +33,7 @@ export const PATCH = async (req) => {
         Math.random() * 1000 + Math.random() * 1000
       }_123456789.png`;
       const filePath = path.join(uploadsDir, fileName);
-      console.log("File Path:", filePath);
-      console.log("Image Data Length:", imageData.length);
+
       // Write the image to the server
       await fs.writeFile(filePath, imageData);
 

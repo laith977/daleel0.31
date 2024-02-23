@@ -24,7 +24,7 @@ const CreateCar = () => {
     doors: "4",
     color: "ابيض",
     // bodytype: "",
-    fuel: "",
+    fuel: "بنزين",
     region: "الأردن",
   });
 

@@ -1,472 +1,67 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import FileUpload from "./FileUpload";
+// import FileUpload from "./FileUpload";
 import Dropzone from "./Dropzone";
-
+const carBrands = require("../constants/carBrands");
+const colors = require("../constants/colors");
 const CarForm = ({ type, car, setCar, submitting, handleSubmit, ppp }) => {
   const [selectedMake, setSelectedMake] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
   const [DisableInput, setDisableInput] = useState(false);
-  const [selectedFiles, setSelectedFiles] = useState([]);
-  const carBrands = [
-    {
-      brand: "Alfa Romeo",
-      models: ["Giulia", "Stelvio", "4C"],
-    },
-    {
-      brand: "Aston Martin",
-      models: ["DB11", "DBS Superleggera", "Vantage", "DBX"],
-    },
-    {
-      brand: "Audi",
-      models: [
-        "A1",
-        "A3",
-        "A4",
-        "A5",
-        "A6",
-        "A7",
-        "A8",
-        "Q2",
-        "Q3",
-        "Q5",
-        "Q7",
-        "Q8",
-        "e-Tron",
-      ],
-    },
-    {
-      brand: "BMW",
-      models: [
-        "1 Series",
-        "2 Series",
-        "3 Series",
-        "4 Series",
-        "5 Series",
-        "6 Series",
-        "7 Series",
-        "X1",
-        "X2",
-        "X3",
-        "X4",
-        "X5",
-        "X6",
-        "X7",
-        "Z4",
-        "i3",
-        "i4",
-        "i3",
-        "iX3",
-      ],
-    },
-    {
-      brand: "BYD",
-      models: [
-        "Han",
-        "Tang",
-        "Yuan",
-        "Song",
-        "e2",
-        "e3",
-        "e5",
-        "e6",
-        "Champion",
-        "Seagull",
-      ],
-    },
-    {
-      brand: "Bentley",
-      models: ["Bentayga", "Continental GT", "Flying Spur"],
-    },
-    {
-      brand: "Bugatti",
-      models: ["Chiron", "Veyron"],
-    },
-    {
-      brand: "Buick",
-      models: ["Encore", "Enclave", "Envision"],
-    },
-    {
-      brand: "Cadillac",
-      models: ["CT4", "CT5", "CT6", "Escalade", "XT4", "XT5", "XT6"],
-    },
-    {
-      brand: "Changan",
-      models: [
-        "CS35 Plus",
-        "CS55 Plus",
-        "UNI-T",
-        "Oshan X7",
-        "Benben Mini",
-        "E-Star",
-        "Eado",
-      ],
-    },
-    {
-      brand: "Chevrolet",
-      models: [
-        "Camaro",
-        "Corvette",
-        "Equinox",
-        "Malibu",
-        "Silverado",
-        "Suburban",
-        "Tahoe",
-        "Traverse",
-        "Trax",
-        "Minlo",
-        "Spark",
-        "Bolt",
-      ],
-    },
-    {
-      brand: "Chrysler",
-      models: ["300", "Pacifica", "Voyager"],
-    },
-    {
-      brand: "Citroën",
-      models: ["C3", "C4", "C5", "Berlingo", "C3 Aircross", "C4 Cactus"],
-    },
-    {
-      brand: "Dacia",
-      models: ["Duster", "Sandero", "Logan"],
-    },
-    {
-      brand: "Daihatsu",
-      models: ["Copen", "Hijet", "Mira", "Terios"],
-    },
-    {
-      brand: "Dodge",
-      models: ["Challenger", "Charger", "Durango", "Journey", "RAM"],
-    },
-    {
-      brand: "Ferrari",
-      models: ["488 GTB", "488 Pista", "812 Superfast", "SF90 Stradale"],
-    },
-    {
-      brand: "Fiat",
-      models: ["500", "500X", "500L", "124 Spider", "Panda", "Tipo"],
-    },
-    {
-      brand: "Ford",
-      models: [
-        "Bronco",
-        "Escape",
-        "Expedition",
-        "Explorer",
-        "F-150",
-        "Maverick",
-        "Mustang",
-        "Ranger",
-        "Fusion",
-        "Focus",
-      ],
-    },
-    {
-      brand: "Genesis",
-      models: ["G70", "G80", "G90"],
-    },
-    {
-      brand: "Geely",
-      models: ["Coolray", "Azkarra", "Emgrand", "Binrui", "Bo Rui", "Xing Yue"],
-    },
-    {
-      brand: "GMC",
-      models: ["Acadia", "Canyon", "Sierra", "Terrain", "Yukon"],
-    },
-    {
-      brand: "Great Wall Motors",
-      models: [
-        "Haval H6",
-        "Haval F7",
-        "Wey VV5",
-        "Wey VV7",
-        "Ora Good Cat",
-        "Ora R1",
-      ],
-    },
-    {
-      brand: "Honda",
-      models: [
-        "Accord",
-        "Civic",
-        "CR-V",
-        "Fit",
-        "HR-V",
-        "Insight",
-        "Odyssey",
-        "Passport",
-        "Pilot",
-        "Ridgeline",
-        "E-NS1",
-        "E-NP1",
-      ],
-    },
-    {
-      brand: "Hyundai",
-      models: [
-        "Accent",
-        "Elantra",
-        "Kona",
-        "Nexo",
-        "Palisade",
-        "Santa Fe",
-        "Sonata",
-        "Tucson",
-        "Veloster",
-        "Ioniq",
-      ],
-    },
-    {
-      brand: "Infiniti",
-      models: ["Q50", "Q60", "QX50", "QX60", "QX80"],
-    },
-    {
-      brand: "Isuzu",
-      models: ["D-Max", "MUX"],
-    },
-    {
-      brand: "Jaguar",
-      models: ["E-PACE", "F-PACE", "I-PACE", "XE", "XF", "XJ", "F-Type"],
-    },
-    {
-      brand: "Jeep",
-      models: ["Cherokee", "Compass", "Grand Cherokee", "Renegade", "Wrangler"],
-    },
-    {
-      brand: "Kia",
-      models: [
-        "Cadenza",
-        "Forte",
-        "k3",
-        "K5",
-        "Niro",
-        "Cerato",
-        "Optima",
-        "Rio",
-        "Seltos",
-        "Soul",
-        "Sportage",
-        "Stinger",
-        "Telluride",
-        "EV6",
-      ],
-    },
-    {
-      brand: "Lamborghini",
-      models: ["Aventador", "Huracan", "Urus"],
-    },
-    {
-      brand: "Land Rover",
-      models: [
-        "Defender",
-        "Discovery",
-        "Discovery Sport",
-        "Range Rover",
-        "Range Rover Evoque",
-        "Range Rover Sport",
-        "Range Rover Velar",
-      ],
-    },
-    {
-      brand: "Leap Motors",
-      models: ["T03"],
-    },
-    {
-      brand: "Lexus",
-      models: ["ES", "GX", "IS", "LC", "LS", "LX", "NX", "RC", "RX", "UX"],
-    },
-    {
-      brand: "Lincoln",
-      models: ["Aviator", "Corsair", "Nautilus", "Navigator", "MKZ", "MKX"],
-    },
-    {
-      brand: "Lucid Motors",
-      models: ["Air", "Gravity"],
-    },
-    {
-      brand: "MAN",
-      models: ["TGE", "TGX", "TGS"],
-    },
-    {
-      brand: "Maserati",
-      models: ["Ghibli", "Levante", "Quattroporte"],
-    },
-    {
-      brand: "Mazda",
-      models: [
-        "CX-3",
-        "CX-5",
-        "CX-9",
-        "Mazda2",
-        "Mazda3",
-        "Mazda6",
-        "MX-5 Miata",
-        "CX-30",
-        "CX-50",
-        "CX-70",
-        "CX-90",
-      ],
-    },
-    {
-      brand: "McLaren",
-      models: ["Artura", "570S", "600LT", "720S", "GT", "765LT"],
-    },
-    {
-      brand: "Mercedes-Benz",
-      models: [
-        "A-Class",
-        "C-Class",
-        "E-Class",
-        "S-Class",
-        "CLA",
-        "CLS",
-        "GLA",
-        "GLB",
-        "GLC",
-        "GLE",
-        "GLS",
-        "G-Class",
-        "AMG GT",
-        "EQC",
-        "EQE",
-        "EQS",
-      ],
-    },
-    {
-      brand: "MINI",
-      models: ["Cooper", "Clubman", "Countryman", "Convertible", "Hardtop"],
-    },
-    {
-      brand: "Mitsubishi",
-      models: ["Eclipse Cross", "Outlander", "Outlander Sport"],
-    },
-    {
-      brand: "Nissan",
-      models: [
-        "Altima",
-        "Armada",
-        "Frontier",
-        "Kicks",
-        "Leaf",
-        "Maxima",
-        "Murano",
-        "Pathfinder",
-        "Rogue",
-        "Rogue Sport",
-        "Titan",
-        "Versa",
-        "Slyphy",
-      ],
-    },
-    {
-      brand: "Opel",
-      models: ["Corsa", "Astra", "Insignia", "Mokka", "Crossland", "Grandland"],
-    },
-    {
-      brand: "Pagani",
-      models: ["Huayra", "Huayra Roadster", "Zonda"],
-    },
-    {
-      brand: "Peugeot",
-      models: ["208", "308", "508", "2008", "3008", "5008"],
-    },
-    {
-      brand: "Porsche",
-      models: ["911", "Cayenne", "Macan", "Panamera", "Taycan"],
-    },
-    {
-      brand: "Renault",
-      models: [
-        "Clio",
-        "Mégane",
-        "Captur",
-        "Kadjar",
-        "Scénic",
-        "Talisman",
-        "Twingo",
-        "ZOE",
-      ],
-    },
-    {
-      brand: "Rolls-Royce",
-      models: ["Cullinan", "Dawn", "Ghost", "Phantom", "Wraith"],
-    },
-    {
-      brand: "Smart",
-      models: ["EQ ForTwo", "EQ ForFour"],
-    },
-    {
-      brand: "Subaru",
-      models: [
-        "Ascent",
-        "BRZ",
-        "Crosstrek",
-        "Forester",
-        "Impreza",
-        "Legacy",
-        "Outback",
-      ],
-    },
-    {
-      brand: "Suzuki",
-      models: ["Jimny", "Swift", "Vitara"],
-    },
-    {
-      brand: "Tesla",
-      models: [
-        "Model S",
-        "Model 3",
-        "Model X",
-        "Model Y",
-        "Cybertruck",
-        "Roadster",
-      ],
-    },
-    {
-      brand: "Toyota",
-      models: [
-        "Camry",
-        "Corolla",
-        "Prius",
-        "RAV4",
-        "Highlander",
-        "Tacoma",
-        "Tundra",
-        "4Runner",
-        "Land Cruiser",
-        "Avalon",
-        "Sienna",
-        "Yaris",
-        "C-HR",
-        "Sequoia",
-        "Supra",
-        "BZ4",
-        "BZ3",
-      ],
-    },
-    {
-      brand: "Volkswagen",
-      models: [
-        "Golf",
-        "Passat",
-        "Tiguan",
-        "Atlas",
-        "Arteon",
-        "ID.4",
-        "ID.6",
-        "ID.3",
-        "E-Golf",
-        "E-Bora",
-        "E-Lavida",
-      ],
-    },
-    {
-      brand: "Volvo",
-      models: ["S60", "S90", "V60", "V90", "XC40", "XC60", "XC90"],
-    },
-  ];
-  console.log(car);
+  const [showColorOptions, setShowColorOptions] = useState(false);
+  const handleColorSelection = (colorName) => {
+    setCar({ ...car, color: colorName });
+    setShowColorOptions(false);
+  };
+  function getColorClass(background) {
+    switch (background) {
+      case "bg-white":
+        return "bg-white";
+      case "bg-black":
+        return "bg-black";
+      case "bg-gray-200":
+        return "bg-gray-200";
+      case "bg-gray-400":
+        return "bg-gray-400";
+      case "bg-gray-500":
+        return "bg-gray-500";
+      case "bg-red-500":
+        return "bg-red-500";
+      case "bg-red-600":
+        return "bg-red-600";
+      case "bg-yellow-500":
+        return "bg-yellow-500";
+      case "bg-orange-500":
+        return "bg-orange-500";
+      case "bg-yellow-300":
+        return "bg-yellow-300";
+      case "bg-yellow-600":
+        return "bg-yellow-600";
+      case "bg-amber-950":
+        return "bg-amber-950";
+      case "bg-yellow-200":
+        return "bg-yellow-200";
+      case "bg-blue-500":
+        return "bg-blue-500";
+      case "bg-blue-700":
+        return "bg-blue-700";
+      case "bg-blue-300":
+        return "bg-blue-300";
+      case "bg-green-500":
+        return "bg-green-500";
+      case "bg-green-600":
+        return "bg-green-600";
+      case "bg-teal-500":
+        return "bg-teal-500";
+      case "bg-teal-600":
+        return "bg-teal-600";
+      case "bg-purple-500":
+        return "bg-purple-500";
+      default:
+        return "";
+    }
+  }
+
   useEffect(() => {
     if (car) {
       setSelectedMake(car.make);
@@ -495,7 +90,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit, ppp }) => {
     } else {
       setDisableInput(false);
     }
-    setCar({ ...car, category: selectedCategory, fuel: selectedCategory }); // تحديث قيمة الفئة والوقود
+    setCar({ ...car, category: selectedCategory, fuel: selectedCategory });
   };
 
   return (
@@ -750,43 +345,40 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit, ppp }) => {
             <option value="2">2</option>
           </select>
         </div>
-        <div className="mb-4">
+
+        <div className="mb-4 relative">
           <label htmlFor="color" className="car-input-label">
             :اللون
           </label>
-          <select
-            required
-            value={car?.color}
+          <div
             id="color"
             name="color"
-            onChange={(e) => setCar({ ...car, color: e.target.value })}
             className="car-input-text"
+            onClick={() => setShowColorOptions(!showColorOptions)}
           >
-            <option value="White" defaultValue>
-              {" "}
-              ابيض{" "}
-            </option>
-            <option value="أسود">أسود</option>
-            <option value="فضي">فضي</option>
-            <option value="رمادي">رمادي</option>
-            <option value="أسمنتي">أسمنتي</option>
-            <option value="أحمر">أحمر</option>
-            <option value="خمري">خمري</option>
-            <option value="أصفر">أصفر</option>
-            <option value="برتقالي">برتقالي</option>
-            <option value="ذهبي">ذهبي</option>
-            <option value="برونزي">برونزي</option>
-            <option value="بني">بني</option>
-            <option value="بيج">بيج</option>
-            <option value="أزرق">أزرق</option>
-            <option value="كحلي">كحلي</option>
-            <option value="أزرق فاتح">أزرق فاتح</option>
-            <option value="أخضر">أخضر</option>
-            <option value="زيتي">زيتي</option>
-            <option value="تركواز">تركواز</option>
-            <option value="بترولي">بترولي</option>
-            <option value="بنفسجي">بنفسجي</option>
-          </select>
+            <div
+              className={` rounded-full w-4  mr-2 ${car.color.background}`}
+            ></div>
+            {car.color || "اختر اللون"}
+            {showColorOptions && (
+              <div className="color-options absolute top-full left-0 mt-1 w-full">
+                {colors.map((colorOption, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center py-1 px-2 cursor-pointer"
+                    onClick={() => handleColorSelection(colorOption.name)}
+                  >
+                    <div
+                      className={`rounded-full w-4 h-4 mr-2 ${getColorClass(
+                        colorOption.background
+                      )}`}
+                    ></div>
+                    {colorOption.name}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
         <div className="mb-4">
           <label htmlFor="fuel" className="car-input-label">
@@ -794,7 +386,7 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit, ppp }) => {
           </label>
           <select
             required
-            value={car.fuel}
+            value={car.fuel || "بنزين"}
             id="fuel"
             name="fuel"
             onChange={(e) => setCar({ ...car, fuel: e.target.value })}
@@ -807,6 +399,9 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit, ppp }) => {
               <>
                 <option value="بنزين">بنزين</option>
                 <option value="ديزل">ديزل</option>
+                {car.category === "بيك اب" && (
+                  <option value="كهربائية">كهربائية</option>
+                )}
               </>
             )}
           </select>

@@ -1,4 +1,3 @@
-// LoadingSkeleton.js
 import React from "react";
 import '../public/css/globals.css'
 

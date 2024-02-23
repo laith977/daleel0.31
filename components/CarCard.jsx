@@ -7,7 +7,6 @@ const CarCard = ({
   data = [],
   handleEdit = () => {},
   handleDelete = () => {},
-  handleTagClick = () => {},
 }) => {
   const { data: session } = useSession();
   const params = useParams();
@@ -15,53 +14,52 @@ const CarCard = ({
   return (
     <div className=" car-cards-div">
       {(Array.isArray(data) ? data : []).map((car) => (
-        <div
-          key={car?._id}
-          className=" car-card-div "
-        >
-          <Link href={`/profile/${car.creator}/car/${car._id}`}>
-            <div className="car-card-link">
-              <Image
-                unoptimized
-                src={car?.pictures[0] || ""}
-                alt="Car"
-                className="car-card-pic"
-                layout="fill"
-              />
+        <div className="card" key={car?._id}>
+          <div className=" car-card-div card2  h-full">
+            <Link href={`/profile/${car.creator}/car/${car._id}`}>
+              <div className="car-card-link">
+                <Image
+                  unoptimized
+                  src={car?.pictures[0] || ""}
+                  alt="Car"
+                  className="car-card-pic"
+                  layout="fill"
+                />
+              </div>
+            </Link>
+
+            <p className="car-name ">{car?.name}</p>
+            <div className="flex flex-row justify-around">
+              <p className="car-price ">السعر: {car?.price}</p>
+              <p className="car-price ">السنة: {car?.year}</p>
+              <p className="car-price "> {car?.model}</p>
             </div>
-          </Link>
 
-          <p className="car-name">
-            {car?.name}
-          </p>
-          <p className="car-price">
-            السعر: {car?.price}
-          </p>
-
-          {session?.user?.id &&
-            car?.creator === session?.user?.id &&
-            params?.profileid !== undefined && (
-              <div className="car-buttons">
-                <button
-                  className="del-button"
-                  onClick={() => {
-                    handleDelete(car?._id);
-                  }}
-                >
-                  حذف
-                </button>
-                <Link href={`/profile/car/${car?._id}`}>
+            {session?.user?.id &&
+              car?.creator === session?.user?.id &&
+              params?.profileid !== undefined && (
+                <div className="car-buttons">
                   <button
-                    className="edit-button"
+                    className="bg-red-950 text-red-400 border border-red-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
                     onClick={() => {
-                      handleEdit(car?._id);
+                      handleDelete(car?._id);
                     }}
                   >
-                    تعديل
+                    حذف
                   </button>
-                </Link>
-              </div>
-            )}
+                  <Link href={`/profile/car/${car?._id}`}>
+                    <button
+                      className="bg-green-950 text-green-400 border border-green-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
+                      onClick={() => {
+                        handleEdit(car?._id);
+                      }}
+                    >
+                      تعديل
+                    </button>
+                  </Link>
+                </div>
+              )}
+          </div>
         </div>
       ))}
     </div>

@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { useRouter } from "next/navigation";
 const UserProfile = ({ params }) => {
-  const router = useRouter();
   const [user, setUser] = useState(undefined);
   const [cars, setCars] = useState([]);
 

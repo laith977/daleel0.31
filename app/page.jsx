@@ -4,17 +4,10 @@ import React, { useState, useEffect } from "react";
 import Feed from "@/components/Feed";
 import Link from "next/link";
 import LoadingSkeleton from "./Loading";
-const categories = [
-  { image: "/images/gasoline.jpg", alt: "Gasoline", label: "وقود" },
-  { image: "/images/electric.jpg", alt: "Electric", label: "كهربائية" },
-  { image: "/images/pick-up.png", alt: "Pickup trucks", label: "البيك أب" },
-  { image: "/images/hybrid.jpg", alt: "Hybrid", label: "هايبرد" },
-  { image: "/images/bus.png", alt: "Buses", label: "باصات" },
-  { image: "/images/lorry.jpg", alt: "Lorrys", label: "شاحنات نقل" },
-];
+import categories from "@/constants/categories";
+
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
-
   const getImageFileName = (src) => src.split("/").pop().split(".")[0];
 
   useEffect(() => {
@@ -22,10 +15,9 @@ const Home = () => {
       method: "GET",
     });
   }, []);
+
   useEffect(() => {
-    // Simulate data fetching
     const fetchData = async () => {
-      // Simulating an API call delay
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setIsLoading(false);
     };
@@ -43,7 +35,13 @@ const Home = () => {
             {/* <p className={`text-white text-2xl mb-8`}>
               شريكك للحصول على أقل الأسعار
             </p> */}
-            <h2 className={`text-white text-7xl`}>دليل الحرة</h2>
+            {/* <h2 className={`main-text max-sm:text-9xl`}>
+              دليـــــل الحـــــرة
+            </h2> */}
+            <div className="wrapper text-5xl">
+              <div className="bg"> دليـــــل الحـــــرة</div>
+              <div className="fg"> دليـــــل الحـــــرة</div>
+            </div>
             <div className="flex justify-center m-16">
               <Image
                 className=" hero-pic"
@@ -54,24 +52,31 @@ const Home = () => {
                 style={{ aspectRatio: "10/8" }}
               />
             </div>
-            <p className="text-white text-4xl">شريكك للحصول على اقل الأسعار</p>
+            {/* <p className="text-white text-4xl ">شريكك للحصول على اقل الأسعار</p> */}
+            <div className="wrapper">
+              <div className="bg"> شريكك للحصول على اقل الأسعار</div>
+              <div className="fg"> شريكك للحصول على اقل الأسعار</div>
+            </div>
           </div>
-          <p className="text-white text-6xl text-center mt-12  bg-gray-900 ">
-            الفئات
-          </p>
+          <div className="text-effect mt-12">الفئـــات</div>
+          {/* <h1 className="mt-24 max-sm:text-8xl">الفئات</h1> */}
           <div className="category-div">
             {categories.map((category, index) => (
-              <div key={index} className="bg-white p-4 rounded-lg text-center">
-                <Link href={`/category/${getImageFileName(category.image)}`}>
-                  <Image
-                    src={category.image}
-                    alt={category.alt}
-                    className="mx-auto"
-                    width={240}
-                    height={300}
-                  />
-                  <p className="text-black text-2xl">{category.label}</p>
-                </Link>
+              <div key={index} className="card">
+                <div className="card2 h-full bg-white p-4 rounded-lg text-center">
+                  <Link href={`/category/${getImageFileName(category.image)}`}>
+                    <Image
+                      src={category.image}
+                      alt={category.alt}
+                      className="mx-auto"
+                      width={240}
+                      height={300}
+                    />
+                    <p className="text-black text-2xl font-mono">
+                      {category.label}
+                    </p>
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -180,9 +185,7 @@ const Home = () => {
               </Link>
             </div>
           </div> */}
-          <div className="flex flex-col mx-auto text-center pt-12">
-            <p className="text-white text-6xl ">السيارات المعروضة</p>
-          </div>
+          <h1 className="text-effect my-24">السيارات المعروضة </h1>
 
           <Feed />
         </>

@@ -150,16 +150,11 @@ const Car = ({ data }) => {
         </>
       )}
       <div className="car-desc-div1 ">
-        {" "}
         <div className="car-desc-div2">
-          {" "}
           <div className="car-desc-div3">
-            {" "}
             <Link href={`/profile/${data["car"]?.creator}`}>
-              {" "}
               {data["user"]?.image && (
                 <div className="car-user-pic">
-                  {" "}
                   <Image
                     unoptimized
                     className="object-cover w-full h-full"
@@ -167,18 +162,17 @@ const Car = ({ data }) => {
                     alt="User Image"
                     width={160}
                     height={160}
-                  />{" "}
+                  />
                 </div>
-              )}{" "}
-            </Link>{" "}
+              )}
+            </Link>
             <div className="flex flex-col my-auto text-center ">
-              {" "}
               <p className="car-user-name">{data["user"]?.name}</p>{" "}
               <p className="car-region">{data["car"]?.region}</p>{" "}
-            </div>{" "}
-          </div>{" "}
+            </div>
+          </div>
           <br /> <p className="car-desc">{data["car"]?.description}</p>{" "}
-        </div>{" "}
+        </div>
       </div>
     </>
   );

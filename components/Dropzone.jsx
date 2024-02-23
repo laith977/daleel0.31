@@ -4,6 +4,7 @@ const Dropzone = ({ handleImageChange }) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [base64Previews, setBase64Previews] = useState([]);
   const [primaryImageIndex, setPrimaryImageIndex] = useState(null);
+
   useEffect(() => {
     const fetchBase64Previews = async () => {
       const base64Array = await Promise.all(
@@ -52,6 +53,11 @@ const Dropzone = ({ handleImageChange }) => {
     } else if (primaryImageIndex > index) {
       setPrimaryImageIndex(primaryImageIndex - 1);
     }
+    // Set the next image as primary if it exists
+    if (index === primaryImageIndex && updatedFiles.length > 0) {
+      const newPrimaryIndex = index === updatedFiles.length ? index - 1 : index;
+      setPrimaryImageIndex(newPrimaryIndex);
+    }
   };
 
   const getBase64 = (file) => {
@@ -87,6 +93,7 @@ const Dropzone = ({ handleImageChange }) => {
         {base64Previews.map((base64, index) => (
           <div key={`image_${index}`} className=" relative flex items-center">
             <img
+              onClick={() => handleSetPrimaryImage(index)}
               src={base64}
               alt={`Preview ${index}`}
               className="car-col-pic"
@@ -94,13 +101,14 @@ const Dropzone = ({ handleImageChange }) => {
               height={80}
             />
             <div className=" flex flex-row justify-end">
-              <button
-                type="button"
-                onClick={() => handleSetPrimaryImage(index)}
-                className="bg-blue-500 text-white px-2 py-1 rounded-md text-xs absolute top-0 left-0"
-              >
-                Primary
-              </button>
+              {index === 0 && (
+                <button
+                  type="button"
+                  className="bg-blue-500 text-white px-2 py-1 rounded-md text-xs absolute top-0 left-0"
+                >
+                  صورة الغلاف
+                </button>
+              )}
               <button
                 type="button"
                 onClick={() => handleDeleteImage(index)}

@@ -18,10 +18,9 @@ export const PreviewFile = ({ file, children }) => {
   return children(result);
 };
 const FileUpload = ({ handleImageChange }) => {
-  
   return (
     <div className="mb-4">
-      <label htmlFor="image" className="car-input-label">
+      <label htmlFor="image" className="car-input-label ">
         :رفع الصور
       </label>
       <input

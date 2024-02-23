@@ -1,5 +1,4 @@
 import { Inter } from "next/font/google";
-import Head from "next/head";
 import "@/public/css/globals.css";
 import Nav from "@/components/Navbar";
 import Provider from "@/components/Provider";
@@ -7,19 +6,19 @@ import Provider from "@/components/Provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Daleel Al Hurra",
-  description: "Daleel Al Hurra",
+  title: "دليل الحرة",
+  description: "دليل الحرة",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head>
-        <meta
-          http-equiv="Content-Security-Policy"
-          content="default-src *;img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *"
-        />
-      </Head>
+      <meta
+        httpEquiv="Content-Security-Policy"
+        content="default-src *;img-src * 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *"
+      />
+      <link rel="icon" href="/favicon.ico" sizes="any" />
+
       <body className="bg-gray-900">
         <Provider>
           <Nav />

@@ -18,7 +18,6 @@ module.exports = {
     // appDir: true,
     serverComponentsExternalPackages: ["mongoose"],
   },
-  exclude: ["**/uploads/**"],
   eslint: {
     ignoreDuringBuilds: true,
   },
