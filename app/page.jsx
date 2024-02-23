@@ -38,10 +38,11 @@ const Home = () => {
             {/* <h2 className={`main-text max-sm:text-9xl`}>
               دليـــــل الحـــــرة
             </h2> */}
-            <div className="wrapper text-5xl">
+            <p className="text-8xl text-white">دليل الحرة</p>
+            {/* <div className="wrapper text-5xl">
               <div className="bg"> دليـــــل الحـــــرة</div>
               <div className="fg"> دليـــــل الحـــــرة</div>
-            </div>
+            </div> */}
             <div className="flex justify-center m-16">
               <Image
                 className=" hero-pic"
