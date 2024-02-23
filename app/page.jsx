@@ -38,7 +38,7 @@ const Home = () => {
             {/* <h2 className={`main-text max-sm:text-9xl`}>
               دليـــــل الحـــــرة
             </h2> */}
-            <p className="text-8xl text-white">دليل الحرة</p>
+            <p className="text-7xl text-white">دليل الحرة</p>
             {/* <div className="wrapper text-5xl">
               <div className="bg"> دليـــــل الحـــــرة</div>
               <div className="fg"> دليـــــل الحـــــرة</div>
@@ -53,14 +53,16 @@ const Home = () => {
                 style={{ aspectRatio: "10/8" }}
               />
             </div>
-            {/* <p className="text-white text-4xl ">شريكك للحصول على اقل الأسعار</p> */}
-            <div className="wrapper">
+            <p className="text-white text-4xl ">شريكك للحصول على اقل الأسعار</p>
+            {/* <div className="wrapper">
               <div className="bg"> شريكك للحصول على اقل الأسعار</div>
               <div className="fg"> شريكك للحصول على اقل الأسعار</div>
-            </div>
+            </div> */}
           </div>
-          <div className="text-effect mt-12">الفئـــات</div>
-          {/* <h1 className="mt-24 max-sm:text-8xl">الفئات</h1> */}
+          {/* <div className="text-effect mt-12">الفئـــات</div> */}
+          <h1 className="mt-24 max-sm:text-8xl text-center text-white">
+            الفئات
+          </h1>
           <div className="category-div">
             {categories.map((category, index) => (
               <div key={index} className="card">
@@ -186,7 +188,8 @@ const Home = () => {
               </Link>
             </div>
           </div> */}
-          <h1 className="text-effect my-24">السيارات المعروضة </h1>
+          {/* <h1 className="text-effect my-24">السيارات المعروضة </h1> */}
+          <h1 className="text-white text-4xl text-center">السيارات المعروضة</h1>
 
           <Feed />
         </>

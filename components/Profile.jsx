@@ -61,7 +61,7 @@ const Profile = ({ user, cars, handleDelete }) => {
     return (
       <div className="flex justify-center space-x-4 my-4">
         <button
-          className="bg-green-950 text-green-400 border border-green-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
+          className="edit-button"
           onClick={() => handlePagination(currentPage - 1)}
           disabled={currentPage === 1}
         >
@@ -75,7 +75,7 @@ const Profile = ({ user, cars, handleDelete }) => {
           )}  من الاعلانات `}
         </p>
         <button
-          className="bg-green-950 text-green-400 border border-green-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
+          className="edit-button"
           onClick={() => handlePagination(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
@@ -204,7 +204,7 @@ const Profile = ({ user, cars, handleDelete }) => {
                   handleDelete={handleDelete}
                 />
               ) : (
-                <p className="text-7xl">لا يوجد السيارات</p>
+                <p className="text-3xl"> لا يوجد سيارات معروضة</p>
               )}
             </div>
           </section>
