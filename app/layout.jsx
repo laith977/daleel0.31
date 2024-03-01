@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
       />
       <link rel="icon" href="/favicon.ico" sizes="any" />
 
-      <body className="bg-gray-900">
+      <body style={{ backgroundColor: "rgba(84, 84, 84, 255)" }}>
         <Provider>
           <Nav />
           {children}

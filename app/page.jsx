@@ -26,7 +26,10 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="p-body">
+    <div
+      className="p-body"
+      style={{ backgroundColor: "rgba(84, 84, 84, 255)" }}
+    >
       {isLoading ? (
         <LoadingSkeleton />
       ) : (
@@ -38,7 +41,7 @@ const Home = () => {
             {/* <h2 className={`main-text max-sm:text-9xl`}>
               دليـــــل الحـــــرة
             </h2> */}
-            <p className="text-7xl text-white">دليل الحرة</p>
+            {/* <p className="text-7xl text-white">دليل الحرة</p> */}
             {/* <div className="wrapper text-5xl">
               <div className="bg"> دليـــــل الحـــــرة</div>
               <div className="fg"> دليـــــل الحـــــرة</div>
@@ -46,14 +49,16 @@ const Home = () => {
             <div className="flex justify-center m-16">
               <Image
                 className=" hero-pic"
-                src="/images/whitelogo.png"
+                src="/images/blacklogo.jpg"
                 alt="Hero Image"
                 width={1200}
                 height={800}
                 style={{ aspectRatio: "10/8" }}
               />
             </div>
-            <p className="text-white text-4xl ">شريكك للحصول على اقل الأسعار</p>
+            <p className="text-white text-4xl font-mono px-2">
+              شريكك للحصول على اقل الأسعار
+            </p>
             {/* <div className="wrapper">
               <div className="bg"> شريكك للحصول على اقل الأسعار</div>
               <div className="fg"> شريكك للحصول على اقل الأسعار</div>
@@ -61,7 +66,10 @@ const Home = () => {
           </div>
           {/* <div className="text-effect mt-12">الفئـــات</div> */}
           <h1 className="mt-24 text-8xl text-center text-white">الفئات</h1>
-          <div className="category-div">
+          <div
+            className="category-div"
+            style={{ backgroundColor: "rgba(84, 84, 84, 255)" }}
+          >
             {categories.map((category, index) => (
               <div key={index} className="card">
                 <div className="card2 h-full bg-white p-4 rounded-lg text-center">

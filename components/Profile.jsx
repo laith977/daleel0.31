@@ -61,7 +61,7 @@ const Profile = ({ user, cars, handleDelete }) => {
     return (
       <div className="flex justify-center space-x-4 my-4">
         <button
-          className="edit-button"
+          className="next-page"
           onClick={() => handlePagination(currentPage - 1)}
           disabled={currentPage === 1}
         >
@@ -75,7 +75,7 @@ const Profile = ({ user, cars, handleDelete }) => {
           )}  من الاعلانات `}
         </p>
         <button
-          className="edit-button"
+          className="next-page"
           onClick={() => handlePagination(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
@@ -161,13 +161,12 @@ const Profile = ({ user, cars, handleDelete }) => {
                     required
                   />
                   <div
-                    className="cursor-pointer py-4 bg-yellow-400 border-b-4 border-yellow-700 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group flex-grow flex-shrink-0" // Added flex-shrink-0 to prevent the button from shrinking
+                    className="cursor-pointer py-4 bg-yellow-400  font-medium overflow-hidden relative px-4 py-2 rounded-md text-white" // Added flex-shrink-0 to prevent the button from shrinking
                     style={{
                       backgroundColor: "rgb(254, 189, 89)", // Adjusted to use the correct syntax for RGB color
                     }}
                     onClick={() => setIsBrandListOpen(!isBrandListOpen)}
                   >
-                    <span className=" font-mono bg-yellow-300 shadow-yellow-300 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(255, 255, 255, 0.3)]"></span>{" "}
                     اختر المصنع
                   </div>
                 </div>

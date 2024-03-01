@@ -86,11 +86,13 @@ const CarForm = ({ type, car, setCar, submitting, handleSubmit, ppp }) => {
     const selectedCategory = e.target.value;
     console.log(selectedCategory);
     if (selectedCategory === "كهربائية") {
+      setCar({ ...car, category: selectedCategory, fuel: selectedCategory });
+
       setDisableInput(true);
     } else {
+      setCar({ ...car, category: selectedCategory });
       setDisableInput(false);
     }
-    setCar({ ...car, category: selectedCategory, fuel: selectedCategory });
   };
 
   return (

@@ -40,7 +40,7 @@ const CarCard = ({
               params?.profileid !== undefined && (
                 <div className="car-buttons">
                   <button
-                    className="bg-red-950 text-red-400 border border-red-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
+                    className="bg-red-700 text-white border border-b-4 font-medium relative px-4 py-2 rounded-md"
                     onClick={() => {
                       handleDelete(car?._id);
                     }}
@@ -49,7 +49,7 @@ const CarCard = ({
                   </button>
                   <Link href={`/profile/car/${car?._id}`}>
                     <button
-                      className="bg-green-950 text-green-400 border border-green-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
+                      className="bg-green-700 text-white border border-b-4 font-medium relative px-4 py-2 rounded-md"
                       onClick={() => {
                         handleEdit(car?._id);
                       }}

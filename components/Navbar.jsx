@@ -68,8 +68,8 @@ const Nav = () => {
                 priority
                 src="/images/blacklogo.jpg"
                 alt="navbar logo"
-                width={72}
-                height={48}
+                width={50}
+                height={50}
                 className="nav-pic"
               />
             </Link>
@@ -118,11 +118,11 @@ const Nav = () => {
               {session?.user && (
                 <div className="relative">
                   <Image
-                    className="rounded-full max-sm:h-auto max-sm:w-auto p-1"
+                    className="rounded-full p-1 h-16 w-16"
                     src={user?.image || "/favicon.ico"}
                     alt="pic"
-                    width={50}
-                    height={50}
+                    width={16}
+                    height={16}
                     unoptimized
                   />
                 </div>

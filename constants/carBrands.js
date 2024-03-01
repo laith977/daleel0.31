@@ -64,8 +64,7 @@ const carBrands = [
       "Seagull",
       "Dolphin",
       "ATTO 3",
-      "Qin"
-      
+      "Qin",
     ],
   },
   {
@@ -95,7 +94,7 @@ const carBrands = [
       "E-Star",
       "Eado",
       "SL03",
-      "Uni T"
+      "Uni T",
     ],
   },
   {
@@ -213,7 +212,7 @@ const carBrands = [
       "Ioniq",
       "Azera",
       "H1",
-      "Porter"
+      "Porter",
     ],
   },
   {
@@ -249,7 +248,9 @@ const carBrands = [
       "Stinger",
       "Telluride",
       "EV6",
-      "Bongo"
+      "Bongo",
+      "Picanto",
+      "Sorento",
     ],
   },
   {
@@ -266,6 +267,7 @@ const carBrands = [
       "Range Rover Evoque",
       "Range Rover Sport",
       "Range Rover Velar",
+      "Range Rover Vogue",
     ],
   },
   {
@@ -339,7 +341,7 @@ const carBrands = [
   },
   {
     brand: "Mitsubishi",
-    models: ["Eclipse Cross", "Outlander", "Outlander Sport"],
+    models: ["Eclipse Cross", "Outlander", "Outlander Sport", "L200", "Lancer"],
   },
   {
     brand: "Nissan",
@@ -357,6 +359,8 @@ const carBrands = [
       "Titan",
       "Versa",
       "Slyphy",
+      "Sentra",
+      "Sunny",
     ],
   },
   {

@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   position: fixed;
-  background: rgb(17 24 39);
+  background: rgba(84, 84, 84, 255);
   z-index: 1;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .p-body {
-  @apply font-[Poppins]  bg-gray-900;
+  @apply font-[Poppins];
 }
 .big-text {
   @apply text-center mt-56 lg:mt-32 flex flex-col items-center pt-8;
@@ -43,7 +43,7 @@
   @apply cursor-pointer w-full lg:max-w-md mx-auto rounded-3xl;
 }
 .category-div {
-  @apply grid lg:grid-cols-3 grid-cols-2 gap-8 lg:mx-32 md:mx-8 sm:mx-auto mb-4 bg-gray-900 justify-between mx-8;
+  @apply grid lg:grid-cols-3 grid-cols-2 gap-8 lg:mx-32 md:mx-8 sm:mx-auto mb-4  justify-between mx-8;
 }
 .search-text {
   @apply text-center p-4 mx-auto my-6 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl;
@@ -73,10 +73,10 @@
   @apply flex justify-between items-center w-full md:w-[92%] mx-auto py-2;
 }
 .nav-pic {
-  @apply cursor-pointer m-4 rounded-sm max-sm:w-48;
+  @apply cursor-pointer m-4 rounded-sm;
 }
 .nav-menu {
-  @apply md:min-h-fit min-h-[12vh] transform md:translate-x-0 md:w-auto w-full flex items-center px-3;
+  @apply md:min-h-fit min-h-[12vh] transform md:translate-x-0 md:w-auto  flex items-center px-3;
 }
 
 .nav-buttons {
@@ -142,6 +142,10 @@
 }
 .edit-button {
   @apply text-white bg-green-600 hover:bg-green-700 py-2 px-4 rounded-lg;
+}
+.next-page {
+  @apply text-white  py-2 px-4 rounded-lg;
+  background-color: rgba(254, 189, 89, 1);
 }
 
 .car-div {
@@ -610,18 +614,18 @@ div.fg {
     font-size: 45px;
   }
 }
-
 .card {
-  background-image: linear-gradient(160deg, orange 0%, red 100%);
+  background-image: rgba(254, 189, 89, 1);
   border-radius: 20px;
 }
 
 .card2 {
   background-color: #ffffff;
-
   transform: scale(0.98);
   border-radius: 20px;
+  border: 5px solid rgba(254, 189, 89, 1); /* Example border with a black color */
 }
+
 .card:hover {
 }
 
