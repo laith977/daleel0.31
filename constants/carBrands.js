@@ -235,6 +235,8 @@ const carBrands = [
     brand: "Kia",
     models: [
       "Cadenza",
+      "EV5",
+      "EV6",
       "Forte",
       "k3",
       "K5",
@@ -247,7 +249,7 @@ const carBrands = [
       "Sportage",
       "Stinger",
       "Telluride",
-      "EV6",
+
       "Bongo",
       "Picanto",
       "Sorento",
@@ -344,6 +346,10 @@ const carBrands = [
     models: ["Eclipse Cross", "Outlander", "Outlander Sport", "L200", "Lancer"],
   },
   {
+    brand: "Neta",
+    models: ["U Pro", "V", "V Pro"],
+  },
+  {
     brand: "Nissan",
     models: [
       "Altima",
@@ -366,6 +372,10 @@ const carBrands = [
   {
     brand: "Opel",
     models: ["Corsa", "Astra", "Insignia", "Mokka", "Crossland", "Grandland"],
+  },
+  {
+    brand: "Ora",
+    models: ["03", "07"],
   },
   {
     brand: "Pagani",
@@ -432,6 +442,7 @@ const carBrands = [
     models: [
       "Camry",
       "Corolla",
+      "Crown",
       "Prius",
       "RAV4",
       "Highlander",
@@ -441,6 +452,7 @@ const carBrands = [
       "Land Cruiser",
       "Avalon",
       "Sienna",
+      "Venza",
       "Yaris",
       "C-HR",
       "Sequoia",
@@ -457,9 +469,10 @@ const carBrands = [
       "Tiguan",
       "Atlas",
       "Arteon",
+      "ID3",
       "ID4",
       "ID6",
-      "ID3",
+      "ID7",
       "E-Golf",
       "E-Bora",
       "E-Lavida",

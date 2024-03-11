@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import CarForm from "@/components/CarForm";
-
 const CreateCar = () => {
   const router = useRouter();
   const { data: session } = useSession();
